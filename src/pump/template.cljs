@@ -1,4 +1,5 @@
-(ns pump.template)
+(ns pump.template
+  (:require  [clojure.string :as string]))
 
 (declare as-content)
 
