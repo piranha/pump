@@ -10,7 +10,7 @@
 (defn wrap-functions
   [{:keys [render] :as props-map}]
   (let [render-proxy #(this-as this
-                        (let [res (render this (.-state this) (.-props this))]
+                        (let [res (render this (.-props this) (.-state this))]
                           (if (vector? res)
                             (html res)
                             res)))
