@@ -56,6 +56,8 @@
   (let [[tag-type tag-fn attrs content] (normalize-element elem-def)
         attrs (exclude-empty attrs)
         attrs (if (= tag-type :vanilla) (clj->js attrs) attrs)]
+    (if (nil? tag-fn)
+      (throw (str "Element definition '" (pr-str elem-def) "' could not be parsed")))
     (tag-fn attrs (clj->js (as-content content)))))
 
 (defn html [& tags]
