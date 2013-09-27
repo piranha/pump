@@ -1,7 +1,17 @@
 (ns pump.template
   (:require  [clojure.string :as string]))
 
-(declare as-content)
+(declare elem-factory)
+
+(defn as-content
+  [content]
+  (for [c content]
+    (cond (nil? c) nil
+          (map? c) (throw "Maps cannot be used as content")
+          (string? c) c
+          (vector? c) (elem-factory c)
+          (seq? c) (as-content c)
+          :else (str c))))
 
 ;; From Weavejester's Hiccup: https://github.com/weavejester/hiccup/blob/master/src/hiccup/compiler.clj#L32
 (def ^{:doc "Regular expression that parses a CSS-style id and class from a tag name."
@@ -46,18 +56,7 @@
   (let [[tag-type tag-fn attrs content] (normalize-element elem-def)
         attrs (exclude-empty attrs)
         attrs (if (= tag-type :vanilla) (clj->js attrs) attrs)]
-    (tag-fn (clj->js (exclude-empty attrs))
-            (clj->js (as-content content)))))
-
-(defn as-content
-  [content]
-  (for [c content]
-    (cond (nil? c) nil
-          (map? c) (throw "Maps cannot be used as content")
-          (string? c) c
-          (vector? c) (elem-factory c)
-          (seq? c) (as-content c)
-          :else (str c))))
+    (tag-fn attrs (clj->js (as-content content)))))
 
 (defn html [& tags]
   (let [res (map elem-factory tags)]
