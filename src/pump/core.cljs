@@ -9,7 +9,7 @@
 (def Output (react {:displayName "Output"
                     :render (fn [this state props]
                               (html [:div "123"
-                                     [:p#pgh.cls (:lines props)]
+                                     [:p#pgh.cls (pr-str (:lines props))]
                                      [:ul (map #(identity [:li %])
                                                (:lines props))]]))}))
 
