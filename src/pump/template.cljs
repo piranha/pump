@@ -11,9 +11,9 @@
 (defn parse-tag
   [tag]
   (if (fn? tag)
-    [tag nil nil]
+    [:custom tag nil nil]
     (let [[tag id class] (next (re-matches re-tag (name tag)))]
-      [(aget (.-DOM js/React) tag) id class])))
+      [:vanilla (aget (.-DOM js/React) tag) id class])))
 
 (def attr-mapping
   {:class :className})
@@ -33,17 +33,19 @@
   [[tag & content]]
   (when (not (or (keyword? tag) (symbol? tag) (string? tag) (fn? tag)))
     (throw (str tag " is not a valid element name.")))
-  (let [[tag id class] (parse-tag tag)
+  (let [[tag-type tag id class] (parse-tag tag)
         tag-attrs      {:id (or id nil)
                         :className (if class (string/replace class #"\." " "))}
         map-attrs      (first content)]
     (if (map? map-attrs)
-      [tag (merge tag-attrs (normalize-attributes map-attrs)) (next content)]
-      [tag tag-attrs content])))
+      [tag-type tag (merge tag-attrs (normalize-attributes map-attrs)) (next content)]
+      [tag-type tag tag-attrs content])))
 
 (defn elem-factory
   [elem-def]
-  (let [[tag-fn attrs content] (normalize-element elem-def)]
+  (let [[tag-type tag-fn attrs content] (normalize-element elem-def)
+        attrs (exclude-empty attrs)
+        attrs (if (= tag-type :vanilla) (clj->js attrs) attrs)]
     (tag-fn (clj->js (exclude-empty attrs))
             (clj->js (as-content content)))))
 

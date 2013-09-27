@@ -8,5 +8,8 @@
 (defn ^:export main
   []
   (let [Root (react {:render (fn [] (html [:div "tralala: "
-                                           [:a {:href "#"} "link"]]))})]
+                                           [:a {:href "#"} "link"]
+                                           [:ul
+                                            (map (fn [x] [:li x])
+                                                 ["test" "passed"])]]))})]
     (React/renderComponent (Root nil) (.-body js/document))))
