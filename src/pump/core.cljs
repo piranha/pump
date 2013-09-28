@@ -13,25 +13,28 @@
 
 (defn update-state [this keys f & args]
   (let [keys (if-not (vector? keys) [keys] keys)]
-    (.setState this
-               (apply update-in (.-state this) keys f args))))
+    (.setState this (js-obj "state"
+                            (apply update-in (.. this -state -state) keys f args)))))
 
 (defn assoc-state [this keys value]
   (let [keys (if-not (vector? keys) [keys] keys)]
-    (.setState this
-               (assoc-in (.-state this) keys value))))
+    (.setState this (js-obj "state"
+                            (assoc-in (.. this -state -state) keys value)))))
+
+(defn e-value
+  [e]
+  (.. e -target -value))
 
 (defr Input {:get-initial-state #(identity {:value ""})
              :render (fn [this
                           {:keys [on-submit]}
                           {:keys [value]}]
-                       [:form {:on-submit #(do (.log js/console "LALALA")
-                                               (.preventDefault %)
+                       [:form {:on-submit #(do (.preventDefault %)
                                                (on-submit value)
                                                (assoc-state this :value ""))}
-                        [:input {:on-change #(do (.log js/console "TRALALA")
-                                                 (assoc-state this
-                                                              :value (.. % -target -value)))
+                        [:input {:on-change #(do (assoc-state this
+                                                              :value (e-value %)))
+                                 :type "text"
                                  :value value}]
                         [:input {:type "submit" :value "Send"}]])})
 

@@ -1,5 +1,12 @@
 (ns pump.template
-  (:require  [clojure.string :as string]))
+  (:require [clojure.string :as string]))
+
+(defn dash-to-camel-name
+  [k]
+  (let [words (string/split (name k) #"-")
+        camels (map string/capitalize (rest words))
+        complete (apply str (first words) camels)]
+    (keyword complete)))
 
 (declare elem-factory)
 
@@ -29,9 +36,12 @@
   {:class :className})
 
 (defn normalize-attributes
-  [attrs]
+  [tag-type attrs]
   (into {} (map
-            (fn [[k v]] [(attr-mapping k k) v])
+            (fn [[k v]] [(if (= tag-type :vanilla)
+                           (dash-to-camel-name (attr-mapping k k))
+                           k)
+                         v])
             attrs)))
 
 (defn exclude-empty
@@ -48,7 +58,7 @@
                         :className (if class (string/replace class #"\." " "))}
         map-attrs      (first content)]
     (if (map? map-attrs)
-      [tag-type tag (merge tag-attrs (normalize-attributes map-attrs)) (next content)]
+      [tag-type tag (merge tag-attrs (normalize-attributes tag-type map-attrs)) (next content)]
       [tag-type tag tag-attrs content])))
 
 (defn elem-factory
