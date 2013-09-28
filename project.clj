@@ -1,4 +1,5 @@
-(defproject pump "0.1.0-SNAPSHOT"
+(defproject pump "0.1.0"
+  :clojurescript? true
   :description "CLJS bindings for React"
   :url "http://github.com/piranha/pump"
   :license {:name "Eclipse Public License"
