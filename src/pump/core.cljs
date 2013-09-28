@@ -1,4 +1,5 @@
 (ns pump.core
+  (:use-macros [pump.def-macros :only [defr]])
   (:require [pump.template :refer [html]]
             [pump.utils :refer [wrap-functions]]))
 
@@ -20,30 +21,29 @@
     (.setState this
                (assoc-in (.-state this) keys value))))
 
-(def Input (react {:getInitialState #(identity {:value ""})
-                   :render (fn [this
-                                {:keys [on-submit]}
-                                {:keys [value]}]
-                             [:form {:onSubmit #(do (.log js/console "LALALA")
-                                                    (.preventDefault %)
-                                                    (on-submit value)
-                                                    (assoc-state this :value ""))}
-                              [:input {:onChange #(do (.log js/console "TRALALA")
-                                                      (assoc-state this
-                                                                   :value (.. % -target -value)))
-                                       :value value}]
-                              [:input {:type "submit" :value "Send"}]])}))
+(defr Input {:get-initial-state #(identity {:value ""})
+             :render (fn [this
+                          {:keys [on-submit]}
+                          {:keys [value]}]
+                       [:form {:on-submit #(do (.log js/console "LALALA")
+                                               (.preventDefault %)
+                                               (on-submit value)
+                                               (assoc-state this :value ""))}
+                        [:input {:on-change #(do (.log js/console "TRALALA")
+                                                 (assoc-state this
+                                                              :value (.. % -target -value)))
+                                 :value value}]
+                        [:input {:type "submit" :value "Send"}]])})
 
-(def Output (react {:displayName "Output"
-                    :render (fn [this {:keys [lines]} state]
-                              [:div
-                               [:ul (map #(identity [:li %]) lines)]])}))
+(defr Output {:render (fn [this {:keys [lines]} state]
+                        [:div
+                         [:ul (map #(identity [:li %]) lines)]])})
 
-(def Root (react {:getInitialState #(identity {:lines ["test"]})
-                  :render (fn [this props state]
-                            [:div
-                             [Output state]
-                             [Input {:on-submit #(update-state this :lines conj %)}]])}))
+(defr Root {:get-initial-state #(identity {:lines ["test"]})
+            :render (fn [this props state]
+                      [:div
+                       [Output state]
+                       [Input {:on-submit #(update-state this :lines conj %)}]])})
 
 (defn ^:export main
   []
