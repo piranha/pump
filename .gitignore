@@ -1,4 +1,4 @@
 /resources/target
 /.lein-*
 /.nrepl-port
-/target/cljsbuild-*
+/target/
