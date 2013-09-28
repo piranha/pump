@@ -4,7 +4,7 @@
 (defn add-this-as-first-argument
   [f]
   (if (fn? f)
-    (fn [& args] (this-as c (apply f c args)))
+    (fn [& args] (this-as c (apply f c (.-props c) (.. c -state -state) args)))
     f))
 
 (def special-wrappers

@@ -1,5 +1,5 @@
 (ns pump.core
-  (:use-macros [pump.def-macros :only [defr]])
+  (:require-macros [pump.def-macros :refer [defr]])
   (:require [pump.template :refer [html]]
             [pump.utils :refer [wrap-functions]]))
 

@@ -1,4 +1,4 @@
-(defproject pump "0.2.0-SNAPSHOT"
+(defproject pump "0.2.0"
   :clojurescript? true
   :description "CLJS bindings for React"
   :url "http://github.com/piranha/pump"
