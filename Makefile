@@ -2,7 +2,12 @@ VERSION := $(shell awk '/defproject/ { gsub("\"", "", $$3); print $$3 }' project
 JAR := target/pump-$(VERSION).jar
 
 help:
-	@echo "pub - publish jar to clojars"
+	@echo "Available commands:"
+	@echo "  pub - publish jar to clojars"
+	@echo "  js  - run autobuild"
+
+js:
+	lein cljsbuild auto
 
 
 pub: pom.xml $(JAR)

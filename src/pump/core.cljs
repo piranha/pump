@@ -26,30 +26,31 @@
   (.. e -target -value))
 
 (defr Input
-  {:get-initial-state #(identity {:value ""})
-   :render (fn [this
-                {:keys [on-submit]}
-                {:keys [value]}]
-             [:form {:on-submit #(do (.preventDefault %)
-                                     (on-submit value)
-                                     (assoc-state this :value ""))}
-              [:input {:on-change #(do (assoc-state this
-                                                    :value (e-value %)))
-                       :type "text"
-                       :value value}]
-              [:input {:type "submit" :value "Send"}]])})
+  :get-initial-state #(identity {:value ""})
+  [this {:keys [on-submit]} {:keys [value]}]
+
+  [:form {:on-submit #(do (.preventDefault %)
+                          (on-submit value)
+                          (assoc-state this :value ""))}
+   [:input {:on-change #(do (assoc-state this
+                                         :value (e-value %)))
+            :type "text"
+            :value value}]
+   [:input {:type "submit" :value "Send"}]])
 
 (defr Output
-  {:render (fn [this {:keys [lines]} state]
-             [:div
-              [:ul (map #(identity [:li %]) lines)]])})
+  [this {:keys [lines]} state]
+
+  [:div
+   [:ul (map #(identity [:li %]) lines)]])
 
 (defr Root
-  {:get-initial-state #(identity {:lines ["test"]})
-   :render (fn [this props state]
-             [:div
-              [Output state]
-              [Input {:on-submit #(update-state this :lines conj %)}]])})
+  :get-initial-state #(identity {:lines ["test"]})
+  [this props state]
+
+  [:div
+   [Output state]
+   [Input {:on-submit #(update-state this :lines conj %)}]])
 
 (defn ^:export main
   []

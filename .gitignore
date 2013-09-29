@@ -2,3 +2,4 @@
 /.lein-*
 /.nrepl-port
 /target/
+pom.xml
