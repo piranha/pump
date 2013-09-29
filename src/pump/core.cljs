@@ -11,29 +11,35 @@
   (.preventDefault e)
   e)
 
-(defn update-state [this keys f & args]
-  (let [keys (if-not (vector? keys) [keys] keys)]
-    (.setState this (js-obj "state"
-                            (apply update-in (.. this -state -state) keys f args)))))
+(defn- component-state [C]
+  (.. C -state -state))
 
-(defn assoc-state [this keys value]
+(defn update-in-state [C keys f & args]
   (let [keys (if-not (vector? keys) [keys] keys)]
-    (.setState this (js-obj "state"
-                            (assoc-in (.. this -state -state) keys value)))))
+    (.setState C (js-obj "state"
+                         (apply update-in (component-state C) keys f args)))))
+
+(defn assoc-in-state [C keys value]
+  (let [keys (if-not (vector? keys) [keys] keys)]
+    (.setState C (js-obj "state"
+                         (assoc-in (component-state C) keys value)))))
+
+(defn assoc-state [C data]
+  (.setState C (js-obj "state"
+                       (merge (component-state C) data))))
 
 (defn e-value
   [e]
   (.. e -target -value))
 
 (defr Input
-  :get-initial-state #(identity {:value ""})
+  :get-initial-state (fn [] {:value ""})
   [this {:keys [on-submit]} {:keys [value]}]
 
   [:form {:on-submit #(do (.preventDefault %)
                           (on-submit value)
-                          (assoc-state this :value ""))}
-   [:input {:on-change #(do (assoc-state this
-                                         :value (e-value %)))
+                          (assoc-in-state this :value ""))}
+   [:input {:on-change #(assoc-in-state this :value (e-value %))
             :type "text"
             :value value}]
    [:input {:type "submit" :value "Send"}]])
@@ -50,7 +56,7 @@
 
   [:div
    [Output state]
-   [Input {:on-submit #(update-state this :lines conj %)}]])
+   [Input {:on-submit #(update-in-state this :lines conj %)}]])
 
 (defn ^:export main
   []

@@ -33,7 +33,8 @@
       [:vanilla (aget (.-DOM js/React) tag) id class])))
 
 (def attr-mapping
-  {:class :className})
+  {:class :className
+   :for :htmlFor})
 
 (defn normalize-attributes
   [tag-type attrs]
