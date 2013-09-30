@@ -10,9 +10,14 @@ Pump are ClojureScript bindings for [React][1].
   (:require [pump.core]))
 
 (defr Component
-  {:get-initial-state #(identity {:some-value ""})
-   :render (fn [C P S]
-             [:div {:class-name "test"} "hello"])})
+  :get-initial-state #(identity {:some-value ""})
+
+  [component props state]
+
+  [:div {:class-name "test"} "hello"])
 ```
 
+See `defr` [documentation][2].
+
 [1]: http://facebook.github.io/react/
+[2]: https://github.com/piranha/pump/blob/master/src/pump/def_macros.clj#L25
