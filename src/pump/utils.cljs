@@ -18,9 +18,17 @@
                          (aset state "state" (get-initial-state this))
                          state))})
 
+(defn should-component-update
+  [next-props next-state]
+  (this-as
+   this
+   (not (and (= next-props (.-props this))
+             (= (.-state next-state) (-> this .-state .-state))))))
+
 (defn wrap-functions
   [{:keys [render] :as props-map}]
-  (into {:getInitialState #(js/Object.)}
+  (into {:getInitialState #(js/Object.)
+         :shouldComponentUpdate should-component-update}
         (for [[k fn] props-map
               :let [special (special-wrappers k)]]
           [k (if (nil? special)
