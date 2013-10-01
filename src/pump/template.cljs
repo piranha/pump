@@ -40,12 +40,9 @@
    :for :htmlFor})
 
 (defn normalize-attributes
-  [tag-type attrs]
+  [attrs]
   (into {} (map
-            (fn [[k v]] [(if (= tag-type :vanilla)
-                           (dash-to-camel-name (attr-mapping k k))
-                           k)
-                         v])
+            (fn [[k v]] [(dash-to-camel-name (attr-mapping k k)) v])
             attrs)))
 
 (defn exclude-empty
@@ -62,7 +59,10 @@
                         :className (if class (string/replace class #"\." " "))}
         map-attrs      (first content)]
     (if (map? map-attrs)
-      [tag-type tag (merge tag-attrs (normalize-attributes tag-type map-attrs)) (next content)]
+      [tag-type tag (merge tag-attrs (if (= tag-type :vanilla)
+                                       (normalize-attributes map-attrs)
+                                       map-attrs))
+       (next content)]
       [tag-type tag tag-attrs content])))
 
 (defn elem-factory
