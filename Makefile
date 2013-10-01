@@ -14,6 +14,9 @@ pub: pom.xml $(JAR)
 	scp $^ clojars@clojars.org:
 
 
+jar: pom.xml $(JAR)
+
+
 pom.xml: project.clj
 	lein pom
 

@@ -1,14 +1,17 @@
 (ns pump.template
   (:require [clojure.string :as string]))
 
-(defn dash-to-camel-name
-  [k]
-  (let [words (string/split (name k) #"-")
-        camels (map string/capitalize (rest words))
-        complete (apply str (first words) camels)]
-    (keyword complete)))
-
 (declare elem-factory)
+
+(let [cache (js/Object.)]
+  (defn dash-to-camel-name
+    [k]
+    (or (aget cache k)
+        (let [words (string/split (name k) #"-")
+              camels (map string/capitalize (rest words))
+              complete (keyword (apply str (first words) camels))]
+          (aset cache k complete)
+          complete))))
 
 (defn as-content
   [content]
