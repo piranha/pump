@@ -31,19 +31,22 @@
 (defn parse-tag
   [tag]
   (if (fn? tag)
-    [:custom tag nil nil]
+    [:custom tag nil]
     (let [[tag id class] (next (re-matches re-tag (name tag)))]
-      [:vanilla (aget (.-DOM js/React) tag) id class])))
+      [:vanilla
+       (aget (.-DOM js/React) tag)
+       {:id (or id nil)
+        :className (if class (string/replace class #"\." " "))}])))
 
 (def attr-mapping
   {:class :className
    :for :htmlFor})
 
-(defn normalize-attributes
-  [attrs]
-  (into {} (map
-            (fn [[k v]] [(dash-to-camel-name (attr-mapping k k)) v])
-            attrs)))
+(defn normalize-into
+  [tag-attrs attrs]
+  (into tag-attrs (map
+                   (fn [[k v]] [(dash-to-camel-name (attr-mapping k k)) v])
+                   attrs)))
 
 (defn exclude-empty
   [attrs]
@@ -54,14 +57,12 @@
   [[tag & content]]
   (when (not (or (keyword? tag) (symbol? tag) (string? tag) (fn? tag)))
     (throw (str tag " is not a valid element name.")))
-  (let [[tag-type tag id class] (parse-tag tag)
-        tag-attrs      {:id (or id nil)
-                        :className (if class (string/replace class #"\." " "))}
+  (let [[tag-type tag tag-attrs] (parse-tag tag)
         map-attrs      (first content)]
     (if (map? map-attrs)
-      [tag-type tag (merge tag-attrs (if (= tag-type :vanilla)
-                                       (normalize-attributes map-attrs)
-                                       map-attrs))
+      [tag-type tag (if (= tag-type :vanilla)
+                      (normalize-into tag-attrs map-attrs)
+                      map-attrs)
        (next content)]
       [tag-type tag tag-attrs content])))
 
