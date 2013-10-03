@@ -3,6 +3,25 @@
   (:require [pump.template :refer [html]]
             [pump.utils :refer [wrap-functions]]))
 
+(defn component [state-ref render-fn & {:keys [did-mount will-unmount]}]
+  (let [inner-mount (fn []
+                   (add-watch state-ref :react
+                              (fn [_ _ old new]
+                                (when (not= old new)
+                                  (this-as this (.forceUpdate this)))
+                                (if did-mount
+                                  (did-mount)))))
+        inner-unmount (fn []
+                        (remove-watch state-ref :react)
+                        (if will-unmount
+                          (will-unmount)))
+        comp (React/createClass
+              (js-obj "render" (fn []
+                                 (this-as this
+                                   (render-fn this (.-props this))))
+                      "componentDidMount" inner-mount
+                      "componentWillUnount" inner-unmount))]))
+
 (defn react
   [body]
   (.createClass js/React (clj->js (wrap-functions body))))
