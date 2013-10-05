@@ -1,4 +1,4 @@
-(ns pump.def-macros
+(ns pump.macros
   (:require [clojure.string :as string]))
 
 (defn dash-to-camel-name
@@ -49,4 +49,4 @@
   (let [body# (body-map forms)
         cameled# (dash-to-camel-keys body#)
         body# (assoc cameled# :displayName (str name))]
-    `(def ~name (pump.core/react ~body#))))
+    `(def ~name (pump/react ~body#))))

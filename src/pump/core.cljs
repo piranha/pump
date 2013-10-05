@@ -1,83 +1,60 @@
 (ns pump.core
-  (:require-macros [pump.def-macros :refer [defr]])
-  (:require [pump.template :refer [html]]
-            [pump.utils :refer [wrap-functions]]))
+  (:require-macros [pump.macros :refer [defr]])
+  (:require [pump.template :refer [html]]))
 
-(defn component [state-ref render-fn & {:keys [did-mount will-unmount]}]
-  (let [inner-mount (fn []
-                   (add-watch state-ref :react
-                              (fn [_ _ old new]
-                                (when (not= old new)
-                                  (this-as this (.forceUpdate this)))
-                                (if did-mount
-                                  (did-mount)))))
-        inner-unmount (fn []
-                        (remove-watch state-ref :react)
-                        (if will-unmount
-                          (will-unmount)))
-        comp (React/createClass
-              (js-obj "render" (fn []
-                                 (this-as this
-                                   (render-fn this (.-props this))))
-                      "componentDidMount" inner-mount
-                      "componentWillUnount" inner-unmount))]))
 
-(defn react
-  [body]
-  (.createClass js/React (clj->js (wrap-functions body))))
+;;; Atom protocol as mixin
 
-(defn prevent [e]
-  (.preventDefault e)
-  e)
+(def ReactCljMixin (js-obj))
+(def -ToExtend (js-obj "prototype" ReactCljMixin))
+(extend-type -ToExtend
+  IEquiv
+  (-equiv [C other] (identical? C other))
 
-(defn- component-state [C]
-  (.. C -state -state))
+  IDeref
+  (-deref [C] (.-state C))
 
-(defn update-in-state [C keys f & args]
-  (let [keys (if-not (vector? keys) [keys] keys)]
-    (.setState C (js-obj "state"
-                         (apply update-in (component-state C) keys f args)))))
+  IMeta
+  (-meta [C] nil)
 
-(defn assoc-in-state [C keys value]
-  (let [keys (if-not (vector? keys) [keys] keys)]
-    (.setState C (js-obj "state"
-                         (assoc-in (component-state C) keys value)))))
+  IPrintWithWriter
+  (-pr-writer [C writer opts]
+    (-write writer (str "#<" (.-displayName C) ": "))
+    (pr-writer (.-state C) writer opts)
+    (-write writer ">"))
 
-(defn assoc-state [C data]
-  (.setState C (js-obj "state"
-                       (merge (component-state C) data))))
+  IWatchable
+  (-notify-watches [C old new]
+    (if (not= old new)
+      (.forceUpdate C)))
+  (-add-watch [C key f] nil)
+  (-remove-watch [C key] nil)
 
-(defn e-value
-  [e]
-  (.. e -target -value))
+  IHash
+  (-hash [C] (goog/getUid C)))
 
-(defr Input
-  :get-initial-state (fn [] {:value ""})
-  [this {:keys [on-submit]} {:keys [value]}]
+;;; Function wrapping
 
-  [:form {:on-submit #(do (.preventDefault %)
-                          (on-submit value)
-                          (assoc-in-state this :value ""))}
-   [:input {:on-change #(assoc-in-state this :value (e-value %))
-            :type "text"
-            :value value}]
-   [:input {:type "submit" :value "Send"}]])
+(defn add-first-arguments
+  [f]
+  (fn [& args] (this-as this (apply f this (.-props this) args))))
 
-(defr Output
-  [this {:keys [lines]} state]
+(defn render-wrapper [render]
+  (fn [this props]
+    (let [res (render this props @this)]
+      (if (vector? res)
+        (html res)
+        res))))
 
-  [:div
-   [:ul (map #(identity [:li %]) lines)]])
+(defn wrap-functions
+  [props-map]
+  (into {} (for [[k val] props-map]
+             [k (if-not (fn? val)
+                  val
+                  (add-first-arguments (if (= k :render)
+                                         (render-wrapper val)
+                                         val)))])))
 
-(defr Root
-  :get-initial-state #(identity {:lines ["test"]})
-  [this props state]
-
-  [:div
-   [Output state]
-   [Input {:on-submit #(update-in-state this :lines conj %)}]])
-
-(defn ^:export main
-  []
-  (let [root (React/renderComponent (Root nil) (.-body js/document))]
-    (.log js/console root)))
+(defn add-atom-mixin
+  [props-map]
+  (merge-with concat props-map {:mixins [ReactCljMixin]}))
