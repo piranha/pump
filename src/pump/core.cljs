@@ -37,11 +37,11 @@
 
 (defn add-first-arguments
   [f]
-  (fn [& args] (this-as this (apply f this (.-props this) args))))
+  (fn [& args] (this-as this (apply f this (.-props this) @this args))))
 
 (defn render-wrapper [render]
-  (fn [this props]
-    (let [res (render this props @this)]
+  (fn [this props state]
+    (let [res (render this props state)]
       (if (vector? res)
         (html res)
         res))))
