@@ -499,19 +499,6 @@ goog.base = function(me, opt_methodName, var_args) {
 goog.scope = function(fn) {
   fn.call(goog.global)
 };
-goog.provide("goog.debug.Error");
-goog.debug.Error = function(opt_msg) {
-  if(Error.captureStackTrace) {
-    Error.captureStackTrace(this, goog.debug.Error)
-  }else {
-    this.stack = (new Error).stack || ""
-  }
-  if(opt_msg) {
-    this.message = String(opt_msg)
-  }
-};
-goog.inherits(goog.debug.Error, Error);
-goog.debug.Error.prototype.name = "CustomError";
 goog.provide("goog.string");
 goog.provide("goog.string.Unicode");
 goog.string.Unicode = {NBSP:"\u00a0"};
@@ -952,6 +939,19 @@ goog.string.parseInt = function(value) {
   }
   return NaN
 };
+goog.provide("goog.debug.Error");
+goog.debug.Error = function(opt_msg) {
+  if(Error.captureStackTrace) {
+    Error.captureStackTrace(this, goog.debug.Error)
+  }else {
+    this.stack = (new Error).stack || ""
+  }
+  if(opt_msg) {
+    this.message = String(opt_msg)
+  }
+};
+goog.inherits(goog.debug.Error, Error);
+goog.debug.Error.prototype.name = "CustomError";
 goog.provide("goog.asserts");
 goog.provide("goog.asserts.AssertionError");
 goog.require("goog.debug.Error");
@@ -27226,7 +27226,7 @@ module$React.module$exports = React$$module$React;
 if(module$React.module$exports) {
   module$React = module$React.module$exports
 }
-var React = moduleeact;
+var React = module$React;
 goog.provide("clojure.string");
 goog.require("cljs.core");
 goog.require("goog.string.StringBuffer");
@@ -27446,44 +27446,44 @@ clojure.string.escape = function escape(s, cmap) {
 goog.provide("pump.template");
 goog.require("cljs.core");
 goog.require("clojure.string");
-var cache_4463 = new Object;
+var cache_4467 = new Object;
 pump.template.dash_to_camel_name = function dash_to_camel_name(k) {
-  var or__3943__auto__ = cache_4463[k];
+  var or__3943__auto__ = cache_4467[k];
   if(cljs.core.truth_(or__3943__auto__)) {
     return or__3943__auto__
   }else {
     var complete = function() {
-      var words__4034__auto__ = clojure.string.split.call(null, cljs.core.name.call(null, k), /-/);
-      var camels__4035__auto__ = cljs.core.map.call(null, clojure.string.capitalize, cljs.core.rest.call(null, words__4034__auto__));
-      var complete__4036__auto__ = cljs.core.apply.call(null, cljs.core.str, cljs.core.first.call(null, words__4034__auto__), camels__4035__auto__);
-      return complete__4036__auto__
+      var words__2844__auto__ = clojure.string.split.call(null, cljs.core.name.call(null, k), /-/);
+      var camels__2845__auto__ = cljs.core.map.call(null, clojure.string.capitalize, cljs.core.rest.call(null, words__2844__auto__));
+      var complete__2846__auto__ = cljs.core.apply.call(null, cljs.core.str, cljs.core.first.call(null, words__2844__auto__), camels__2845__auto__);
+      return complete__2846__auto__
     }();
-    cache_4463[k] = complete;
+    cache_4467[k] = complete;
     return complete
   }
 };
 pump.template.as_content = function as_content(content) {
-  var iter__3594__auto__ = function iter__4468(s__4469) {
+  var iter__3643__auto__ = function iter__4472(s__4473) {
     return new cljs.core.LazySeq(null, function() {
-      var s__4469__$1 = s__4469;
+      var s__4473__$1 = s__4473;
       while(true) {
-        var temp__4092__auto__ = cljs.core.seq.call(null, s__4469__$1);
+        var temp__4092__auto__ = cljs.core.seq.call(null, s__4473__$1);
         if(temp__4092__auto__) {
-          var s__4469__$2 = temp__4092__auto__;
-          if(cljs.core.chunked_seq_QMARK_.call(null, s__4469__$2)) {
-            var c__3592__auto__ = cljs.core.chunk_first.call(null, s__4469__$2);
-            var size__3593__auto__ = cljs.core.count.call(null, c__3592__auto__);
-            var b__4471 = cljs.core.chunk_buffer.call(null, size__3593__auto__);
+          var s__4473__$2 = temp__4092__auto__;
+          if(cljs.core.chunked_seq_QMARK_.call(null, s__4473__$2)) {
+            var c__3641__auto__ = cljs.core.chunk_first.call(null, s__4473__$2);
+            var size__3642__auto__ = cljs.core.count.call(null, c__3641__auto__);
+            var b__4475 = cljs.core.chunk_buffer.call(null, size__3642__auto__);
             if(function() {
-              var i__4470 = 0;
+              var i__4474 = 0;
               while(true) {
-                if(i__4470 < size__3593__auto__) {
-                  var c = cljs.core._nth.call(null, c__3592__auto__, i__4470);
-                  cljs.core.chunk_append.call(null, b__4471, c == null ? null : cljs.core.map_QMARK_.call(null, c) ? function() {
+                if(i__4474 < size__3642__auto__) {
+                  var c = cljs.core._nth.call(null, c__3641__auto__, i__4474);
+                  cljs.core.chunk_append.call(null, b__4475, c == null ? null : cljs.core.map_QMARK_.call(null, c) ? function() {
                     throw"Maps cannot be used as content";
                   }() : typeof c === "string" ? c : cljs.core.vector_QMARK_.call(null, c) ? pump.template.elem_factory.call(null, c) : cljs.core.seq_QMARK_.call(null, c) ? as_content.call(null, c) : new cljs.core.Keyword(null, "else", "else", 1017020587) ? [cljs.core.str(c)].join("") : null);
-                  var G__4472 = i__4470 + 1;
-                  i__4470 = G__4472;
+                  var G__4476 = i__4474 + 1;
+                  i__4474 = G__4476;
                   continue
                 }else {
                   return true
@@ -27491,15 +27491,15 @@ pump.template.as_content = function as_content(content) {
                 break
               }
             }()) {
-              return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4471), iter__4468.call(null, cljs.core.chunk_rest.call(null, s__4469__$2)))
+              return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4475), iter__4472.call(null, cljs.core.chunk_rest.call(null, s__4473__$2)))
             }else {
-              return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4471), null)
+              return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4475), null)
             }
           }else {
-            var c = cljs.core.first.call(null, s__4469__$2);
+            var c = cljs.core.first.call(null, s__4473__$2);
             return cljs.core.cons.call(null, c == null ? null : cljs.core.map_QMARK_.call(null, c) ? function() {
               throw"Maps cannot be used as content";
-            }() : typeof c === "string" ? c : cljs.core.vector_QMARK_.call(null, c) ? pump.template.elem_factory.call(null, c) : cljs.core.seq_QMARK_.call(null, c) ? as_content.call(null, c) : new cljs.core.Keyword(null, "else", "else", 1017020587) ? [cljs.core.str(c)].join("") : null, iter__4468.call(null, cljs.core.rest.call(null, s__4469__$2)))
+            }() : typeof c === "string" ? c : cljs.core.vector_QMARK_.call(null, c) ? pump.template.elem_factory.call(null, c) : cljs.core.seq_QMARK_.call(null, c) ? as_content.call(null, c) : new cljs.core.Keyword(null, "else", "else", 1017020587) ? [cljs.core.str(c)].join("") : null, iter__4472.call(null, cljs.core.rest.call(null, s__4473__$2)))
           }
         }else {
           return null
@@ -27508,17 +27508,17 @@ pump.template.as_content = function as_content(content) {
       }
     }, null, null)
   };
-  return iter__3594__auto__.call(null, content)
+  return iter__3643__auto__.call(null, content)
 };
 pump.template.re_tag = /([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?/;
 pump.template.parse_tag = function parse_tag(tag) {
   if(cljs.core.fn_QMARK_.call(null, tag)) {
     return cljs.core.PersistentVector.fromArray([new cljs.core.Keyword(null, "custom", "custom", 3959783139), tag, null], true)
   }else {
-    var vec__4474 = cljs.core.next.call(null, cljs.core.re_matches.call(null, pump.template.re_tag, cljs.core.name.call(null, tag)));
-    var tag__$1 = cljs.core.nth.call(null, vec__4474, 0, null);
-    var id = cljs.core.nth.call(null, vec__4474, 1, null);
-    var class$ = cljs.core.nth.call(null, vec__4474, 2, null);
+    var vec__4478 = cljs.core.next.call(null, cljs.core.re_matches.call(null, pump.template.re_tag, cljs.core.name.call(null, tag)));
+    var tag__$1 = cljs.core.nth.call(null, vec__4478, 0, null);
+    var id = cljs.core.nth.call(null, vec__4478, 1, null);
+    var class$ = cljs.core.nth.call(null, vec__4478, 2, null);
     return cljs.core.PersistentVector.fromArray([new cljs.core.Keyword(null, "vanilla", "vanilla", 1247006445), React.DOM[tag__$1], cljs.core.PersistentArrayMap.fromArray([new cljs.core.Keyword(null, "id", "id", 1013907597), function() {
       var or__3943__auto__ = id;
       if(cljs.core.truth_(or__3943__auto__)) {
@@ -27532,27 +27532,27 @@ pump.template.parse_tag = function parse_tag(tag) {
 pump.template.attr_mapping = cljs.core.PersistentArrayMap.fromArray([new cljs.core.Keyword(null, "for", "for", 1014005819), new cljs.core.Keyword(null, "htmlFor", "htmlFor", 2249940112), new cljs.core.Keyword(null, "class", "class", 1108647146), new cljs.core.Keyword(null, "className", "className", 1004015509)], true);
 pump.template.normalize_into = function normalize_into(tag_attrs, attrs) {
   var camel_attrs = function() {
-    var iter__3594__auto__ = function iter__4483(s__4484) {
+    var iter__3643__auto__ = function iter__4487(s__4488) {
       return new cljs.core.LazySeq(null, function() {
-        var s__4484__$1 = s__4484;
+        var s__4488__$1 = s__4488;
         while(true) {
-          var temp__4092__auto__ = cljs.core.seq.call(null, s__4484__$1);
+          var temp__4092__auto__ = cljs.core.seq.call(null, s__4488__$1);
           if(temp__4092__auto__) {
-            var s__4484__$2 = temp__4092__auto__;
-            if(cljs.core.chunked_seq_QMARK_.call(null, s__4484__$2)) {
-              var c__3592__auto__ = cljs.core.chunk_first.call(null, s__4484__$2);
-              var size__3593__auto__ = cljs.core.count.call(null, c__3592__auto__);
-              var b__4486 = cljs.core.chunk_buffer.call(null, size__3593__auto__);
+            var s__4488__$2 = temp__4092__auto__;
+            if(cljs.core.chunked_seq_QMARK_.call(null, s__4488__$2)) {
+              var c__3641__auto__ = cljs.core.chunk_first.call(null, s__4488__$2);
+              var size__3642__auto__ = cljs.core.count.call(null, c__3641__auto__);
+              var b__4490 = cljs.core.chunk_buffer.call(null, size__3642__auto__);
               if(function() {
-                var i__4485 = 0;
+                var i__4489 = 0;
                 while(true) {
-                  if(i__4485 < size__3593__auto__) {
-                    var vec__4489 = cljs.core._nth.call(null, c__3592__auto__, i__4485);
-                    var k = cljs.core.nth.call(null, vec__4489, 0, null);
-                    var v = cljs.core.nth.call(null, vec__4489, 1, null);
-                    cljs.core.chunk_append.call(null, b__4486, cljs.core.PersistentVector.fromArray([pump.template.dash_to_camel_name.call(null, pump.template.attr_mapping.call(null, k, k)), v], true));
-                    var G__4491 = i__4485 + 1;
-                    i__4485 = G__4491;
+                  if(i__4489 < size__3642__auto__) {
+                    var vec__4493 = cljs.core._nth.call(null, c__3641__auto__, i__4489);
+                    var k = cljs.core.nth.call(null, vec__4493, 0, null);
+                    var v = cljs.core.nth.call(null, vec__4493, 1, null);
+                    cljs.core.chunk_append.call(null, b__4490, cljs.core.PersistentVector.fromArray([pump.template.dash_to_camel_name.call(null, pump.template.attr_mapping.call(null, k, k)), v], true));
+                    var G__4495 = i__4489 + 1;
+                    i__4489 = G__4495;
                     continue
                   }else {
                     return true
@@ -27560,15 +27560,15 @@ pump.template.normalize_into = function normalize_into(tag_attrs, attrs) {
                   break
                 }
               }()) {
-                return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4486), iter__4483.call(null, cljs.core.chunk_rest.call(null, s__4484__$2)))
+                return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4490), iter__4487.call(null, cljs.core.chunk_rest.call(null, s__4488__$2)))
               }else {
-                return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4486), null)
+                return cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, b__4490), null)
               }
             }else {
-              var vec__4490 = cljs.core.first.call(null, s__4484__$2);
-              var k = cljs.core.nth.call(null, vec__4490, 0, null);
-              var v = cljs.core.nth.call(null, vec__4490, 1, null);
-              return cljs.core.cons.call(null, cljs.core.PersistentVector.fromArray([pump.template.dash_to_camel_name.call(null, pump.template.attr_mapping.call(null, k, k)), v], true), iter__4483.call(null, cljs.core.rest.call(null, s__4484__$2)))
+              var vec__4494 = cljs.core.first.call(null, s__4488__$2);
+              var k = cljs.core.nth.call(null, vec__4494, 0, null);
+              var v = cljs.core.nth.call(null, vec__4494, 1, null);
+              return cljs.core.cons.call(null, cljs.core.PersistentVector.fromArray([pump.template.dash_to_camel_name.call(null, pump.template.attr_mapping.call(null, k, k)), v], true), iter__4487.call(null, cljs.core.rest.call(null, s__4488__$2)))
             }
           }else {
             return null
@@ -27577,23 +27577,23 @@ pump.template.normalize_into = function normalize_into(tag_attrs, attrs) {
         }
       }, null, null)
     };
-    return iter__3594__auto__.call(null, attrs)
+    return iter__3643__auto__.call(null, attrs)
   }();
   var merged_class = [cljs.core.str((new cljs.core.Keyword(null, "className", "className", 1004015509)).call(null, tag_attrs)), cljs.core.str(" "), cljs.core.str(cljs.core.some.call(null, attrs, cljs.core.PersistentVector.fromArray([new cljs.core.Keyword(null, "class-name", "class-name", 677253426), new cljs.core.Keyword(null, "className", "className", 1004015509), new cljs.core.Keyword(null, "class", "class", 1108647146)], true)))].join("");
   return cljs.core.assoc.call(null, cljs.core.into.call(null, tag_attrs, camel_attrs), new cljs.core.Keyword(null, "className", "className", 1004015509), merged_class)
 };
 pump.template.exclude_empty = function exclude_empty(attrs) {
-  return cljs.core.into.call(null, cljs.core.PersistentArrayMap.EMPTY, cljs.core.filter.call(null, function(p__4494) {
-    var vec__4495 = p__4494;
-    var k = cljs.core.nth.call(null, vec__4495, 0, null);
-    var v = cljs.core.nth.call(null, vec__4495, 1, null);
+  return cljs.core.into.call(null, cljs.core.PersistentArrayMap.EMPTY, cljs.core.filter.call(null, function(p__4498) {
+    var vec__4499 = p__4498;
+    var k = cljs.core.nth.call(null, vec__4499, 0, null);
+    var v = cljs.core.nth.call(null, vec__4499, 1, null);
     return v
   }, attrs))
 };
-pump.template.normalize_element = function normalize_element(p__4496) {
-  var vec__4499 = p__4496;
-  var tag = cljs.core.nth.call(null, vec__4499, 0, null);
-  var content = cljs.core.nthnext.call(null, vec__4499, 1);
+pump.template.normalize_element = function normalize_element(p__4500) {
+  var vec__4503 = p__4500;
+  var tag = cljs.core.nth.call(null, vec__4503, 0, null);
+  var content = cljs.core.nthnext.call(null, vec__4503, 1);
   if(!function() {
     var or__3943__auto__ = tag instanceof cljs.core.Keyword;
     if(or__3943__auto__) {
@@ -27615,10 +27615,10 @@ pump.template.normalize_element = function normalize_element(p__4496) {
     throw[cljs.core.str(tag), cljs.core.str(" is not a valid element name.")].join("");
   }else {
   }
-  var vec__4500 = pump.template.parse_tag.call(null, tag);
-  var tag_type = cljs.core.nth.call(null, vec__4500, 0, null);
-  var tag__$1 = cljs.core.nth.call(null, vec__4500, 1, null);
-  var tag_attrs = cljs.core.nth.call(null, vec__4500, 2, null);
+  var vec__4504 = pump.template.parse_tag.call(null, tag);
+  var tag_type = cljs.core.nth.call(null, vec__4504, 0, null);
+  var tag__$1 = cljs.core.nth.call(null, vec__4504, 1, null);
+  var tag_attrs = cljs.core.nth.call(null, vec__4504, 2, null);
   var map_attrs = cljs.core.first.call(null, content);
   if(cljs.core.map_QMARK_.call(null, map_attrs)) {
     return cljs.core.PersistentVector.fromArray([tag_type, tag__$1, cljs.core._EQ_.call(null, tag_type, new cljs.core.Keyword(null, "vanilla", "vanilla", 1247006445)) ? pump.template.normalize_into.call(null, tag_attrs, map_attrs) : map_attrs, cljs.core.next.call(null, content)], true)
@@ -27627,11 +27627,11 @@ pump.template.normalize_element = function normalize_element(p__4496) {
   }
 };
 pump.template.elem_factory = function elem_factory(elem_def) {
-  var vec__4502 = pump.template.normalize_element.call(null, elem_def);
-  var tag_type = cljs.core.nth.call(null, vec__4502, 0, null);
-  var tag_fn = cljs.core.nth.call(null, vec__4502, 1, null);
-  var attrs = cljs.core.nth.call(null, vec__4502, 2, null);
-  var content = cljs.core.nth.call(null, vec__4502, 3, null);
+  var vec__4506 = pump.template.normalize_element.call(null, elem_def);
+  var tag_type = cljs.core.nth.call(null, vec__4506, 0, null);
+  var tag_fn = cljs.core.nth.call(null, vec__4506, 1, null);
+  var attrs = cljs.core.nth.call(null, vec__4506, 2, null);
+  var content = cljs.core.nth.call(null, vec__4506, 3, null);
   var attrs__$1 = pump.template.exclude_empty.call(null, attrs);
   var attrs__$2 = cljs.core._EQ_.call(null, tag_type, new cljs.core.Keyword(null, "vanilla", "vanilla", 1247006445)) ? cljs.core.clj__GT_js.call(null, attrs__$1) : attrs__$1;
   if(tag_fn == null) {
@@ -27657,8 +27657,8 @@ pump.template.html = function() {
     return html__delegate.call(this, tags)
   };
   html.cljs$lang$maxFixedArity = 0;
-  html.cljs$lang$applyTo = function(arglist__4503) {
-    var tags = cljs.core.seq(arglist__4503);
+  html.cljs$lang$applyTo = function(arglist__4507) {
+    var tags = cljs.core.seq(arglist__4507);
     return html__delegate(tags)
   };
   html.cljs$core$IFn$_invoke$arity$variadic = html__delegate;
