@@ -9,7 +9,8 @@
   :cljsbuild {:builds [{:id "main"
                         :source-paths ["src"]
                         :compiler {:output-to "resources/target/pump.js"
-;                                   :libs ["resources/static/react.min.js"]
                                    :externs ["resources/externs/react.js"]
+                                   :foreign-libs [{:file "resources/static/react.js"
+                                                   :provides ["React"]}]
                                    :optimizations :whitespace}
                         :jar true}]})

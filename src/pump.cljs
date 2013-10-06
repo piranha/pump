@@ -1,5 +1,6 @@
 (ns pump
-  [:require [pump.core :refer [wrap-functions add-atom-mixin]]])
+  (:require [React]
+            [pump.core :refer [wrap-functions add-atom-mixin]]))
 
 (defn prevent [e]
   (.preventDefault e)
@@ -11,7 +12,7 @@
 
 (defn react
   [body]
-  (.createClass js/React (-> body
-                             wrap-functions
-                             add-atom-mixin
-                             clj->js)))
+  (React/createClass (-> body
+                         wrap-functions
+                         add-atom-mixin
+                         clj->js)))
