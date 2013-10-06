@@ -50,7 +50,7 @@ function $(id) {
 
 module.exports = $;
 
-},{"./ex":83,"./ge":87}],2:[function(require,module,exports){
+},{"./ex":84,"./ge":88}],2:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -77,6 +77,7 @@ module.exports = $;
 var isUnitlessNumber = {
   fillOpacity: true,
   fontWeight: true,
+  lineHeight: true,
   opacity: true,
   orphans: true,
   zIndex: true,
@@ -240,7 +241,7 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 
-},{"./CSSProperty":2,"./dangerousStyleValue":80,"./escapeTextForBrowser":82,"./hyphenate":93,"./memoizeStringOnly":99}],4:[function(require,module,exports){
+},{"./CSSProperty":2,"./dangerousStyleValue":81,"./escapeTextForBrowser":83,"./hyphenate":94,"./memoizeStringOnly":102}],4:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -729,7 +730,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":14,"./EventPluginHub":16,"./EventPropagators":19,"./ExecutionEnvironment":20,"./SyntheticEvent":64,"./isEventSupported":95,"./keyOf":98}],6:[function(require,module,exports){
+},{"./EventConstants":14,"./EventPluginHub":16,"./EventPropagators":19,"./ExecutionEnvironment":20,"./SyntheticEvent":65,"./isEventSupported":96,"./keyOf":101}],6:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -943,7 +944,7 @@ var CompositionEventPlugin = {
 
 module.exports = CompositionEventPlugin;
 
-},{"./EventConstants":14,"./EventPropagators":19,"./ExecutionEnvironment":20,"./ReactInputSelection":45,"./SyntheticCompositionEvent":63,"./getTextContentAccessor":92,"./keyOf":98}],7:[function(require,module,exports){
+},{"./EventConstants":14,"./EventPropagators":19,"./ExecutionEnvironment":20,"./ReactInputSelection":46,"./SyntheticCompositionEvent":64,"./getTextContentAccessor":93,"./keyOf":101}],7:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -1080,7 +1081,7 @@ var DOMChildrenOperations = {
 
 module.exports = DOMChildrenOperations;
 
-},{"./Danger":10,"./ReactMultiChildUpdateTypes":50,"./getTextContentAccessor":92}],8:[function(require,module,exports){
+},{"./Danger":10,"./ReactMultiChildUpdateTypes":51,"./getTextContentAccessor":93}],8:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -1329,7 +1330,7 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 
-},{"./invariant":94}],9:[function(require,module,exports){
+},{"./invariant":95}],9:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -1362,7 +1363,7 @@ var processAttributeNameAndPrefix = memoizeStringOnly(function(name) {
 
 if (true) {
   var reactProps = {
-    '{owner}': true,
+    __owner__: true,
     children: true,
     dangerouslySetInnerHTML: true,
     key: true,
@@ -1487,7 +1488,7 @@ var DOMPropertyOperations = {
 
 module.exports = DOMPropertyOperations;
 
-},{"./DOMProperty":8,"./escapeTextForBrowser":82,"./memoizeStringOnly":99}],10:[function(require,module,exports){
+},{"./DOMProperty":8,"./escapeTextForBrowser":83,"./memoizeStringOnly":102}],10:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -1675,7 +1676,7 @@ var Danger = {
 
 module.exports = Danger;
 
-},{"./ExecutionEnvironment":20,"./createNodesFromMarkup":78,"./emptyFunction":81,"./getMarkupWrap":89,"./invariant":94,"./mutateHTMLNodeWithMarkup":104}],11:[function(require,module,exports){
+},{"./ExecutionEnvironment":20,"./createNodesFromMarkup":79,"./emptyFunction":82,"./getMarkupWrap":90,"./invariant":95,"./mutateHTMLNodeWithMarkup":107}],11:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -1714,7 +1715,6 @@ var DefaultDOMPropertyConfig = {
     accessKey: null,
     accept: null,
     action: null,
-    ajaxify: MUST_USE_ATTRIBUTE,
     allowFullScreen: MUST_USE_ATTRIBUTE | HAS_BOOLEAN_VALUE,
     allowTransparency: MUST_USE_ATTRIBUTE,
     alt: null,
@@ -1893,7 +1893,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":98}],13:[function(require,module,exports){
+},{"./keyOf":101}],13:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -2007,7 +2007,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":14,"./EventPropagators":19,"./ReactMount":48,"./SyntheticMouseEvent":67,"./keyOf":98}],14:[function(require,module,exports){
+},{"./EventConstants":14,"./EventPropagators":19,"./ReactMount":49,"./SyntheticMouseEvent":68,"./keyOf":101}],14:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -2082,7 +2082,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":97}],15:[function(require,module,exports){
+},{"./keyMirror":100}],15:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -2337,7 +2337,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = EventPluginHub;
 
-},{"./CallbackRegistry":4,"./EventPluginRegistry":17,"./EventPluginUtils":18,"./EventPropagators":19,"./ExecutionEnvironment":20,"./accumulate":74,"./forEachAccumulated":86,"./invariant":94}],17:[function(require,module,exports){
+},{"./CallbackRegistry":4,"./EventPluginRegistry":17,"./EventPluginUtils":18,"./EventPropagators":19,"./ExecutionEnvironment":20,"./accumulate":75,"./forEachAccumulated":87,"./invariant":95}],17:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -2583,7 +2583,7 @@ var EventPluginRegistry = {
 
 module.exports = EventPluginRegistry;
 
-},{"./invariant":94}],18:[function(require,module,exports){
+},{"./invariant":95}],18:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -2770,7 +2770,7 @@ var EventPluginUtils = {
 
 module.exports = EventPluginUtils;
 
-},{"./EventConstants":14,"./invariant":94}],19:[function(require,module,exports){
+},{"./EventConstants":14,"./invariant":95}],19:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -2951,7 +2951,7 @@ var EventPropagators = {
 
 module.exports = EventPropagators;
 
-},{"./CallbackRegistry":4,"./EventConstants":14,"./accumulate":74,"./forEachAccumulated":86}],20:[function(require,module,exports){
+},{"./CallbackRegistry":4,"./EventConstants":14,"./accumulate":75,"./forEachAccumulated":87}],20:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -3064,7 +3064,7 @@ var LinkedValueMixin = {
 
 module.exports = LinkedValueMixin;
 
-},{"./invariant":94}],22:[function(require,module,exports){
+},{"./invariant":95}],22:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -3129,7 +3129,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":14,"./emptyFunction":81}],23:[function(require,module,exports){
+},{"./EventConstants":14,"./emptyFunction":82}],23:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -3304,7 +3304,7 @@ React.version = '0.5.0-alpha';
 
 module.exports = React;
 
-},{"./ReactComponent":25,"./ReactCompositeComponent":28,"./ReactDOM":30,"./ReactDefaultInjection":40,"./ReactMount":48,"./ReactPerf":54,"./ReactPropTypes":56,"./ReactServerRendering":58}],25:[function(require,module,exports){
+},{"./ReactComponent":25,"./ReactCompositeComponent":28,"./ReactDOM":30,"./ReactDefaultInjection":41,"./ReactMount":49,"./ReactPerf":54,"./ReactPropTypes":56,"./ReactServerRendering":59}],25:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -3328,17 +3328,12 @@ module.exports = React;
 var ReactComponentEnvironment = require("./ReactComponentEnvironment");
 var ReactCurrentOwner = require("./ReactCurrentOwner");
 var ReactOwner = require("./ReactOwner");
+var ReactRefs = require("./ReactRefs");
 var ReactUpdates = require("./ReactUpdates");
 
 var invariant = require("./invariant");
 var keyMirror = require("./keyMirror");
 var merge = require("./merge");
-
-/**
- * Prop key that references a component's owner.
- * @private
- */
-var OWNER = '{owner}';
 
 /**
  * Props key that determines if a component's key was already validated.
@@ -3400,7 +3395,8 @@ function validateExplicitKey(component) {
   if (!component.isOwnedBy(ReactCurrentOwner.current)) {
     // Name of the component that originally created this child.
     var childOwnerName =
-      component.props[OWNER] && component.props[OWNER].constructor.displayName;
+      component.props.__owner__ &&
+      component.props.__owner__.constructor.displayName;
 
     // Usually the current owner is the offender, but if it accepts
     // children as a property, it may be the creator of the child that's
@@ -3578,7 +3574,7 @@ var ReactComponent = {
      */
     replaceProps: function(props, callback) {
       invariant(
-        !this.props[OWNER],
+        !this.props.__owner__,
         'replaceProps(...): You called `setProps` or `replaceProps` on a ' +
         'component with an owner. This is an anti-pattern since props will ' +
         'get reactively updated when rendered. Instead, change the owner\'s ' +
@@ -3606,7 +3602,7 @@ var ReactComponent = {
     construct: function(initialProps, children) {
       this.props = initialProps || {};
       // Record the component responsible for creating this component.
-      this.props[OWNER] = ReactCurrentOwner.current;
+      this.props.__owner__ = ReactCurrentOwner.current;
       // All components start unmounted.
       this._lifeCycleState = ComponentLifeCycle.UNMOUNTED;
 
@@ -3642,21 +3638,23 @@ var ReactComponent = {
      *
      * @param {string} rootID DOM ID of the root node.
      * @param {ReactReconcileTransaction} transaction
+     * @param {number} mountDepth number of components in the owner hierarchy.
      * @return {?string} Rendered markup to be inserted into the DOM.
      * @internal
      */
-    mountComponent: function(rootID, transaction) {
+    mountComponent: function(rootID, transaction, mountDepth) {
       invariant(
         !this.isMounted(),
         'mountComponent(%s, ...): Can only mount an unmounted component.',
         rootID
       );
-      var props = this.props;
-      if (props.ref != null) {
-        ReactOwner.addComponentAsRefTo(this, props.ref, props[OWNER]);
+      var ref = ReactRefs.getComponentRef(this);
+      if (ref != null) {
+        ReactOwner.addComponentAsRefTo(this, ref, this.props.__owner__);
       }
       this._rootNodeID = rootID;
       this._lifeCycleState = ComponentLifeCycle.MOUNTED;
+      this._mountDepth = mountDepth;
       // Effectively: return '';
     },
 
@@ -3675,9 +3673,9 @@ var ReactComponent = {
         this.isMounted(),
         'unmountComponent(): Can only unmount a mounted component.'
       );
-      var props = this.props;
-      if (props.ref != null) {
-        ReactOwner.removeComponentAsRefFrom(this, props.ref, props[OWNER]);
+      var ref = ReactRefs.getComponentRef(this);
+      if (ref != null) {
+        ReactOwner.removeComponentAsRefFrom(this, ref, this.props.__owner__);
       }
       ReactComponent.unmountIDFromEnvironment(this._rootNodeID);
       this._rootNodeID = null;
@@ -3743,15 +3741,16 @@ var ReactComponent = {
       // If either the owner or a `ref` has changed, make sure the newest owner
       // has stored a reference to `this`, and the previous owner (if different)
       // has forgotten the reference to `this`.
-      if (props[OWNER] !== prevProps[OWNER] || props.ref !== prevProps.ref) {
+      if (props.__owner__ !== prevProps.__owner__ ||
+          props.ref !== prevProps.ref) {
         if (prevProps.ref != null) {
           ReactOwner.removeComponentAsRefFrom(
-            this, prevProps.ref, prevProps[OWNER]
+            this, prevProps.ref, prevProps.__owner__
           );
         }
         // Correct, even if the owner is the same, and only the ref has changed.
         if (props.ref != null) {
-          ReactOwner.addComponentAsRefTo(this, props.ref, props[OWNER]);
+          ReactOwner.addComponentAsRefTo(this, props.ref, props.__owner__);
         }
       }
     },
@@ -3792,7 +3791,7 @@ var ReactComponent = {
         container,
         transaction,
         shouldReuseMarkup) {
-      var markup = this.mountComponent(rootID, transaction);
+      var markup = this.mountComponent(rootID, transaction, 0);
       ReactComponent.mountImageIntoNode(markup, container, shouldReuseMarkup);
     },
 
@@ -3805,7 +3804,7 @@ var ReactComponent = {
      * @internal
      */
     isOwnedBy: function(owner) {
-      return this.props[OWNER] === owner;
+      return this.props.__owner__ === owner;
     },
 
     /**
@@ -3817,7 +3816,7 @@ var ReactComponent = {
      * @internal
      */
     getSiblingByRef: function(ref) {
-      var owner = this.props[OWNER];
+      var owner = this.props.__owner__;
       if (!owner || !owner.refs) {
         return null;
       }
@@ -3828,7 +3827,7 @@ var ReactComponent = {
 
 module.exports = ReactComponent;
 
-},{"./ReactComponentEnvironment":27,"./ReactCurrentOwner":29,"./ReactOwner":53,"./ReactUpdates":60,"./invariant":94,"./keyMirror":97,"./merge":100}],26:[function(require,module,exports){
+},{"./ReactComponentEnvironment":27,"./ReactCurrentOwner":29,"./ReactOwner":53,"./ReactRefs":58,"./ReactUpdates":61,"./invariant":95,"./keyMirror":100,"./merge":103}],26:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -3967,7 +3966,7 @@ var ReactComponentBrowserEnvironment = {
 
 module.exports = ReactComponentBrowserEnvironment;
 
-},{"./ReactDOMIDOperations":33,"./ReactMarkupChecksum":47,"./ReactMount":48,"./ReactReconcileTransaction":57,"./getReactRootElementInContainer":91,"./invariant":94,"./mutateHTMLNodeWithMarkup":104}],27:[function(require,module,exports){
+},{"./ReactDOMIDOperations":34,"./ReactMarkupChecksum":48,"./ReactMount":49,"./ReactReconcileTransaction":57,"./getReactRootElementInContainer":92,"./invariant":95,"./mutateHTMLNodeWithMarkup":107}],27:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -4527,6 +4526,7 @@ var ReactCompositeComponentMixin = {
    *
    * @param {string} rootID DOM ID of the root node.
    * @param {ReactReconcileTransaction} transaction
+   * @param {number} mountDepth number of components in the owner hierarchy
    * @return {?string} Rendered markup to be inserted into the DOM.
    * @final
    * @internal
@@ -4534,8 +4534,13 @@ var ReactCompositeComponentMixin = {
   mountComponent: ReactPerf.measure(
     'ReactCompositeComponent',
     'mountComponent',
-    function(rootID, transaction) {
-      ReactComponent.Mixin.mountComponent.call(this, rootID, transaction);
+    function(rootID, transaction, mountDepth) {
+      ReactComponent.Mixin.mountComponent.call(
+        this,
+        rootID,
+        transaction,
+        mountDepth
+      );
       this._compositeLifeCycleState = CompositeLifeCycle.MOUNTING;
 
       this._defaultProps = this.getDefaultProps ? this.getDefaultProps() : null;
@@ -4563,7 +4568,11 @@ var ReactCompositeComponentMixin = {
 
       // Done with mounting, `setState` will now trigger UI changes.
       this._compositeLifeCycleState = null;
-      var markup = this._renderedComponent.mountComponent(rootID, transaction);
+      var markup = this._renderedComponent.mountComponent(
+        rootID,
+        transaction,
+        mountDepth + 1
+      );
       if (this.componentDidMount) {
         transaction.getReactOnDOMReady().enqueue(this, this.componentDidMount);
       }
@@ -4784,7 +4793,11 @@ var ReactCompositeComponentMixin = {
         var thisID = this._rootNodeID;
         var currentComponentID = currentComponent._rootNodeID;
         currentComponent.unmountComponent();
-        var nextMarkup = nextComponent.mountComponent(thisID, transaction);
+        var nextMarkup = nextComponent.mountComponent(
+          thisID,
+          transaction,
+          this._mountDepth + 1
+        );
         ReactComponent.DOMIDOperations.dangerouslyReplaceNodeWithMarkupByID(
           currentComponentID,
           nextMarkup
@@ -4832,14 +4845,14 @@ var ReactCompositeComponentMixin = {
   _renderValidatedComponent: function() {
     var renderedComponent;
     ReactCurrentOwner.current = this;
-    // try {
+    try {
       renderedComponent = this.render();
-    // } catch (error) {
-    //   // IE8 requires `catch` in order to use `finally`.
-    //   throw error;
-    // } finally {
+    } catch (error) {
+      // IE8 requires `catch` in order to use `finally`.
+      throw error;
+    } finally {
       ReactCurrentOwner.current = null;
-    // }
+    }
     invariant(
       ReactComponent.isValidComponent(renderedComponent),
       '%s.render(): A valid ReactComponent must be returned.',
@@ -4968,7 +4981,7 @@ var ReactCompositeComponent = {
 
 module.exports = ReactCompositeComponent;
 
-},{"./ReactComponent":25,"./ReactCurrentOwner":29,"./ReactOwner":53,"./ReactPerf":54,"./ReactPropTransferer":55,"./ReactUpdates":60,"./invariant":94,"./keyMirror":97,"./merge":100,"./mixInto":103,"./objMap":105}],29:[function(require,module,exports){
+},{"./ReactComponent":25,"./ReactCurrentOwner":29,"./ReactOwner":53,"./ReactPerf":54,"./ReactPropTransferer":55,"./ReactUpdates":61,"./invariant":95,"./keyMirror":100,"./merge":103,"./mixInto":106,"./objMap":109}],29:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -5031,7 +5044,7 @@ module.exports = ReactCurrentOwner;
 
 "use strict";
 
-var ReactNativeComponent = require("./ReactNativeComponent");
+var ReactDOMComponent = require("./ReactDOMComponent");
 
 var mergeInto = require("./mergeInto");
 var objMapKeyVal = require("./objMapKeyVal");
@@ -5053,7 +5066,7 @@ var objMapKeyVal = require("./objMapKeyVal");
  */
 function createDOMComponentClass(tag, omitClose) {
   var Constructor = function() {};
-  Constructor.prototype = new ReactNativeComponent(tag, omitClose);
+  Constructor.prototype = new ReactDOMComponent(tag, omitClose);
   Constructor.prototype.constructor = Constructor;
 
   var ConvenienceConstructor = function(props, children) {
@@ -5066,7 +5079,7 @@ function createDOMComponentClass(tag, omitClose) {
 }
 
 /**
- * Creates a mapping from supported HTML tags to `ReactNativeComponent` classes.
+ * Creates a mapping from supported HTML tags to `ReactDOMComponent` classes.
  * This is also accessible via `React.DOM`.
  *
  * @public
@@ -5204,7 +5217,7 @@ ReactDOM.injection = injection;
 
 module.exports = ReactDOM;
 
-},{"./ReactNativeComponent":51,"./mergeInto":102,"./objMapKeyVal":106}],31:[function(require,module,exports){
+},{"./ReactDOMComponent":32,"./mergeInto":105,"./objMapKeyVal":110}],31:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -5230,7 +5243,7 @@ var ReactDOM = require("./ReactDOM");
 
 var keyMirror = require("./keyMirror");
 
-// Store a reference to the <button> `ReactNativeComponent`.
+// Store a reference to the <button> `ReactDOMComponent`.
 var button = ReactDOM.button;
 
 var mouseListenerNames = keyMirror({
@@ -5270,7 +5283,380 @@ var ReactDOMButton = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./ReactCompositeComponent":28,"./ReactDOM":30,"./keyMirror":97}],32:[function(require,module,exports){
+},{"./ReactCompositeComponent":28,"./ReactDOM":30,"./keyMirror":100}],32:[function(require,module,exports){
+/**
+ * Copyright 2013 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @providesModule ReactDOMComponent
+ * @typechecks static-only
+ */
+
+"use strict";
+
+var CSSPropertyOperations = require("./CSSPropertyOperations");
+var DOMProperty = require("./DOMProperty");
+var DOMPropertyOperations = require("./DOMPropertyOperations");
+var ReactComponent = require("./ReactComponent");
+var ReactEventEmitter = require("./ReactEventEmitter");
+var ReactMultiChild = require("./ReactMultiChild");
+var ReactMount = require("./ReactMount");
+var ReactPerf = require("./ReactPerf");
+
+var escapeTextForBrowser = require("./escapeTextForBrowser");
+var flattenChildren = require("./flattenChildren");
+var invariant = require("./invariant");
+var keyOf = require("./keyOf");
+var merge = require("./merge");
+var mixInto = require("./mixInto");
+
+var putListener = ReactEventEmitter.putListener;
+var deleteListener = ReactEventEmitter.deleteListener;
+var registrationNames = ReactEventEmitter.registrationNames;
+
+// For quickly matching children type, to test if can be treated as content.
+var CONTENT_TYPES = {'string': true, 'number': true};
+
+var STYLE = keyOf({style: null});
+
+/**
+ * @param {?object} props
+ */
+function assertValidProps(props) {
+  if (!props) {
+    return;
+  }
+  // Note the use of `==` which checks for null or undefined.
+  invariant(
+    props.children == null || props.dangerouslySetInnerHTML == null,
+    'Can only set one of `children` or `props.dangerouslySetInnerHTML`.'
+  );
+  invariant(
+    props.style == null || typeof props.style === 'object',
+    'The `style` prop expects a mapping from style properties to values, ' +
+    'not a string.'
+  );
+}
+
+/**
+ * @constructor ReactDOMComponent
+ * @extends ReactComponent
+ * @extends ReactMultiChild
+ */
+function ReactDOMComponent(tag, omitClose) {
+  this._tagOpen = '<' + tag;
+  this._tagClose = omitClose ? '' : '</' + tag + '>';
+  this.tagName = tag.toUpperCase();
+}
+
+ReactDOMComponent.Mixin = {
+
+  /**
+   * Generates root tag markup then recurses. This method has side effects and
+   * is not idempotent.
+   *
+   * @internal
+   * @param {string} rootID The root DOM ID for this node.
+   * @param {ReactReconcileTransaction} transaction
+   * @param {number} mountDepth number of components in the owner hierarchy
+   * @return {string} The computed markup.
+   */
+  mountComponent: ReactPerf.measure(
+    'ReactDOMComponent',
+    'mountComponent',
+    function(rootID, transaction, mountDepth) {
+      ReactComponent.Mixin.mountComponent.call(
+        this,
+        rootID,
+        transaction,
+        mountDepth
+      );
+      assertValidProps(this.props);
+      return (
+        this._createOpenTagMarkup() +
+        this._createContentMarkup(transaction) +
+        this._tagClose
+      );
+    }
+  ),
+
+  /**
+   * Creates markup for the open tag and all attributes.
+   *
+   * This method has side effects because events get registered.
+   *
+   * Iterating over object properties is faster than iterating over arrays.
+   * @see http://jsperf.com/obj-vs-arr-iteration
+   *
+   * @private
+   * @return {string} Markup of opening tag.
+   */
+  _createOpenTagMarkup: function() {
+    var props = this.props;
+    var ret = this._tagOpen;
+
+    for (var propKey in props) {
+      if (!props.hasOwnProperty(propKey)) {
+        continue;
+      }
+      var propValue = props[propKey];
+      if (propValue == null) {
+        continue;
+      }
+      if (registrationNames[propKey]) {
+        putListener(this._rootNodeID, propKey, propValue);
+      } else {
+        if (propKey === STYLE) {
+          if (propValue) {
+            propValue = props.style = merge(props.style);
+          }
+          propValue = CSSPropertyOperations.createMarkupForStyles(propValue);
+        }
+        var markup =
+          DOMPropertyOperations.createMarkupForProperty(propKey, propValue);
+        if (markup) {
+          ret += ' ' + markup;
+        }
+      }
+    }
+
+    var escapedID = escapeTextForBrowser(this._rootNodeID);
+    return ret + ' ' + ReactMount.ATTR_NAME + '="' + escapedID + '">';
+  },
+
+  /**
+   * Creates markup for the content between the tags.
+   *
+   * @private
+   * @param {ReactReconcileTransaction} transaction
+   * @return {string} Content markup.
+   */
+  _createContentMarkup: function(transaction) {
+    // Intentional use of != to avoid catching zero/false.
+    var innerHTML = this.props.dangerouslySetInnerHTML;
+    if (innerHTML != null) {
+      if (innerHTML.__html != null) {
+        return innerHTML.__html;
+      }
+    } else {
+      var contentToUse =
+        CONTENT_TYPES[typeof this.props.children] ? this.props.children : null;
+      var childrenToUse = contentToUse != null ? null : this.props.children;
+      if (contentToUse != null) {
+        return escapeTextForBrowser(contentToUse);
+      } else if (childrenToUse != null) {
+        var mountImages = this.mountChildren(
+          flattenChildren(childrenToUse),
+          transaction
+        );
+        return mountImages.join('');
+      }
+    }
+    return '';
+  },
+
+  receiveProps: function(nextProps, transaction) {
+    assertValidProps(nextProps);
+    ReactComponent.Mixin.receiveProps.call(this, nextProps, transaction);
+  },
+
+  /**
+   * Updates a native DOM component after it has already been allocated and
+   * attached to the DOM. Reconciles the root DOM node, then recurses.
+   *
+   * @param {ReactReconcileTransaction} transaction
+   * @param {object} prevProps
+   * @internal
+   * @overridable
+   */
+  updateComponent: ReactPerf.measure(
+    'ReactDOMComponent',
+    'updateComponent',
+    function(transaction, prevProps) {
+      ReactComponent.Mixin.updateComponent.call(this, transaction, prevProps);
+      this._updateDOMProperties(prevProps);
+      this._updateDOMChildren(prevProps, transaction);
+    }
+  ),
+
+  /**
+   * Reconciles the properties by detecting differences in property values and
+   * updating the DOM as necessary. This function is probably the single most
+   * critical path for performance optimization.
+   *
+   * TODO: Benchmark whether checking for changed values in memory actually
+   *       improves performance (especially statically positioned elements).
+   * TODO: Benchmark the effects of putting this at the top since 99% of props
+   *       do not change for a given reconciliation.
+   * TODO: Benchmark areas that can be improved with caching.
+   *
+   * @private
+   * @param {object} lastProps
+   */
+  _updateDOMProperties: function(lastProps) {
+    var nextProps = this.props;
+    var propKey;
+    var styleName;
+    var styleUpdates;
+    for (propKey in lastProps) {
+      if (nextProps.hasOwnProperty(propKey) ||
+         !lastProps.hasOwnProperty(propKey)) {
+        continue;
+      }
+      if (propKey === STYLE) {
+        var lastStyle = lastProps[propKey];
+        for (styleName in lastStyle) {
+          if (lastStyle.hasOwnProperty(styleName)) {
+            styleUpdates = styleUpdates || {};
+            styleUpdates[styleName] = '';
+          }
+        }
+      } else if (registrationNames[propKey]) {
+        deleteListener(this._rootNodeID, propKey);
+      } else if (
+          DOMProperty.isStandardName[propKey] ||
+          DOMProperty.isCustomAttribute(propKey)) {
+        ReactComponent.DOMIDOperations.deletePropertyByID(
+          this._rootNodeID,
+          propKey
+        );
+      }
+    }
+    for (propKey in nextProps) {
+      var nextProp = nextProps[propKey];
+      var lastProp = lastProps[propKey];
+      if (!nextProps.hasOwnProperty(propKey) || nextProp === lastProp) {
+        continue;
+      }
+      if (propKey === STYLE) {
+        if (nextProp) {
+          nextProp = nextProps.style = merge(nextProp);
+        }
+        if (lastProp) {
+          // Unset styles on `lastProp` but not on `nextProp`.
+          for (styleName in lastProp) {
+            if (lastProp.hasOwnProperty(styleName) &&
+                !nextProp.hasOwnProperty(styleName)) {
+              styleUpdates = styleUpdates || {};
+              styleUpdates[styleName] = '';
+            }
+          }
+          // Update styles that changed since `lastProp`.
+          for (styleName in nextProp) {
+            if (nextProp.hasOwnProperty(styleName) &&
+                lastProp[styleName] !== nextProp[styleName]) {
+              styleUpdates = styleUpdates || {};
+              styleUpdates[styleName] = nextProp[styleName];
+            }
+          }
+        } else {
+          // Relies on `updateStylesByID` not mutating `styleUpdates`.
+          styleUpdates = nextProp;
+        }
+      } else if (registrationNames[propKey]) {
+        putListener(this._rootNodeID, propKey, nextProp);
+      } else if (
+          DOMProperty.isStandardName[propKey] ||
+          DOMProperty.isCustomAttribute(propKey)) {
+        ReactComponent.DOMIDOperations.updatePropertyByID(
+          this._rootNodeID,
+          propKey,
+          nextProp
+        );
+      }
+    }
+    if (styleUpdates) {
+      ReactComponent.DOMIDOperations.updateStylesByID(
+        this._rootNodeID,
+        styleUpdates
+      );
+    }
+  },
+
+  /**
+   * Reconciles the children with the various properties that affect the
+   * children content.
+   *
+   * @param {object} lastProps
+   * @param {ReactReconcileTransaction} transaction
+   */
+  _updateDOMChildren: function(lastProps, transaction) {
+    var nextProps = this.props;
+
+    var lastContent =
+      CONTENT_TYPES[typeof lastProps.children] ? lastProps.children : null;
+    var nextContent =
+      CONTENT_TYPES[typeof nextProps.children] ? nextProps.children : null;
+
+    var lastHtml =
+      lastProps.dangerouslySetInnerHTML &&
+      lastProps.dangerouslySetInnerHTML.__html;
+    var nextHtml =
+      nextProps.dangerouslySetInnerHTML &&
+      nextProps.dangerouslySetInnerHTML.__html;
+
+    // Note the use of `!=` which checks for null or undefined.
+    var lastChildren = lastContent != null ? null : lastProps.children;
+    var nextChildren = nextContent != null ? null : nextProps.children;
+
+    // If we're switching from children to content/html or vice versa, remove
+    // the old content
+    var lastHasContentOrHtml = lastContent != null || lastHtml != null;
+    var nextHasContentOrHtml = nextContent != null || nextHtml != null;
+    if (lastChildren != null && nextChildren == null) {
+      this.updateChildren(null, transaction);
+    } else if (lastHasContentOrHtml && !nextHasContentOrHtml) {
+      this.updateTextContent('');
+    }
+
+    if (nextContent != null) {
+      if (lastContent !== nextContent) {
+        this.updateTextContent('' + nextContent);
+      }
+    } else if (nextHtml != null) {
+      if (lastHtml !== nextHtml) {
+        ReactComponent.DOMIDOperations.updateInnerHTMLByID(
+          this._rootNodeID,
+          nextHtml
+        );
+      }
+    } else if (nextChildren != null) {
+      this.updateChildren(flattenChildren(nextChildren), transaction);
+    }
+  },
+
+  /**
+   * Destroys all event registrations for this instance. Does not remove from
+   * the DOM. That must be done by the parent.
+   *
+   * @internal
+   */
+  unmountComponent: function() {
+    ReactEventEmitter.deleteAllListeners(this._rootNodeID);
+    ReactComponent.Mixin.unmountComponent.call(this);
+    this.unmountChildren();
+  }
+
+};
+
+mixInto(ReactDOMComponent, ReactComponent.Mixin);
+mixInto(ReactDOMComponent, ReactDOMComponent.Mixin);
+mixInto(ReactDOMComponent, ReactMultiChild.Mixin);
+
+module.exports = ReactDOMComponent;
+
+},{"./CSSPropertyOperations":3,"./DOMProperty":8,"./DOMPropertyOperations":9,"./ReactComponent":25,"./ReactEventEmitter":43,"./ReactMount":49,"./ReactMultiChild":50,"./ReactPerf":54,"./escapeTextForBrowser":83,"./flattenChildren":86,"./invariant":95,"./keyOf":101,"./merge":103,"./mixInto":106}],33:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -5296,7 +5682,7 @@ var ReactDOM = require("./ReactDOM");
 var ReactEventEmitter = require("./ReactEventEmitter");
 var EventConstants = require("./EventConstants");
 
-// Store a reference to the <form> `ReactNativeComponent`.
+// Store a reference to the <form> `ReactDOMComponent`.
 var form = ReactDOM.form;
 
 /**
@@ -5324,7 +5710,7 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":14,"./ReactCompositeComponent":28,"./ReactDOM":30,"./ReactEventEmitter":42}],33:[function(require,module,exports){
+},{"./EventConstants":14,"./ReactCompositeComponent":28,"./ReactDOM":30,"./ReactEventEmitter":43}],34:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -5375,6 +5761,8 @@ var INVALID_PROPERTY_ERRORS = {
  * @private
  */
 var textContentAccessor = getTextContentAccessor() || 'NA';
+
+var LEADING_SPACE = /^ /;
 
 /**
  * Operations used to process updates to DOM nodes. This is made injectable via
@@ -5460,17 +5848,17 @@ var ReactDOMIDOperations = {
   },
 
   /**
-   * Updates a DOM node's innerHTML set by `props.dangerouslySetInnerHTML`.
+   * Updates a DOM node's innerHTML.
    *
    * @param {string} id ID of the node to update.
-   * @param {object} html An HTML object with the `__html` property.
+   * @param {string} html An HTML string.
    * @internal
    */
   updateInnerHTMLByID: function(id, html) {
     var node = ReactMount.getNode(id);
     // HACK: IE8- normalize whitespace in innerHTML, removing leading spaces.
     // @see quirksmode.org/bugreports/archives/2004/11/innerhtml_and_t.html
-    node.innerHTML = (html && html.__html || '').replace(/^ /g, '&nbsp;');
+    node.innerHTML = html.replace(LEADING_SPACE, '&nbsp;');
   },
 
   /**
@@ -5516,7 +5904,7 @@ var ReactDOMIDOperations = {
 
 module.exports = ReactDOMIDOperations;
 
-},{"./CSSPropertyOperations":3,"./DOMChildrenOperations":7,"./DOMPropertyOperations":9,"./ReactMount":48,"./getTextContentAccessor":92,"./invariant":94}],34:[function(require,module,exports){
+},{"./CSSPropertyOperations":3,"./DOMChildrenOperations":7,"./DOMPropertyOperations":9,"./ReactMount":49,"./getTextContentAccessor":93,"./invariant":95}],35:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -5546,7 +5934,7 @@ var ReactMount = require("./ReactMount");
 var invariant = require("./invariant");
 var merge = require("./merge");
 
-// Store a reference to the <input> `ReactNativeComponent`.
+// Store a reference to the <input> `ReactDOMComponent`.
 var input = ReactDOM.input;
 
 var instancesByReactID = {};
@@ -5593,9 +5981,9 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
       this.props.checked != null ? this.props.checked : this.state.checked;
 
     var value = this.getValue();
-    props.value = value != null && value !== false
-      ? '' + value
-      : this.state.value;
+    props.value = value != null && value !== false ?
+      '' + value :
+      this.state.value;
 
     props.onChange = this._handleChange;
 
@@ -5693,7 +6081,7 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMInput;
 
-},{"./DOMPropertyOperations":9,"./LinkedValueMixin":21,"./ReactCompositeComponent":28,"./ReactDOM":30,"./ReactMount":48,"./invariant":94,"./merge":100}],35:[function(require,module,exports){
+},{"./DOMPropertyOperations":9,"./LinkedValueMixin":21,"./ReactCompositeComponent":28,"./ReactDOM":30,"./ReactMount":49,"./invariant":95,"./merge":103}],36:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -5717,7 +6105,7 @@ module.exports = ReactDOMInput;
 var ReactCompositeComponent = require("./ReactCompositeComponent");
 var ReactDOM = require("./ReactDOM");
 
-// Store a reference to the <option> `ReactNativeComponent`.
+// Store a reference to the <option> `ReactDOMComponent`.
 var option = ReactDOM.option;
 
 /**
@@ -5745,7 +6133,7 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMOption;
 
-},{"./ReactCompositeComponent":28,"./ReactDOM":30}],36:[function(require,module,exports){
+},{"./ReactCompositeComponent":28,"./ReactDOM":30}],37:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -5773,7 +6161,7 @@ var ReactDOM = require("./ReactDOM");
 var invariant = require("./invariant");
 var merge = require("./merge");
 
-// Store a reference to the <select> `ReactNativeComponent`.
+// Store a reference to the <select> `ReactDOMComponent`.
 var select = ReactDOM.select;
 
 /**
@@ -5907,8 +6295,8 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./LinkedValueMixin":21,"./ReactCompositeComponent":28,"./ReactDOM":30,"./invariant":94,"./merge":100}],37:[function(require,module,exports){
-var global=self;/**
+},{"./LinkedValueMixin":21,"./ReactCompositeComponent":28,"./ReactDOM":30,"./invariant":95,"./merge":103}],38:[function(require,module,exports){
+/**
  * Copyright 2013 Facebook, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -5967,7 +6355,7 @@ function getIESelection(node) {
  * @param {DOMElement} node
  */
 function getModernSelection(node) {
-  var selection = global.getSelection();
+  var selection = window.getSelection();
   var anchorNode = selection.anchorNode;
   var anchorOffset = selection.anchorOffset;
   var focusNode = selection.focusNode;
@@ -6035,7 +6423,7 @@ function setIESelection(node, offsets) {
  * @param {object} offsets
  */
 function setModernSelection(node, offsets) {
-  var selection = global.getSelection();
+  var selection = window.getSelection();
 
   var length = node[getTextContentAccessor()].length;
   var start = Math.min(offsets.start, length);
@@ -6076,7 +6464,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./getNodeForCharacterOffset":90,"./getTextContentAccessor":92}],38:[function(require,module,exports){
+},{"./getNodeForCharacterOffset":91,"./getTextContentAccessor":93}],39:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -6105,7 +6493,7 @@ var ReactDOM = require("./ReactDOM");
 var invariant = require("./invariant");
 var merge = require("./merge");
 
-// Store a reference to the <textarea> `ReactNativeComponent`.
+// Store a reference to the <textarea> `ReactDOMComponent`.
 var textarea = ReactDOM.textarea;
 
 // For quickly matching children type, to test if can be treated as content.
@@ -6163,7 +6551,7 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
     }
     var value = this.getValue();
     return {
-      // We save the initial value so that `ReactNativeComponent` doesn't update
+      // We save the initial value so that `ReactDOMComponent` doesn't update
       // `textContent` (unnecessary since we update value).
       initialValue: value != null ? value : defaultValue,
       value: defaultValue
@@ -6221,7 +6609,7 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMTextarea;
 
-},{"./DOMPropertyOperations":9,"./LinkedValueMixin":21,"./ReactCompositeComponent":28,"./ReactDOM":30,"./invariant":94,"./merge":100}],39:[function(require,module,exports){
+},{"./DOMPropertyOperations":9,"./LinkedValueMixin":21,"./ReactCompositeComponent":28,"./ReactDOM":30,"./invariant":95,"./merge":103}],40:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -6298,7 +6686,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./ReactUpdates":60,"./Transaction":72,"./emptyFunction":81,"./mixInto":103}],40:[function(require,module,exports){
+},{"./ReactUpdates":61,"./Transaction":73,"./emptyFunction":82,"./mixInto":106}],41:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -6358,11 +6746,11 @@ function inject() {
    * them).
    */
   EventPluginHub.injection.injectEventPluginsByName({
-    'SimpleEventPlugin': SimpleEventPlugin,
-    'EnterLeaveEventPlugin': EnterLeaveEventPlugin,
-    'ChangeEventPlugin': ChangeEventPlugin,
-    'CompositionEventPlugin': CompositionEventPlugin,
-    'MobileSafariClickEventPlugin': MobileSafariClickEventPlugin
+    SimpleEventPlugin: SimpleEventPlugin,
+    EnterLeaveEventPlugin: EnterLeaveEventPlugin,
+    ChangeEventPlugin: ChangeEventPlugin,
+    CompositionEventPlugin: CompositionEventPlugin,
+    MobileSafariClickEventPlugin: MobileSafariClickEventPlugin
   });
 
   ReactDOM.injection.injectComponentClasses({
@@ -6389,7 +6777,7 @@ module.exports = {
   inject: inject
 };
 
-},{"./ChangeEventPlugin":5,"./CompositionEventPlugin":6,"./DOMProperty":8,"./DefaultDOMPropertyConfig":11,"./DefaultEventPluginOrder":12,"./EnterLeaveEventPlugin":13,"./EventPluginHub":16,"./MobileSafariClickEventPlugin":22,"./ReactDOM":30,"./ReactDOMButton":31,"./ReactDOMForm":32,"./ReactDOMInput":34,"./ReactDOMOption":35,"./ReactDOMSelect":36,"./ReactDOMTextarea":38,"./ReactDefaultBatchingStrategy":39,"./ReactDefaultPerf":41,"./ReactEventEmitter":42,"./ReactEventTopLevelCallback":44,"./ReactInstanceHandles":46,"./ReactPerf":54,"./ReactUpdates":60,"./SimpleEventPlugin":61}],41:[function(require,module,exports){
+},{"./ChangeEventPlugin":5,"./CompositionEventPlugin":6,"./DOMProperty":8,"./DefaultDOMPropertyConfig":11,"./DefaultEventPluginOrder":12,"./EnterLeaveEventPlugin":13,"./EventPluginHub":16,"./MobileSafariClickEventPlugin":22,"./ReactDOM":30,"./ReactDOMButton":31,"./ReactDOMForm":33,"./ReactDOMInput":35,"./ReactDOMOption":36,"./ReactDOMSelect":37,"./ReactDOMTextarea":39,"./ReactDefaultBatchingStrategy":40,"./ReactDefaultPerf":42,"./ReactEventEmitter":43,"./ReactEventTopLevelCallback":45,"./ReactInstanceHandles":47,"./ReactPerf":54,"./ReactUpdates":61,"./SimpleEventPlugin":62}],42:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -6699,8 +7087,8 @@ if (true) {
     switch (objName + '.' + fnName) {
       case 'React.renderComponent':
         return _renderComponentCallback;
-      case 'ReactNativeComponent.mountComponent':
-      case 'ReactNativeComponent.updateComponent':
+      case 'ReactDOMComponent.mountComponent':
+      case 'ReactDOMComponent.updateComponent':
         return _nativeComponentCallback;
       case 'ReactCompositeComponent.mountComponent':
       case 'ReactCompositeComponent.updateComponent':
@@ -6747,7 +7135,7 @@ if (true) {
   };
 
   /**
-   * Callback function for ReactNativeComponent
+   * Callback function for ReactDOMComponent
    *
    * @param {object} component
    * @param {object} args
@@ -6798,7 +7186,7 @@ if (true) {
 
 module.exports = ReactDefaultPerf;
 
-},{"./performanceNow":107}],42:[function(require,module,exports){
+},{"./performanceNow":111}],43:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -7145,7 +7533,7 @@ var ReactEventEmitter = merge(ReactEventEmitterMixin, {
 
 module.exports = ReactEventEmitter;
 
-},{"./EventConstants":14,"./EventListener":15,"./EventPluginHub":16,"./ExecutionEnvironment":20,"./ReactEventEmitterMixin":43,"./ViewportMetrics":73,"./invariant":94,"./isEventSupported":95,"./merge":100}],43:[function(require,module,exports){
+},{"./EventConstants":14,"./EventListener":15,"./EventPluginHub":16,"./ExecutionEnvironment":20,"./ReactEventEmitterMixin":44,"./ViewportMetrics":74,"./invariant":95,"./isEventSupported":96,"./merge":103}],44:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -7236,7 +7624,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":16,"./ReactUpdates":60}],44:[function(require,module,exports){
+},{"./EventPluginHub":16,"./ReactUpdates":61}],45:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -7327,7 +7715,7 @@ var ReactEventTopLevelCallback = {
 
 module.exports = ReactEventTopLevelCallback;
 
-},{"./ReactEventEmitter":42,"./ReactMount":48,"./getEventTarget":88}],45:[function(require,module,exports){
+},{"./ReactEventEmitter":43,"./ReactMount":49,"./getEventTarget":89}],46:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -7350,6 +7738,8 @@ module.exports = ReactEventTopLevelCallback;
 
 var ReactDOMSelection = require("./ReactDOMSelection");
 
+var nodeContains = require("./nodeContains");
+
 // It is not safe to read the document.activeElement property in IE if there's
 // nothing focused.
 function getActiveElement() {
@@ -7360,7 +7750,7 @@ function getActiveElement() {
 }
 
 function isInDocument(node) {
-  return document.documentElement.contains(node);
+  return nodeContains(document.documentElement, node);
 }
 
 /**
@@ -7475,7 +7865,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":37}],46:[function(require,module,exports){
+},{"./ReactDOMSelection":38,"./nodeContains":108}],47:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -7799,7 +8189,7 @@ var ReactInstanceHandles = {
 
 module.exports = ReactInstanceHandles;
 
-},{"./invariant":94}],47:[function(require,module,exports){
+},{"./invariant":95}],48:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -7854,7 +8244,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":75}],48:[function(require,module,exports){
+},{"./adler32":76}],49:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -7875,10 +8265,13 @@ module.exports = ReactMarkupChecksum;
 
 "use strict";
 
-var invariant = require("./invariant");
-var getReactRootElementInContainer = require("./getReactRootElementInContainer");
 var ReactEventEmitter = require("./ReactEventEmitter");
 var ReactInstanceHandles = require("./ReactInstanceHandles");
+
+var $ = require("./$");
+var getReactRootElementInContainer = require("./getReactRootElementInContainer");
+var invariant = require("./invariant");
+var nodeContains = require("./nodeContains");
 
 var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 
@@ -7887,8 +8280,6 @@ var nodeCache = {};
 
 var ELEMENT_NODE_TYPE = 1;
 var DOC_NODE_TYPE = 9;
-
-var $ = require("./$");
 
 /** Mapping from reactRootID to React component instance. */
 var instancesByReactRootID = {};
@@ -7997,36 +8388,9 @@ function isValid(node, id) {
     );
 
     var container = ReactMount.findReactContainerForID(id);
-    if (container && contains(container, node)) {
+    if (container && nodeContains(container, node)) {
       return true;
     }
-  }
-
-  return false;
-}
-
-function contains(ancestor, descendant) {
-  if (ancestor.contains) {
-    // Supported natively in virtually all browsers, but not in jsdom.
-    return ancestor.contains(descendant);
-  }
-
-  if (descendant === ancestor) {
-    return true;
-  }
-
-  if (descendant.nodeType === 3) {
-    // If descendant is a text node, start from descendant.parentNode
-    // instead, so that we can assume all ancestors worth considering are
-    // element nodes with nodeType === 1.
-    descendant = descendant.parentNode;
-  }
-
-  while (descendant && descendant.nodeType === 1) {
-    if (descendant === ancestor) {
-      return true;
-    }
-    descendant = descendant.parentNode;
   }
 
   return false;
@@ -8488,7 +8852,7 @@ var ReactMount = {
 
 module.exports = ReactMount;
 
-},{"./$":1,"./ReactEventEmitter":42,"./ReactInstanceHandles":46,"./getReactRootElementInContainer":91,"./invariant":94}],49:[function(require,module,exports){
+},{"./$":1,"./ReactEventEmitter":43,"./ReactInstanceHandles":47,"./getReactRootElementInContainer":92,"./invariant":95,"./nodeContains":108}],50:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -8670,7 +9034,7 @@ var ReactMultiChild = {
 
   /**
    * Provides common functionality for components that must reconcile multiple
-   * children. This is used by `ReactNativeComponent` to mount, update, and
+   * children. This is used by `ReactDOMComponent` to mount, update, and
    * unmount child components.
    *
    * @lends {ReactMultiChild.prototype}
@@ -8679,7 +9043,7 @@ var ReactMultiChild = {
 
     /**
      * Generates a "mount image" for each of the supplied children. In the case
-     * of `ReactNativeComponent`, a mount image is a string of markup.
+     * of `ReactDOMComponent`, a mount image is a string of markup.
      *
      * @param {?object} children As returned by `flattenChildren`.
      * @return {array} An array of mounted representations.
@@ -8693,7 +9057,11 @@ var ReactMultiChild = {
         if (children.hasOwnProperty(name) && child) {
           // Inlined for performance, see `ReactInstanceHandles.createReactID`.
           var rootID = this._rootNodeID + '.' + name;
-          var mountImage = child.mountComponent(rootID, transaction);
+          var mountImage = child.mountComponent(
+            rootID,
+            transaction,
+            this._mountDepth + 1
+          );
           child._mountImage = mountImage;
           child._mountIndex = index;
           mountImages.push(mountImage);
@@ -8886,7 +9254,11 @@ var ReactMultiChild = {
     _mountChildByNameAtIndex: function(child, name, index, transaction) {
       // Inlined for performance, see `ReactInstanceHandles.createReactID`.
       var rootID = this._rootNodeID + '.' + name;
-      var mountImage = child.mountComponent(rootID, transaction);
+      var mountImage = child.mountComponent(
+        rootID,
+        transaction,
+        this._mountDepth + 1
+      );
       child._mountImage = mountImage;
       child._mountIndex = index;
       this.createChild(child);
@@ -8919,7 +9291,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactComponent":25,"./ReactMultiChildUpdateTypes":50}],50:[function(require,module,exports){
+},{"./ReactComponent":25,"./ReactMultiChildUpdateTypes":51}],51:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -8957,374 +9329,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":97}],51:[function(require,module,exports){
-/**
- * Copyright 2013 Facebook, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule ReactNativeComponent
- * @typechecks static-only
- */
-
-"use strict";
-
-var CSSPropertyOperations = require("./CSSPropertyOperations");
-var DOMProperty = require("./DOMProperty");
-var DOMPropertyOperations = require("./DOMPropertyOperations");
-var ReactComponent = require("./ReactComponent");
-var ReactEventEmitter = require("./ReactEventEmitter");
-var ReactMultiChild = require("./ReactMultiChild");
-var ReactMount = require("./ReactMount");
-var ReactPerf = require("./ReactPerf");
-
-var escapeTextForBrowser = require("./escapeTextForBrowser");
-var flattenChildren = require("./flattenChildren");
-var invariant = require("./invariant");
-var keyOf = require("./keyOf");
-var merge = require("./merge");
-var mixInto = require("./mixInto");
-
-var putListener = ReactEventEmitter.putListener;
-var deleteListener = ReactEventEmitter.deleteListener;
-var registrationNames = ReactEventEmitter.registrationNames;
-
-// For quickly matching children type, to test if can be treated as content.
-var CONTENT_TYPES = {'string': true, 'number': true};
-
-var DANGEROUSLY_SET_INNER_HTML = keyOf({dangerouslySetInnerHTML: null});
-var STYLE = keyOf({style: null});
-
-/**
- * @param {?object} props
- */
-function assertValidProps(props) {
-  if (!props) {
-    return;
-  }
-  // Note the use of `==` which checks for null or undefined.
-  invariant(
-    props.children == null || props.dangerouslySetInnerHTML == null,
-    'Can only set one of `children` or `props.dangerouslySetInnerHTML`.'
-  );
-  invariant(
-    props.style == null || typeof props.style === 'object',
-    'The `style` prop expects a mapping from style properties to values, ' +
-    'not a string.'
-  );
-}
-
-/**
- * @constructor ReactNativeComponent
- * @extends ReactComponent
- * @extends ReactMultiChild
- */
-function ReactNativeComponent(tag, omitClose) {
-  this._tagOpen = '<' + tag;
-  this._tagClose = omitClose ? '' : '</' + tag + '>';
-  this.tagName = tag.toUpperCase();
-}
-
-ReactNativeComponent.Mixin = {
-
-  /**
-   * Generates root tag markup then recurses. This method has side effects and
-   * is not idempotent.
-   *
-   * @internal
-   * @param {string} rootID The root DOM ID for this node.
-   * @param {ReactReconcileTransaction} transaction
-   * @return {string} The computed markup.
-   */
-  mountComponent: ReactPerf.measure(
-    'ReactNativeComponent',
-    'mountComponent',
-    function(rootID, transaction) {
-      ReactComponent.Mixin.mountComponent.call(this, rootID, transaction);
-      assertValidProps(this.props);
-      return (
-        this._createOpenTagMarkup() +
-        this._createContentMarkup(transaction) +
-        this._tagClose
-      );
-    }
-  ),
-
-  /**
-   * Creates markup for the open tag and all attributes.
-   *
-   * This method has side effects because events get registered.
-   *
-   * Iterating over object properties is faster than iterating over arrays.
-   * @see http://jsperf.com/obj-vs-arr-iteration
-   *
-   * @private
-   * @return {string} Markup of opening tag.
-   */
-  _createOpenTagMarkup: function() {
-    var props = this.props;
-    var ret = this._tagOpen;
-
-    for (var propKey in props) {
-      if (!props.hasOwnProperty(propKey)) {
-        continue;
-      }
-      var propValue = props[propKey];
-      if (propValue == null) {
-        continue;
-      }
-      if (registrationNames[propKey]) {
-        putListener(this._rootNodeID, propKey, propValue);
-      } else {
-        if (propKey === STYLE) {
-          if (propValue) {
-            propValue = props.style = merge(props.style);
-          }
-          propValue = CSSPropertyOperations.createMarkupForStyles(propValue);
-        }
-        var markup =
-          DOMPropertyOperations.createMarkupForProperty(propKey, propValue);
-        if (markup) {
-          ret += ' ' + markup;
-        }
-      }
-    }
-
-    var escapedID = escapeTextForBrowser(this._rootNodeID);
-    return ret + ' ' + ReactMount.ATTR_NAME + '="' + escapedID + '">';
-  },
-
-  /**
-   * Creates markup for the content between the tags.
-   *
-   * @private
-   * @param {ReactReconcileTransaction} transaction
-   * @return {string} Content markup.
-   */
-  _createContentMarkup: function(transaction) {
-    // Intentional use of != to avoid catching zero/false.
-    var innerHTML = this.props.dangerouslySetInnerHTML;
-    if (innerHTML != null) {
-      if (innerHTML.__html != null) {
-        return innerHTML.__html;
-      }
-    } else {
-      var contentToUse =
-        CONTENT_TYPES[typeof this.props.children] ? this.props.children : null;
-      var childrenToUse = contentToUse != null ? null : this.props.children;
-      if (contentToUse != null) {
-        return escapeTextForBrowser(contentToUse);
-      } else if (childrenToUse != null) {
-        var mountImages = this.mountChildren(
-          flattenChildren(childrenToUse),
-          transaction
-        );
-        return mountImages.join('');
-      }
-    }
-    return '';
-  },
-
-  receiveProps: function(nextProps, transaction) {
-    assertValidProps(nextProps);
-    ReactComponent.Mixin.receiveProps.call(this, nextProps, transaction);
-  },
-
-  /**
-   * Updates a native DOM component after it has already been allocated and
-   * attached to the DOM. Reconciles the root DOM node, then recurses.
-   *
-   * @param {ReactReconcileTransaction} transaction
-   * @param {object} prevProps
-   * @internal
-   * @overridable
-   */
-  updateComponent: ReactPerf.measure(
-    'ReactNativeComponent',
-    'updateComponent',
-    function(transaction, prevProps) {
-      ReactComponent.Mixin.updateComponent.call(this, transaction, prevProps);
-      this._updateDOMProperties(prevProps);
-      this._updateDOMChildren(prevProps, transaction);
-    }
-  ),
-
-  /**
-   * Reconciles the properties by detecting differences in property values and
-   * updating the DOM as necessary. This function is probably the single most
-   * critical path for performance optimization.
-   *
-   * TODO: Benchmark whether checking for changed values in memory actually
-   *       improves performance (especially statically positioned elements).
-   * TODO: Benchmark the effects of putting this at the top since 99% of props
-   *       do not change for a given reconciliation.
-   * TODO: Benchmark areas that can be improved with caching.
-   *
-   * @private
-   * @param {object} lastProps
-   */
-  _updateDOMProperties: function(lastProps) {
-    var nextProps = this.props;
-    var propKey;
-    var styleName;
-    var styleUpdates;
-    for (propKey in lastProps) {
-      if (nextProps.hasOwnProperty(propKey) ||
-         !lastProps.hasOwnProperty(propKey)) {
-        continue;
-      }
-      if (propKey === STYLE) {
-        var lastStyle = lastProps[propKey];
-        for (styleName in lastStyle) {
-          if (lastStyle.hasOwnProperty(styleName)) {
-            styleUpdates = styleUpdates || {};
-            styleUpdates[styleName] = '';
-          }
-        }
-      } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
-        // http://jsperf.com/emptying-speed
-        ReactComponent.DOMIDOperations.updateTextContentByID(
-          this._rootNodeID,
-          ''
-        );
-      } else if (registrationNames[propKey]) {
-        deleteListener(this._rootNodeID, propKey);
-      } else {
-        ReactComponent.DOMIDOperations.deletePropertyByID(
-          this._rootNodeID,
-          propKey
-        );
-      }
-    }
-    for (propKey in nextProps) {
-      var nextProp = nextProps[propKey];
-      var lastProp = lastProps[propKey];
-      if (!nextProps.hasOwnProperty(propKey) || nextProp === lastProp) {
-        continue;
-      }
-      if (propKey === STYLE) {
-        if (nextProp) {
-          nextProp = nextProps.style = merge(nextProp);
-        }
-        if (lastProp) {
-          // Unset styles on `lastProp` but not on `nextProp`.
-          for (styleName in lastProp) {
-            if (lastProp.hasOwnProperty(styleName) &&
-                !nextProp.hasOwnProperty(styleName)) {
-              styleUpdates = styleUpdates || {};
-              styleUpdates[styleName] = '';
-            }
-          }
-          // Update styles that changed since `lastProp`.
-          for (styleName in nextProp) {
-            if (nextProp.hasOwnProperty(styleName) &&
-                lastProp[styleName] !== nextProp[styleName]) {
-              styleUpdates = styleUpdates || {};
-              styleUpdates[styleName] = nextProp[styleName];
-            }
-          }
-        } else {
-          // Relies on `updateStylesByID` not mutating `styleUpdates`.
-          styleUpdates = nextProp;
-        }
-      } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
-        var lastHtml = lastProp && lastProp.__html;
-        var nextHtml = nextProp && nextProp.__html;
-        if (lastHtml !== nextHtml) {
-          ReactComponent.DOMIDOperations.updateInnerHTMLByID(
-            this._rootNodeID,
-            nextProp
-          );
-        }
-      } else if (registrationNames[propKey]) {
-        putListener(this._rootNodeID, propKey, nextProp);
-      } else if (
-          DOMProperty.isStandardName[propKey] ||
-          DOMProperty.isCustomAttribute(propKey)) {
-        ReactComponent.DOMIDOperations.updatePropertyByID(
-          this._rootNodeID,
-          propKey,
-          nextProp
-        );
-      }
-    }
-    if (styleUpdates) {
-      ReactComponent.DOMIDOperations.updateStylesByID(
-        this._rootNodeID,
-        styleUpdates
-      );
-    }
-  },
-
-  /**
-   * Reconciles the children with the various properties that affect the
-   * children content.
-   *
-   * @param {object} lastProps
-   * @param {ReactReconcileTransaction} transaction
-   */
-  _updateDOMChildren: function(lastProps, transaction) {
-    var nextProps = this.props;
-
-    var lastUsedContent =
-      CONTENT_TYPES[typeof lastProps.children] ? lastProps.children : null;
-    var contentToUse =
-      CONTENT_TYPES[typeof nextProps.children] ? nextProps.children : null;
-
-    // Note the use of `!=` which checks for null or undefined.
-
-    var lastUsedChildren =
-      lastUsedContent != null ? null : lastProps.children;
-    var childrenToUse = contentToUse != null ? null : nextProps.children;
-
-    if (contentToUse != null) {
-      var childrenRemoved = lastUsedChildren != null && childrenToUse == null;
-      if (childrenRemoved) {
-        this.updateChildren(null, transaction);
-      }
-      if (lastUsedContent !== contentToUse) {
-        this.updateTextContent('' + contentToUse);
-      }
-    } else {
-      var contentRemoved = lastUsedContent != null && contentToUse == null;
-      if (contentRemoved) {
-        this.updateTextContent('');
-      }
-      this.updateChildren(flattenChildren(nextProps.children), transaction);
-    }
-  },
-
-  /**
-   * Destroys all event registrations for this instance. Does not remove from
-   * the DOM. That must be done by the parent.
-   *
-   * @internal
-   */
-  unmountComponent: function() {
-    ReactEventEmitter.deleteAllListeners(this._rootNodeID);
-    ReactComponent.Mixin.unmountComponent.call(this);
-    this.unmountChildren();
-  }
-
-};
-
-mixInto(ReactNativeComponent, ReactComponent.Mixin);
-mixInto(ReactNativeComponent, ReactNativeComponent.Mixin);
-mixInto(ReactNativeComponent, ReactMultiChild.Mixin);
-
-module.exports = ReactNativeComponent;
-
-},{"./CSSPropertyOperations":3,"./DOMProperty":8,"./DOMPropertyOperations":9,"./ReactComponent":25,"./ReactEventEmitter":42,"./ReactMount":48,"./ReactMultiChild":49,"./ReactPerf":54,"./escapeTextForBrowser":82,"./flattenChildren":85,"./invariant":94,"./keyOf":98,"./merge":100,"./mixInto":103}],52:[function(require,module,exports){
+},{"./keyMirror":100}],52:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -9421,7 +9426,7 @@ PooledClass.addPoolingTo(ReactOnDOMReady);
 
 module.exports = ReactOnDOMReady;
 
-},{"./PooledClass":23,"./mixInto":103}],53:[function(require,module,exports){
+},{"./PooledClass":23,"./mixInto":106}],53:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -9569,7 +9574,7 @@ var ReactOwner = {
 
 module.exports = ReactOwner;
 
-},{"./invariant":94}],54:[function(require,module,exports){
+},{"./invariant":95}],54:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -9778,7 +9783,7 @@ var ReactPropTransferer = {
 
 module.exports = ReactPropTransferer;
 
-},{"./emptyFunction":81,"./joinClasses":96,"./merge":100}],56:[function(require,module,exports){
+},{"./emptyFunction":82,"./joinClasses":99,"./merge":103}],56:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -9938,7 +9943,7 @@ function createChainableTypeChecker(validate) {
 
 module.exports = Props;
 
-},{"./createObjectFrom":79,"./invariant":94}],57:[function(require,module,exports){
+},{"./createObjectFrom":80,"./invariant":95}],57:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10101,7 +10106,36 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./ExecutionEnvironment":20,"./PooledClass":23,"./ReactEventEmitter":42,"./ReactInputSelection":45,"./ReactOnDOMReady":52,"./Transaction":72,"./mixInto":103}],58:[function(require,module,exports){
+},{"./ExecutionEnvironment":20,"./PooledClass":23,"./ReactEventEmitter":43,"./ReactInputSelection":46,"./ReactOnDOMReady":52,"./Transaction":73,"./mixInto":106}],58:[function(require,module,exports){
+/**
+ * Copyright 2013 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @providesModule ReactRefs
+ */
+
+"use strict";
+
+var ReactRefs = {
+  getComponentRef: function(component) {
+    return component.props.ref;
+  }
+};
+
+module.exports = ReactRefs;
+
+},{}],59:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10138,7 +10172,7 @@ function renderComponentToString(component, callback) {
   transaction.reinitializeTransaction();
   try {
     transaction.perform(function() {
-      var markup = component.mountComponent(id, transaction);
+      var markup = component.mountComponent(id, transaction, 0);
       markup = ReactMarkupChecksum.addChecksumToMarkup(markup);
       callback(markup);
     }, null);
@@ -10151,7 +10185,7 @@ module.exports = {
   renderComponentToString: renderComponentToString
 };
 
-},{"./ReactInstanceHandles":46,"./ReactMarkupChecksum":47,"./ReactReconcileTransaction":57}],59:[function(require,module,exports){
+},{"./ReactInstanceHandles":47,"./ReactMarkupChecksum":48,"./ReactReconcileTransaction":57}],60:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10206,11 +10240,18 @@ mixInto(ReactTextComponent, {
    * any features besides containing text content.
    *
    * @param {string} rootID DOM ID of the root node.
+   * @param {ReactReconcileTransaction} transaction
+   * @param {number} mountDepth number of components in the owner hierarchy
    * @return {string} Markup for this text node.
    * @internal
    */
-  mountComponent: function(rootID) {
-    ReactComponent.Mixin.mountComponent.call(this, rootID);
+  mountComponent: function(rootID, transaction, mountDepth) {
+    ReactComponent.Mixin.mountComponent.call(
+      this,
+      rootID,
+      transaction,
+      mountDepth
+    );
     return (
       '<span ' + ReactMount.ATTR_NAME + '="' + rootID + '">' +
         escapeTextForBrowser(this.props.text) +
@@ -10239,7 +10280,7 @@ mixInto(ReactTextComponent, {
 
 module.exports = ReactTextComponent;
 
-},{"./ReactComponent":25,"./ReactMount":48,"./escapeTextForBrowser":82,"./mixInto":103}],60:[function(require,module,exports){
+},{"./ReactComponent":25,"./ReactMount":49,"./escapeTextForBrowser":83,"./mixInto":106}],61:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10275,8 +10316,24 @@ function batchedUpdates(callback, param) {
   batchingStrategy.batchedUpdates(callback, param);
 }
 
+/**
+ * Array comparator for ReactComponents by owner depth
+ *
+ * @param {ReactComponent} c1 first component you're comparing
+ * @param {ReactComponent} c2 second component you're comparing
+ * @return {number} Return value usable by Array.prototype.sort().
+ */
+function mountDepthComparator(c1, c2) {
+  return c1._mountDepth - c2._mountDepth;
+}
+
 function runBatchedUpdates() {
-  // TODO: Sort components by depth such that parent components update first
+  // Since reconciling a component higher in the owner hierarchy usually (not
+  // always -- see shouldComponentUpdate()) will reconcile children, reconcile
+  // them before their children by sorting the array.
+
+  dirtyComponents.sort(mountDepthComparator);
+
   for (var i = 0; i < dirtyComponents.length; i++) {
     // If a component is unmounted before pending changes apply, ignore them
     // TODO: Queue unmounts in the same list to avoid this happening at all
@@ -10303,14 +10360,14 @@ function clearDirtyComponents() {
 
 function flushBatchedUpdates() {
   // Run these in separate functions so the JIT can optimize
-  // try {
+  try {
     runBatchedUpdates();
-  // } catch (e) {
-  //   // IE 8 requires catch to use finally.
-  //   throw e;
-  // } finally {
+  } catch (e) {
+    // IE 8 requires catch to use finally.
+    throw e;
+  } finally {
     clearDirtyComponents();
-  // }
+  }
 }
 
 /**
@@ -10370,7 +10427,7 @@ var ReactUpdates = {
 
 module.exports = ReactUpdates;
 
-},{"./invariant":94}],61:[function(require,module,exports){
+},{"./invariant":95}],62:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10734,7 +10791,7 @@ var SimpleEventPlugin = {
 
 module.exports = SimpleEventPlugin;
 
-},{"./EventConstants":14,"./EventPropagators":19,"./SyntheticClipboardEvent":62,"./SyntheticEvent":64,"./SyntheticFocusEvent":65,"./SyntheticKeyboardEvent":66,"./SyntheticMouseEvent":67,"./SyntheticMutationEvent":68,"./SyntheticTouchEvent":69,"./SyntheticUIEvent":70,"./SyntheticWheelEvent":71,"./invariant":94,"./keyOf":98}],62:[function(require,module,exports){
+},{"./EventConstants":14,"./EventPropagators":19,"./SyntheticClipboardEvent":63,"./SyntheticEvent":65,"./SyntheticFocusEvent":66,"./SyntheticKeyboardEvent":67,"./SyntheticMouseEvent":68,"./SyntheticMutationEvent":69,"./SyntheticTouchEvent":70,"./SyntheticUIEvent":71,"./SyntheticWheelEvent":72,"./invariant":95,"./keyOf":101}],63:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10781,7 +10838,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 
-},{"./SyntheticEvent":64}],63:[function(require,module,exports){
+},{"./SyntheticEvent":65}],64:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10834,7 +10891,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticCompositionEvent;
 
 
-},{"./SyntheticEvent":64}],64:[function(require,module,exports){
+},{"./SyntheticEvent":65}],65:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -10996,7 +11053,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./PooledClass":23,"./emptyFunction":81,"./getEventTarget":88,"./merge":100,"./mergeInto":102}],65:[function(require,module,exports){
+},{"./PooledClass":23,"./emptyFunction":82,"./getEventTarget":89,"./merge":103,"./mergeInto":105}],66:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11042,7 +11099,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":70}],66:[function(require,module,exports){
+},{"./SyntheticUIEvent":71}],67:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11100,7 +11157,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":70}],67:[function(require,module,exports){
+},{"./SyntheticUIEvent":71}],68:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11187,7 +11244,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":70,"./ViewportMetrics":73}],68:[function(require,module,exports){
+},{"./SyntheticUIEvent":71,"./ViewportMetrics":74}],69:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11237,7 +11294,7 @@ SyntheticEvent.augmentClass(SyntheticMutationEvent, MutationEventInterface);
 
 module.exports = SyntheticMutationEvent;
 
-},{"./SyntheticEvent":64}],69:[function(require,module,exports){
+},{"./SyntheticEvent":65}],70:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11289,7 +11346,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":70}],70:[function(require,module,exports){
+},{"./SyntheticUIEvent":71}],71:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11336,7 +11393,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":64}],71:[function(require,module,exports){
+},{"./SyntheticEvent":65}],72:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11401,7 +11458,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":67}],72:[function(require,module,exports){
+},{"./SyntheticMouseEvent":68}],73:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11552,26 +11609,26 @@ var Mixin = {
     var memberStart = Date.now();
     var errorToThrow = null;
     var ret;
-    // try {
+    try {
       this.initializeAll();
       ret = method.call(scope, a, b, c, d, e, f);
-    // } catch (error) {
-    //   // IE8 requires `catch` in order to use `finally`.
-    //   errorToThrow = error;
-    // } finally {
-    //   var memberEnd = Date.now();
-    //   this.methodInvocationTime += (memberEnd - memberStart);
-    //   try {
+    } catch (error) {
+      // IE8 requires `catch` in order to use `finally`.
+      errorToThrow = error;
+    } finally {
+      var memberEnd = Date.now();
+      this.methodInvocationTime += (memberEnd - memberStart);
+      try {
         this.closeAll();
-    //   } catch (closeError) {
-    //     // If `method` throws, prefer to show that stack trace over any thrown
-    //     // by invoking `closeAll`.
-    //     errorToThrow = errorToThrow || closeError;
-    //   }
-    // }
-    // if (errorToThrow) {
-    //   throw errorToThrow;
-    // }
+      } catch (closeError) {
+        // If `method` throws, prefer to show that stack trace over any thrown
+        // by invoking `closeAll`.
+        errorToThrow = errorToThrow || closeError;
+      }
+    }
+    if (errorToThrow) {
+      throw errorToThrow;
+    }
     return ret;
   },
 
@@ -11620,18 +11677,18 @@ var Mixin = {
       var wrapper = transactionWrappers[i];
       var closeStart = Date.now();
       var initData = this.wrapperInitData[i];
-      // try {
+      try {
         if (initData !== Transaction.OBSERVED_ERROR) {
           wrapper.close && wrapper.close.call(this, initData);
         }
-      // } catch (closeError) {
-      //   // Prefer to show the stack trace of the first error.
-      //   errorToThrow = errorToThrow || closeError;
-      // } finally {
-      //   var closeEnd = Date.now();
-      //   var curCloseTime = wrapperCloseTimes[i];
-      //   wrapperCloseTimes[i] = (curCloseTime || 0) + (closeEnd - closeStart);
-      // }
+      } catch (closeError) {
+        // Prefer to show the stack trace of the first error.
+        errorToThrow = errorToThrow || closeError;
+      } finally {
+        var closeEnd = Date.now();
+        var curCloseTime = wrapperCloseTimes[i];
+        wrapperCloseTimes[i] = (curCloseTime || 0) + (closeEnd - closeStart);
+      }
     }
     this.wrapperInitData.length = 0;
     this._isInTransaction = false;
@@ -11654,7 +11711,7 @@ var Transaction = {
 
 module.exports = Transaction;
 
-},{"./invariant":94}],73:[function(require,module,exports){
+},{"./invariant":95}],74:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11692,7 +11749,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{}],74:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11748,7 +11805,7 @@ function accumulate(current, next) {
 
 module.exports = accumulate;
 
-},{"./invariant":94}],75:[function(require,module,exports){
+},{"./invariant":95}],76:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11787,7 +11844,7 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11843,7 +11900,7 @@ function copyProperties(obj, a, b, c, d, e, f) {
 
 module.exports = copyProperties;
 
-},{}],77:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -11939,7 +11996,7 @@ function createArrayFrom(obj) {
 
 module.exports = createArrayFrom;
 
-},{}],78:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12034,7 +12091,7 @@ function createNodesFromMarkup(markup, handleScript) {
 
 module.exports = createNodesFromMarkup;
 
-},{"./ExecutionEnvironment":20,"./createArrayFrom":77,"./getMarkupWrap":89,"./invariant":94}],79:[function(require,module,exports){
+},{"./ExecutionEnvironment":20,"./createArrayFrom":78,"./getMarkupWrap":90,"./invariant":95}],80:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12097,7 +12154,7 @@ function createObjectFrom(keys, values /* = true */) {
 
 module.exports = createObjectFrom;
 
-},{}],80:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12156,7 +12213,7 @@ function dangerousStyleValue(styleName, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":2}],81:[function(require,module,exports){
+},{"./CSSProperty":2}],82:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12201,7 +12258,7 @@ copyProperties(emptyFunction, {
 
 module.exports = emptyFunction;
 
-},{"./copyProperties":76}],82:[function(require,module,exports){
+},{"./copyProperties":77}],83:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12263,7 +12320,7 @@ function escapeTextForBrowser(text) {
 
 module.exports = escapeTextForBrowser;
 
-},{"./invariant":94}],83:[function(require,module,exports){
+},{"./invariant":95}],84:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12314,7 +12371,7 @@ ex._suffix = ']]>';
 
 module.exports = ex;
 
-},{}],84:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12361,7 +12418,7 @@ function filterAttributes(node, func, context) {
 
 module.exports = filterAttributes;
 
-},{}],85:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12417,7 +12474,7 @@ function flattenChildren(children) {
 
 module.exports = flattenChildren;
 
-},{"./invariant":94,"./traverseAllChildren":108}],86:[function(require,module,exports){
+},{"./invariant":95,"./traverseAllChildren":112}],87:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12455,7 +12512,7 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],87:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12533,7 +12590,7 @@ function _getNodeID(node) {
 
 module.exports = ge;
 
-},{}],88:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12571,7 +12628,7 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],89:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12652,7 +12709,7 @@ function getMarkupWrap(nodeName) {
 
 module.exports = getMarkupWrap;
 
-},{"./ExecutionEnvironment":20,"./invariant":94}],90:[function(require,module,exports){
+},{"./ExecutionEnvironment":20,"./invariant":95}],91:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12734,7 +12791,7 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12765,7 +12822,7 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],92:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12807,7 +12864,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":20}],93:[function(require,module,exports){
+},{"./ExecutionEnvironment":20}],94:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12844,7 +12901,7 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],94:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12900,7 +12957,7 @@ if (true) {
   module.exports = invariantDev;
 }
 
-},{}],95:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -12957,7 +13014,7 @@ function isEventSupported(eventNameSuffix, capture) {
   var isSupported = eventName in element;
 
   if (!isSupported) {
-    element.setAttribute(eventName, '');
+    element.setAttribute(eventName, 'return;');
     isSupported = typeof element[eventName] === 'function';
     if (typeof element[eventName] !== 'undefined') {
       element[eventName] = undefined;
@@ -12976,7 +13033,74 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":20}],96:[function(require,module,exports){
+},{"./ExecutionEnvironment":20}],97:[function(require,module,exports){
+/**
+ * Copyright 2013 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @providesModule isNode
+ * @typechecks
+ */
+
+/**
+ * @param {*} object The object to check.
+ * @return {boolean} Whether or not the object is a DOM node.
+ */
+function isNode(object) {
+  return !!(object && (
+    typeof Node !== 'undefined' ? object instanceof Node :
+      typeof object === 'object' &&
+      typeof object.nodeType === 'number' &&
+      typeof object.nodeName === 'string'
+  ));
+}
+
+module.exports = isNode;
+
+},{}],98:[function(require,module,exports){
+/**
+ * Copyright 2013 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @providesModule isTextNode
+ * @typechecks
+ */
+
+var isNode = require("./isNode");
+
+/**
+ * @param {*} object The object to check.
+ * @return {boolean} Whether or not the object is a DOM text node.
+ */
+function isTextNode(object) {
+  return isNode(object) && object.nodeType == 3;
+}
+
+module.exports = isTextNode;
+
+},{"./isNode":97}],99:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13022,7 +13146,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],97:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13082,7 +13206,7 @@ var keyMirror = function(obj) {
 
 module.exports = keyMirror;
 
-},{"./invariant":94}],98:[function(require,module,exports){
+},{"./invariant":95}],101:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13125,7 +13249,7 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],99:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13166,7 +13290,7 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],100:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13205,7 +13329,7 @@ var merge = function(one, two) {
 
 module.exports = merge;
 
-},{"./mergeInto":102}],101:[function(require,module,exports){
+},{"./mergeInto":105}],104:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13344,7 +13468,7 @@ var mergeHelpers = {
 
 module.exports = mergeHelpers;
 
-},{"./invariant":94,"./keyMirror":97}],102:[function(require,module,exports){
+},{"./invariant":95,"./keyMirror":100}],105:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13391,7 +13515,7 @@ function mergeInto(one, two) {
 
 module.exports = mergeInto;
 
-},{"./mergeHelpers":101}],103:[function(require,module,exports){
+},{"./mergeHelpers":104}],106:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13427,7 +13551,7 @@ var mixInto = function(constructor, methodBag) {
 
 module.exports = mixInto;
 
-},{}],104:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13529,7 +13653,58 @@ function mutateHTMLNodeWithMarkup(node, markup) {
 
 module.exports = mutateHTMLNodeWithMarkup;
 
-},{"./createNodesFromMarkup":78,"./filterAttributes":84,"./invariant":94}],105:[function(require,module,exports){
+},{"./createNodesFromMarkup":79,"./filterAttributes":85,"./invariant":95}],108:[function(require,module,exports){
+/**
+ * Copyright 2013 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @providesModule nodeContains
+ * @typechecks
+ */
+
+var isTextNode = require("./isTextNode");
+
+/*jslint bitwise:true */
+
+/**
+ * Checks if a given DOM node contains or is another DOM node.
+ *
+ * @param {?DOMNode} outerNode Outer DOM node.
+ * @param {?DOMNode} innerNode Inner DOM node.
+ * @return {boolean} True if `outerNode` contains or is `innerNode`.
+ */
+function nodeContains(outerNode, innerNode) {
+  if (!outerNode || !innerNode) {
+    return false;
+  } else if (outerNode === innerNode) {
+    return true;
+  } else if (isTextNode(outerNode)) {
+    return false;
+  } else if (isTextNode(innerNode)) {
+    return nodeContains(outerNode, innerNode.parentNode);
+  } else if (outerNode.contains) {
+    return outerNode.contains(innerNode);
+  } else if (outerNode.compareDocumentPosition) {
+    return !!(outerNode.compareDocumentPosition(innerNode) & 16);
+  } else {
+    return false;
+  }
+}
+
+module.exports = nodeContains;
+
+},{"./isTextNode":98}],109:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13578,7 +13753,7 @@ function objMap(obj, func, context) {
 
 module.exports = objMap;
 
-},{}],106:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13627,7 +13802,7 @@ function objMapKeyVal(obj, func, context) {
 
 module.exports = objMapKeyVal;
 
-},{}],107:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13671,7 +13846,7 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./ExecutionEnvironment":20}],108:[function(require,module,exports){
+},{"./ExecutionEnvironment":20}],112:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -13800,6 +13975,6 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 
-},{"./ReactComponent":25,"./ReactTextComponent":59,"./invariant":94}]},{},[24])(24)
+},{"./ReactComponent":25,"./ReactTextComponent":60,"./invariant":95}]},{},[24])(24)
 });
 ;

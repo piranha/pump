@@ -16,6 +16,8 @@
                        {:id "min"
                         :source-paths ["src"]
                         :compiler {:output-to "resources/target/pump.min.js"
+                                   ;; with externs everything is a bit less hard to understand
+                                   :externs ["resources/externs/react.js"]
                                    :foreign-libs [{:file "resources/static/react.js"
                                                    :provides ["React"]}]
-                                   :optimizations :whitespace}}]})
+                                   :optimizations :advanced}}]})

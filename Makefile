@@ -11,7 +11,7 @@ js:
 	lein cljsbuild auto main
 
 min:
-	lein clsjbuild once min
+	lein cljsbuild once min
 
 pub: pom.xml $(JAR)
 	scp $^ clojars@clojars.org:
