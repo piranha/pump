@@ -4,18 +4,19 @@ JAR := target/pump-$(VERSION).jar
 help:
 	@echo "Available commands:"
 	@echo "  pub - publish jar to clojars"
-	@echo "  js  - run autobuild"
+	@echo "  js  - run autobuild for example app"
+	@echo "  min - compile minified version of example app"
 
 js:
-	lein cljsbuild auto
+	lein cljsbuild auto main
 
+min:
+	lein clsjbuild once min
 
 pub: pom.xml $(JAR)
 	scp $^ clojars@clojars.org:
 
-
 jar: pom.xml $(JAR)
-
 
 pom.xml: project.clj
 	lein pom

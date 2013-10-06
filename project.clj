@@ -1,4 +1,4 @@
-(defproject pump "0.4.2-SNAPSHOT"
+(defproject pump "0.4.2"
   :clojurescript? true
   :description "CLJS bindings for React"
   :url "http://github.com/piranha/pump"
@@ -9,8 +9,13 @@
   :cljsbuild {:builds [{:id "main"
                         :source-paths ["src"]
                         :compiler {:output-to "resources/target/pump.js"
-                                   :externs ["resources/externs/react.js"]
                                    :foreign-libs [{:file "resources/static/react.js"
                                                    :provides ["React"]}]
                                    :optimizations :whitespace}
-                        :jar true}]})
+                        :jar true}
+                       {:id "min"
+                        :source-paths ["src"]
+                        :compiler {:output-to "resources/target/pump.min.js"
+                                   :foreign-libs [{:file "resources/static/react.js"
+                                                   :provides ["React"]}]
+                                   :optimizations :whitespace}}]})
