@@ -38,13 +38,18 @@
         :className (if class (string/replace class #"\." " "))}])))
 
 (def attr-mapping
-  {:class :className
-   :for :htmlFor})
+  {:for :htmlFor
+   :class :className})
 
 (defn normalize-into
   [tag-attrs attrs]
-  (into tag-attrs (for [[k v] attrs]
-                    [(dash-to-camel-name (attr-mapping k k)) v])))
+  (let [camel-attrs  (for [[k v] attrs]
+                       [(dash-to-camel-name (attr-mapping k k)) v])
+        merged-class (str (:className tag-attrs) " " (or (:className attrs)
+                                                         (:class attrs)))]
+    (-> tag-attrs
+        (into camel-attrs)
+        (assoc :className merged-class))))
 
 (defn exclude-empty
   [attrs]
@@ -56,7 +61,7 @@
   (when (not (or (keyword? tag) (symbol? tag) (string? tag) (fn? tag)))
     (throw (str tag " is not a valid element name.")))
   (let [[tag-type tag tag-attrs] (parse-tag tag)
-        map-attrs      (first content)]
+        map-attrs                (first content)]
     (if (map? map-attrs)
       [tag-type tag (if (= tag-type :vanilla)
                       (normalize-into tag-attrs map-attrs)
