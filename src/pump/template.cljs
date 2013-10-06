@@ -45,8 +45,8 @@
   [tag-attrs attrs]
   (let [camel-attrs  (for [[k v] attrs]
                        [(dash-to-camel-name (attr-mapping k k)) v])
-        merged-class (str (:className tag-attrs) " " (or (:className attrs)
-                                                         (:class attrs)))]
+        merged-class (str (:className tag-attrs) " "
+                          (some attrs [:class-name :className :class]))]
     (-> tag-attrs
         (into camel-attrs)
         (assoc :className merged-class))))
