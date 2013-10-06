@@ -1,12 +1,16 @@
 (ns pump.macros
   (:require [clojure.string :as string]))
 
+(defmacro dash-to-camel-str
+  [dashed]
+  `(let [words# (string/split ~dashed #"-")
+         camels# (map string/capitalize (rest words#))
+         complete# (apply str (first words#) camels#)]
+     complete#))
+
 (defn dash-to-camel-name
   [k]
-  (let [words (string/split (name k) #"-")
-        camels (map string/capitalize (rest words))
-        complete (apply str (first words) camels)]
-    (keyword complete)))
+  (-> k name dash-to-camel-str keyword))
 
 (defn dash-to-camel-keys
   [hashmap]

@@ -1,4 +1,5 @@
 (ns pump.template
+  (:require-macros [pump.macros :refer [dash-to-camel-str]])
   (:require [clojure.string :as string]))
 
 (declare elem-factory)
@@ -7,9 +8,7 @@
   (defn dash-to-camel-name
     [k]
     (or (aget cache k)
-        (let [words (string/split (name k) #"-")
-              camels (map string/capitalize (rest words))
-              complete (keyword (apply str (first words) camels))]
+        (let [complete (dash-to-camel-str (name k))]
           (aset cache k complete)
           complete))))
 
@@ -44,9 +43,8 @@
 
 (defn normalize-into
   [tag-attrs attrs]
-  (into tag-attrs (map
-                   (fn [[k v]] [(dash-to-camel-name (attr-mapping k k)) v])
-                   attrs)))
+  (into tag-attrs (for [[k v] attrs]
+                    [(dash-to-camel-name (attr-mapping k k)) v])))
 
 (defn exclude-empty
   [attrs]
