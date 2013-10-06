@@ -31,4 +31,4 @@ $(JAR): $(shell find src -name '*.clj')
 # brew install jq
 gcc-react:
 	dgraph ~/dev/web/react/build/modules/React.js | jq '.[] | .id' | xargs closure-compiler --common_js_entry_module React --common_js_module_path_prefix ~/dev/web/react/build/modules/ --process_common_js_modules --compilation_level WHITESPACE_ONLY --formatting PRETTY_PRINT > resources/static/gcc-react.js
-	echo 'var React = module$React;' >> resources/static/gcc-react.js
+	echo 'var React = module$$React;' >> resources/static/gcc-react.js

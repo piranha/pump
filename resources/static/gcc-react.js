@@ -4843,4 +4843,4 @@ if(module$React.module$exports) {
   module$React = module$React.module$exports
 }
 ;
-var React = moduleeact;
+var React = module$React;
