@@ -634,15 +634,6 @@ module$objMap.module$exports = objMap$$module$objMap;
 if(module$objMap.module$exports) {
   module$objMap = module$objMap.module$exports
 }
-;goog.provide("module$ReactRefs");
-var module$ReactRefs = {};
-var ReactRefs$$module$ReactRefs = {getComponentRef:function(component) {
-  return component.props.ref
-}};
-module$ReactRefs.module$exports = ReactRefs$$module$ReactRefs;
-if(module$ReactRefs.module$exports) {
-  module$ReactRefs = module$ReactRefs.module$exports
-}
 ;goog.provide("module$objMapKeyVal");
 var module$objMapKeyVal = {};
 function objMapKeyVal$$module$objMapKeyVal(obj, func, context) {
@@ -801,13 +792,13 @@ function clearDirtyComponents$$module$ReactUpdates() {
   dirtyComponents$$module$ReactUpdates.length = 0
 }
 function flushBatchedUpdates$$module$ReactUpdates() {
-  // try {
+  try {
     runBatchedUpdates$$module$ReactUpdates()
-  // }catch(e) {
-  //   throw e;
-  // }finally {
+  }catch(e) {
+    throw e;
+  }finally {
     clearDirtyComponents$$module$ReactUpdates()
-  // }
+  }
 }
 function enqueueUpdate$$module$ReactUpdates(component, callback) {
   invariant$$module$ReactUpdates(!callback || typeof callback === "function");
@@ -1320,23 +1311,23 @@ var Mixin$$module$Transaction = {reinitializeTransaction:function() {
   var memberStart = Date.now();
   var errorToThrow = null;
   var ret;
-  // try {
+  try {
     this.initializeAll();
     ret = method.call(scope, a, b, c, d, e, f)
-  // }catch(error) {
-  //   errorToThrow = error
-  // }finally {
+  }catch(error) {
+    errorToThrow = error
+  }finally {
     var memberEnd = Date.now();
     this.methodInvocationTime += memberEnd - memberStart;
-    // try {
+    try {
       this.closeAll()
-  //   }catch(closeError) {
-  //     errorToThrow = errorToThrow || closeError
-  //   }
-  // }
-  // if(errorToThrow) {
-  //   throw errorToThrow;
-  // }
+    }catch(closeError) {
+      errorToThrow = errorToThrow || closeError
+    }
+  }
+  if(errorToThrow) {
+    throw errorToThrow;
+  }
   return ret
 }, initializeAll:function() {
   this._isInTransaction = true;
@@ -1369,17 +1360,17 @@ var Mixin$$module$Transaction = {reinitializeTransaction:function() {
     var wrapper = transactionWrappers[i];
     var closeStart = Date.now();
     var initData = this.wrapperInitData[i];
-    // try {
+    try {
       if(initData !== Transaction$$module$Transaction.OBSERVED_ERROR) {
         wrapper.close && wrapper.close.call(this, initData)
       }
-    // }catch(closeError) {
-    //   errorToThrow = errorToThrow || closeError
-    // }finally {
+    }catch(closeError) {
+      errorToThrow = errorToThrow || closeError
+    }finally {
       var closeEnd = Date.now();
       var curCloseTime = wrapperCloseTimes[i];
       wrapperCloseTimes[i] = (curCloseTime || 0) + (closeEnd - closeStart)
-    // }
+    }
   }
   this.wrapperInitData.length = 0;
   this._isInTransaction = false;
@@ -3301,7 +3292,14 @@ var Danger$$module$Danger = {dangerouslyRenderMarkup:function(markupList) {
     }
     var renderNodes = createNodesFromMarkup$$module$Danger(markupListByNodeName.join(""), emptyFunction$$module$Danger);
     for(i = 0;i < renderNodes.length;++i) {
-      var renderNode = renderNodes[i]
+      var renderNode = renderNodes[i];
+      if(renderNode.hasAttribute && renderNode.hasAttribute(RESULT_INDEX_ATTR$$module$Danger)) {
+        resultIndex = +renderNode.getAttribute(RESULT_INDEX_ATTR$$module$Danger);
+        renderNode.removeAttribute(RESULT_INDEX_ATTR$$module$Danger);
+        invariant$$module$Danger(!resultList.hasOwnProperty(resultIndex));
+        resultList[resultIndex] = renderNode;
+        resultListAssignmentCount += 1
+      }
     }
   }
   invariant$$module$Danger(resultListAssignmentCount === resultList.length);
@@ -3512,14 +3510,12 @@ goog.require("module$merge");
 goog.require("module$keyMirror");
 goog.require("module$invariant");
 goog.require("module$ReactUpdates");
-goog.require("module$ReactRefs");
 goog.require("module$ReactOwner");
 goog.require("module$ReactCurrentOwner");
 goog.require("module$ReactComponentEnvironment");
 var ReactComponentEnvironment$$module$ReactComponent = module$ReactComponentEnvironment;
 var ReactCurrentOwner$$module$ReactComponent = module$ReactCurrentOwner;
 var ReactOwner$$module$ReactComponent = module$ReactOwner;
-var ReactRefs$$module$ReactComponent = module$ReactRefs;
 var ReactUpdates$$module$ReactComponent = module$ReactUpdates;
 var invariant$$module$ReactComponent = module$invariant;
 var keyMirror$$module$ReactComponent = module$keyMirror;
@@ -3598,18 +3594,18 @@ var ReactComponent$$module$ReactComponent = {isValidComponent:function(object) {
   }
 }, mountComponent:function(rootID, transaction, mountDepth) {
   invariant$$module$ReactComponent(!this.isMounted());
-  var ref = ReactRefs$$module$ReactComponent.getComponentRef(this);
-  if(ref != null) {
-    ReactOwner$$module$ReactComponent.addComponentAsRefTo(this, ref, this.props.__owner__)
+  var props = this.props;
+  if(props.ref != null) {
+    ReactOwner$$module$ReactComponent.addComponentAsRefTo(this, props.ref, props.__owner__)
   }
   this._rootNodeID = rootID;
   this._lifeCycleState = ComponentLifeCycle$$module$ReactComponent.MOUNTED;
   this._mountDepth = mountDepth
 }, unmountComponent:function() {
   invariant$$module$ReactComponent(this.isMounted());
-  var ref = ReactRefs$$module$ReactComponent.getComponentRef(this);
-  if(ref != null) {
-    ReactOwner$$module$ReactComponent.removeComponentAsRefFrom(this, ref, this.props.__owner__)
+  var props = this.props;
+  if(props.ref != null) {
+    ReactOwner$$module$ReactComponent.removeComponentAsRefFrom(this, props.ref, props.__owner__)
   }
   ReactComponent$$module$ReactComponent.unmountIDFromEnvironment(this._rootNodeID);
   this._rootNodeID = null;
@@ -4842,5 +4838,6 @@ module$React.module$exports = React$$module$React;
 if(module$React.module$exports) {
   module$React = module$React.module$exports
 }
-;
+;goog.provide("React");
+goog.require("module$React");
 var React = module$React;
