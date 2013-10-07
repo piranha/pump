@@ -801,13 +801,13 @@ function clearDirtyComponents$$module$ReactUpdates() {
   dirtyComponents$$module$ReactUpdates.length = 0
 }
 function flushBatchedUpdates$$module$ReactUpdates() {
-  try {
+  // try {
     runBatchedUpdates$$module$ReactUpdates()
-  }catch(e) {
-    throw e;
-  }finally {
+  // }catch(e) {
+  //   throw e;
+  // }finally {
     clearDirtyComponents$$module$ReactUpdates()
-  }
+  // }
 }
 function enqueueUpdate$$module$ReactUpdates(component, callback) {
   invariant$$module$ReactUpdates(!callback || typeof callback === "function");
@@ -1320,23 +1320,23 @@ var Mixin$$module$Transaction = {reinitializeTransaction:function() {
   var memberStart = Date.now();
   var errorToThrow = null;
   var ret;
-  try {
+  // try {
     this.initializeAll();
     ret = method.call(scope, a, b, c, d, e, f)
-  }catch(error) {
-    errorToThrow = error
-  }finally {
+  // }catch(error) {
+  //   errorToThrow = error
+  // }finally {
     var memberEnd = Date.now();
     this.methodInvocationTime += memberEnd - memberStart;
-    try {
+    // try {
       this.closeAll()
-    }catch(closeError) {
-      errorToThrow = errorToThrow || closeError
-    }
-  }
-  if(errorToThrow) {
-    throw errorToThrow;
-  }
+  //   }catch(closeError) {
+  //     errorToThrow = errorToThrow || closeError
+  //   }
+  // }
+  // if(errorToThrow) {
+  //   throw errorToThrow;
+  // }
   return ret
 }, initializeAll:function() {
   this._isInTransaction = true;
@@ -1369,17 +1369,17 @@ var Mixin$$module$Transaction = {reinitializeTransaction:function() {
     var wrapper = transactionWrappers[i];
     var closeStart = Date.now();
     var initData = this.wrapperInitData[i];
-    try {
+    // try {
       if(initData !== Transaction$$module$Transaction.OBSERVED_ERROR) {
         wrapper.close && wrapper.close.call(this, initData)
       }
-    }catch(closeError) {
-      errorToThrow = errorToThrow || closeError
-    }finally {
+    // }catch(closeError) {
+    //   errorToThrow = errorToThrow || closeError
+    // }finally {
       var closeEnd = Date.now();
       var curCloseTime = wrapperCloseTimes[i];
       wrapperCloseTimes[i] = (curCloseTime || 0) + (closeEnd - closeStart)
-    }
+    // }
   }
   this.wrapperInitData.length = 0;
   this._isInTransaction = false;
