@@ -499,6 +499,19 @@ goog.base = function(me, opt_methodName, var_args) {
 goog.scope = function(fn) {
   fn.call(goog.global)
 };
+goog.provide("goog.debug.Error");
+goog.debug.Error = function(opt_msg) {
+  if(Error.captureStackTrace) {
+    Error.captureStackTrace(this, goog.debug.Error)
+  }else {
+    this.stack = (new Error).stack || ""
+  }
+  if(opt_msg) {
+    this.message = String(opt_msg)
+  }
+};
+goog.inherits(goog.debug.Error, Error);
+goog.debug.Error.prototype.name = "CustomError";
 goog.provide("goog.string");
 goog.provide("goog.string.Unicode");
 goog.string.Unicode = {NBSP:"\u00a0"};
@@ -939,19 +952,6 @@ goog.string.parseInt = function(value) {
   }
   return NaN
 };
-goog.provide("goog.debug.Error");
-goog.debug.Error = function(opt_msg) {
-  if(Error.captureStackTrace) {
-    Error.captureStackTrace(this, goog.debug.Error)
-  }else {
-    this.stack = (new Error).stack || ""
-  }
-  if(opt_msg) {
-    this.message = String(opt_msg)
-  }
-};
-goog.inherits(goog.debug.Error, Error);
-goog.debug.Error.prototype.name = "CustomError";
 goog.provide("goog.asserts");
 goog.provide("goog.asserts.AssertionError");
 goog.require("goog.debug.Error");
@@ -23188,13 +23188,8 @@ function clearDirtyComponents$$module$ReactUpdates() {
   dirtyComponents$$module$ReactUpdates.length = 0
 }
 function flushBatchedUpdates$$module$ReactUpdates() {
-  try {
-    runBatchedUpdates$$module$ReactUpdates()
-  }catch(e) {
-    throw e;
-  }finally {
-    clearDirtyComponents$$module$ReactUpdates()
-  }
+  runBatchedUpdates$$module$ReactUpdates();
+  clearDirtyComponents$$module$ReactUpdates()
 }
 function enqueueUpdate$$module$ReactUpdates(component, callback) {
   invariant$$module$ReactUpdates(!callback || typeof callback === "function");
@@ -23704,23 +23699,11 @@ var Mixin$$module$Transaction = {reinitializeTransaction:function() {
   var memberStart = Date.now();
   var errorToThrow = null;
   var ret;
-  try {
-    this.initializeAll();
-    ret = method.call(scope, a, b, c, d, e, f)
-  }catch(error) {
-    errorToThrow = error
-  }finally {
-    var memberEnd = Date.now();
-    this.methodInvocationTime += memberEnd - memberStart;
-    try {
-      this.closeAll()
-    }catch(closeError) {
-      errorToThrow = errorToThrow || closeError
-    }
-  }
-  if(errorToThrow) {
-    throw errorToThrow;
-  }
+  this.initializeAll();
+  ret = method.call(scope, a, b, c, d, e, f);
+  var memberEnd = Date.now();
+  this.methodInvocationTime += memberEnd - memberStart;
+  this.closeAll();
   return ret
 }, initializeAll:function() {
   this._isInTransaction = true;
@@ -23753,17 +23736,12 @@ var Mixin$$module$Transaction = {reinitializeTransaction:function() {
     var wrapper = transactionWrappers[i];
     var closeStart = Date.now();
     var initData = this.wrapperInitData[i];
-    try {
-      if(initData !== Transaction$$module$Transaction.OBSERVED_ERROR) {
-        wrapper.close && wrapper.close.call(this, initData)
-      }
-    }catch(closeError) {
-      errorToThrow = errorToThrow || closeError
-    }finally {
-      var closeEnd = Date.now();
-      var curCloseTime = wrapperCloseTimes[i];
-      wrapperCloseTimes[i] = (curCloseTime || 0) + (closeEnd - closeStart)
+    if(initData !== Transaction$$module$Transaction.OBSERVED_ERROR) {
+      wrapper.close && wrapper.close.call(this, initData)
     }
+    var closeEnd = Date.now();
+    var curCloseTime = wrapperCloseTimes[i];
+    wrapperCloseTimes[i] = (curCloseTime || 0) + (closeEnd - closeStart)
   }
   this.wrapperInitData.length = 0;
   this._isInTransaction = false;
