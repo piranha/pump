@@ -30,5 +30,15 @@ $(JAR): $(shell find src -name '*.clj')
 # npm install dgraph
 # brew install jq
 gcc-react:
-	dgraph ~/dev/web/react/build/modules/React.js | jq '.[] | .id' | xargs closure-compiler --common_js_entry_module React --common_js_module_path_prefix ~/dev/web/react/build/modules/ --process_common_js_modules --compilation_level WHITESPACE_ONLY --formatting PRETTY_PRINT > resources/static/gcc-react.js
-	echo 'var React = module$$React;' >> resources/static/gcc-react.js
+	dgraph ~/dev/web/react/build/modules/React.js | \
+		jq '.[] | .id' | \
+		xargs closure-compiler \
+			--common_js_entry_module React \
+			--common_js_module_path_prefix ~/dev/web/react/build/modules/ \
+			--process_common_js_modules \
+			--compilation_level WHITESPACE_ONLY \
+			--formatting PRETTY_PRINT | \
+		./slice-modules.py resources/react/
+	@echo 'goog.provide("React");' > resources/react/React.js
+	@echo 'goog.require("module$React");' >> resources/react/React.js
+	@echo 'var React = module$React;' >> resources/react/React.js
