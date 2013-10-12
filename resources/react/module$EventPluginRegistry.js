@@ -1,4 +1,4 @@
-;goog.provide("module$EventPluginRegistry");
+goog.provide("module$EventPluginRegistry");
 var module$EventPluginRegistry = {};
 goog.require("module$invariant");
 var invariant$$module$EventPluginRegistry = module$invariant;
@@ -101,3 +101,4 @@ module$EventPluginRegistry.module$exports = EventPluginRegistry$$module$EventPlu
 if(module$EventPluginRegistry.module$exports) {
   module$EventPluginRegistry = module$EventPluginRegistry.module$exports
 }
+;

@@ -1,4 +1,4 @@
-;goog.provide("module$ReactEventEmitterMixin");
+goog.provide("module$ReactEventEmitterMixin");
 var module$ReactEventEmitterMixin = {};
 goog.require("module$ReactUpdates");
 goog.require("module$EventPluginHub");
@@ -21,3 +21,4 @@ module$ReactEventEmitterMixin.module$exports = ReactEventEmitterMixin$$module$Re
 if(module$ReactEventEmitterMixin.module$exports) {
   module$ReactEventEmitterMixin = module$ReactEventEmitterMixin.module$exports
 }
+;

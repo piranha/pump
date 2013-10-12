@@ -1,4 +1,4 @@
-;goog.provide("module$mergeHelpers");
+goog.provide("module$mergeHelpers");
 var module$mergeHelpers = {};
 goog.require("module$keyMirror");
 goog.require("module$invariant");
@@ -26,3 +26,4 @@ module$mergeHelpers.module$exports = mergeHelpers$$module$mergeHelpers;
 if(module$mergeHelpers.module$exports) {
   module$mergeHelpers = module$mergeHelpers.module$exports
 }
+;

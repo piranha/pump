@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticMouseEvent");
+goog.provide("module$SyntheticMouseEvent");
 var module$SyntheticMouseEvent = {};
 goog.require("module$ViewportMetrics");
 goog.require("module$SyntheticUIEvent");
@@ -25,3 +25,4 @@ module$SyntheticMouseEvent.module$exports = SyntheticMouseEvent$$module$Syntheti
 if(module$SyntheticMouseEvent.module$exports) {
   module$SyntheticMouseEvent = module$SyntheticMouseEvent.module$exports
 }
+;

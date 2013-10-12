@@ -1,4 +1,4 @@
-;goog.provide("module$ReactDOMForm");
+goog.provide("module$ReactDOMForm");
 var module$ReactDOMForm = {};
 goog.require("module$EventConstants");
 goog.require("module$ReactEventEmitter");
@@ -18,3 +18,4 @@ module$ReactDOMForm.module$exports = ReactDOMForm$$module$ReactDOMForm;
 if(module$ReactDOMForm.module$exports) {
   module$ReactDOMForm = module$ReactDOMForm.module$exports
 }
+;

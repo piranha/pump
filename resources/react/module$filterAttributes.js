@@ -1,4 +1,4 @@
-;goog.provide("module$filterAttributes");
+goog.provide("module$filterAttributes");
 var module$filterAttributes = {};
 function filterAttributes$$module$filterAttributes(node, func, context) {
   var attributes = node.attributes;
@@ -16,3 +16,4 @@ module$filterAttributes.module$exports = filterAttributes$$module$filterAttribut
 if(module$filterAttributes.module$exports) {
   module$filterAttributes = module$filterAttributes.module$exports
 }
+;

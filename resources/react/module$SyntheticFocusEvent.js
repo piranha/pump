@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticFocusEvent");
+goog.provide("module$SyntheticFocusEvent");
 var module$SyntheticFocusEvent = {};
 goog.require("module$SyntheticUIEvent");
 var SyntheticUIEvent$$module$SyntheticFocusEvent = module$SyntheticUIEvent;
@@ -11,3 +11,4 @@ module$SyntheticFocusEvent.module$exports = SyntheticFocusEvent$$module$Syntheti
 if(module$SyntheticFocusEvent.module$exports) {
   module$SyntheticFocusEvent = module$SyntheticFocusEvent.module$exports
 }
+;

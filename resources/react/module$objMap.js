@@ -1,4 +1,4 @@
-;goog.provide("module$objMap");
+goog.provide("module$objMap");
 var module$objMap = {};
 function objMap$$module$objMap(obj, func, context) {
   if(!obj) {
@@ -17,3 +17,4 @@ module$objMap.module$exports = objMap$$module$objMap;
 if(module$objMap.module$exports) {
   module$objMap = module$objMap.module$exports
 }
+;

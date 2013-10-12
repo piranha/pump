@@ -1,4 +1,4 @@
-;goog.provide("module$ReactMultiChildUpdateTypes");
+goog.provide("module$ReactMultiChildUpdateTypes");
 var module$ReactMultiChildUpdateTypes = {};
 goog.require("module$keyMirror");
 var keyMirror$$module$ReactMultiChildUpdateTypes = module$keyMirror;
@@ -7,3 +7,4 @@ module$ReactMultiChildUpdateTypes.module$exports = ReactMultiChildUpdateTypes$$m
 if(module$ReactMultiChildUpdateTypes.module$exports) {
   module$ReactMultiChildUpdateTypes = module$ReactMultiChildUpdateTypes.module$exports
 }
+;

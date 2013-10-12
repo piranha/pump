@@ -1,4 +1,4 @@
-;goog.provide("module$joinClasses");
+goog.provide("module$joinClasses");
 var module$joinClasses = {};
 function joinClasses$$module$joinClasses(className) {
   if(!className) {
@@ -18,3 +18,4 @@ module$joinClasses.module$exports = joinClasses$$module$joinClasses;
 if(module$joinClasses.module$exports) {
   module$joinClasses = module$joinClasses.module$exports
 }
+;

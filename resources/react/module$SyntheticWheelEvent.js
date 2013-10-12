@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticWheelEvent");
+goog.provide("module$SyntheticWheelEvent");
 var module$SyntheticWheelEvent = {};
 goog.require("module$SyntheticMouseEvent");
 var SyntheticMouseEvent$$module$SyntheticWheelEvent = module$SyntheticMouseEvent;
@@ -15,3 +15,4 @@ module$SyntheticWheelEvent.module$exports = SyntheticWheelEvent$$module$Syntheti
 if(module$SyntheticWheelEvent.module$exports) {
   module$SyntheticWheelEvent = module$SyntheticWheelEvent.module$exports
 }
+;

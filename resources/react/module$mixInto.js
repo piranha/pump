@@ -1,4 +1,4 @@
-;goog.provide("module$mixInto");
+goog.provide("module$mixInto");
 var module$mixInto = {};
 var mixInto$$module$mixInto = function(constructor, methodBag) {
   var methodName;
@@ -13,3 +13,4 @@ module$mixInto.module$exports = mixInto$$module$mixInto;
 if(module$mixInto.module$exports) {
   module$mixInto = module$mixInto.module$exports
 }
+;

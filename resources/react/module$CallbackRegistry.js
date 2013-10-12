@@ -1,4 +1,4 @@
-;goog.provide("module$CallbackRegistry");
+goog.provide("module$CallbackRegistry");
 var module$CallbackRegistry = {};
 var listenerBank$$module$CallbackRegistry = {};
 var CallbackRegistry$$module$CallbackRegistry = {putListener:function(id, registrationName, listener) {
@@ -23,3 +23,4 @@ module$CallbackRegistry.module$exports = CallbackRegistry$$module$CallbackRegist
 if(module$CallbackRegistry.module$exports) {
   module$CallbackRegistry = module$CallbackRegistry.module$exports
 }
+;

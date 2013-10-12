@@ -1,4 +1,4 @@
-;goog.provide("module$ReactInstanceHandles");
+goog.provide("module$ReactInstanceHandles");
 var module$ReactInstanceHandles = {};
 goog.require("module$invariant");
 var invariant$$module$ReactInstanceHandles = module$invariant;
@@ -97,3 +97,4 @@ module$ReactInstanceHandles.module$exports = ReactInstanceHandles$$module$ReactI
 if(module$ReactInstanceHandles.module$exports) {
   module$ReactInstanceHandles = module$ReactInstanceHandles.module$exports
 }
+;

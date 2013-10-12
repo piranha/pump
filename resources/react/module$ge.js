@@ -1,4 +1,4 @@
-;goog.provide("module$ge");
+goog.provide("module$ge");
 var module$ge = {};
 function ge$$module$ge(arg, root, tag) {
   return typeof arg != "string" ? arg : !root ? document.getElementById(arg) : _geFromSubtree$$module$ge(arg, root, tag)
@@ -35,3 +35,4 @@ module$ge.module$exports = ge$$module$ge;
 if(module$ge.module$exports) {
   module$ge = module$ge.module$exports
 }
+;

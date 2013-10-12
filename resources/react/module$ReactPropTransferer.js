@@ -1,9 +1,11 @@
-;goog.provide("module$ReactPropTransferer");
+goog.provide("module$ReactPropTransferer");
 var module$ReactPropTransferer = {};
 goog.require("module$merge");
 goog.require("module$joinClasses");
+goog.require("module$invariant");
 goog.require("module$emptyFunction");
 var emptyFunction$$module$ReactPropTransferer = module$emptyFunction;
+var invariant$$module$ReactPropTransferer = module$invariant;
 var joinClasses$$module$ReactPropTransferer = module$joinClasses;
 var merge$$module$ReactPropTransferer = module$merge;
 function createTransferStrategy$$module$ReactPropTransferer(mergeStrategy) {
@@ -17,6 +19,7 @@ function createTransferStrategy$$module$ReactPropTransferer(mergeStrategy) {
 }
 var TransferStrategies$$module$ReactPropTransferer = {children:emptyFunction$$module$ReactPropTransferer, className:createTransferStrategy$$module$ReactPropTransferer(joinClasses$$module$ReactPropTransferer), ref:emptyFunction$$module$ReactPropTransferer, style:createTransferStrategy$$module$ReactPropTransferer(merge$$module$ReactPropTransferer)};
 var ReactPropTransferer$$module$ReactPropTransferer = {TransferStrategies:TransferStrategies$$module$ReactPropTransferer, Mixin:{transferPropsTo:function(component) {
+  invariant$$module$ReactPropTransferer(component.props.__owner__ === this);
   var props = {};
   for(var thatKey in component.props) {
     if(component.props.hasOwnProperty(thatKey)) {
@@ -43,3 +46,4 @@ module$ReactPropTransferer.module$exports = ReactPropTransferer$$module$ReactPro
 if(module$ReactPropTransferer.module$exports) {
   module$ReactPropTransferer = module$ReactPropTransferer.module$exports
 }
+;

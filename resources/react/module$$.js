@@ -1,4 +1,4 @@
-;goog.provide("module$$");
+goog.provide("module$$");
 var module$$ = {};
 goog.require("module$ex");
 goog.require("module$ge");
@@ -15,3 +15,4 @@ module$$.module$exports = $$$module$$;
 if(module$$.module$exports) {
   module$$ = module$$.module$exports
 }
+;

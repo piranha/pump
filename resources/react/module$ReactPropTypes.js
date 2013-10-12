@@ -1,4 +1,4 @@
-;goog.provide("module$ReactPropTypes");
+goog.provide("module$ReactPropTypes");
 var module$ReactPropTypes = {};
 goog.require("module$invariant");
 goog.require("module$createObjectFrom");
@@ -50,3 +50,4 @@ module$ReactPropTypes.module$exports = Props$$module$ReactPropTypes;
 if(module$ReactPropTypes.module$exports) {
   module$ReactPropTypes = module$ReactPropTypes.module$exports
 }
+;

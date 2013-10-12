@@ -1,4 +1,4 @@
-;goog.provide("module$ReactComponentBrowserEnvironment");
+goog.provide("module$ReactComponentBrowserEnvironment");
 var module$ReactComponentBrowserEnvironment = {};
 goog.require("module$mutateHTMLNodeWithMarkup");
 goog.require("module$invariant");
@@ -51,3 +51,4 @@ module$ReactComponentBrowserEnvironment.module$exports = ReactComponentBrowserEn
 if(module$ReactComponentBrowserEnvironment.module$exports) {
   module$ReactComponentBrowserEnvironment = module$ReactComponentBrowserEnvironment.module$exports
 }
+;

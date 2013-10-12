@@ -1,4 +1,4 @@
-;goog.provide("module$keyOf");
+goog.provide("module$keyOf");
 var module$keyOf = {};
 var keyOf$$module$keyOf = function(oneKeyObj) {
   var key;
@@ -14,3 +14,4 @@ module$keyOf.module$exports = keyOf$$module$keyOf;
 if(module$keyOf.module$exports) {
   module$keyOf = module$keyOf.module$exports
 }
+;

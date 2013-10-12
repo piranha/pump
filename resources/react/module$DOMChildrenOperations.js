@@ -1,4 +1,4 @@
-;goog.provide("module$DOMChildrenOperations");
+goog.provide("module$DOMChildrenOperations");
 var module$DOMChildrenOperations = {};
 goog.require("module$getTextContentAccessor");
 goog.require("module$ReactMultiChildUpdateTypes");
@@ -63,3 +63,4 @@ module$DOMChildrenOperations.module$exports = DOMChildrenOperations$$module$DOMC
 if(module$DOMChildrenOperations.module$exports) {
   module$DOMChildrenOperations = module$DOMChildrenOperations.module$exports
 }
+;

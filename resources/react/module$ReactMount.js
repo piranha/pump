@@ -1,4 +1,4 @@
-;goog.provide("module$ReactMount");
+goog.provide("module$ReactMount");
 var module$ReactMount = {};
 goog.require("module$nodeContains");
 goog.require("module$invariant");
@@ -188,3 +188,4 @@ module$ReactMount.module$exports = ReactMount$$module$ReactMount;
 if(module$ReactMount.module$exports) {
   module$ReactMount = module$ReactMount.module$exports
 }
+;

@@ -1,4 +1,4 @@
-;goog.provide("module$EnterLeaveEventPlugin");
+goog.provide("module$EnterLeaveEventPlugin");
 var module$EnterLeaveEventPlugin = {};
 goog.require("module$keyOf");
 goog.require("module$ReactMount");
@@ -45,3 +45,4 @@ module$EnterLeaveEventPlugin.module$exports = EnterLeaveEventPlugin$$module$Ente
 if(module$EnterLeaveEventPlugin.module$exports) {
   module$EnterLeaveEventPlugin = module$EnterLeaveEventPlugin.module$exports
 }
+;

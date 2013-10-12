@@ -1,4 +1,4 @@
-;goog.provide("module$createNodesFromMarkup");
+goog.provide("module$createNodesFromMarkup");
 var module$createNodesFromMarkup = {};
 goog.require("module$invariant");
 goog.require("module$getMarkupWrap");
@@ -43,3 +43,4 @@ module$createNodesFromMarkup.module$exports = createNodesFromMarkup$$module$crea
 if(module$createNodesFromMarkup.module$exports) {
   module$createNodesFromMarkup = module$createNodesFromMarkup.module$exports
 }
+;

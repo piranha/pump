@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticTouchEvent");
+goog.provide("module$SyntheticTouchEvent");
 var module$SyntheticTouchEvent = {};
 goog.require("module$SyntheticUIEvent");
 var SyntheticUIEvent$$module$SyntheticTouchEvent = module$SyntheticUIEvent;
@@ -11,3 +11,4 @@ module$SyntheticTouchEvent.module$exports = SyntheticTouchEvent$$module$Syntheti
 if(module$SyntheticTouchEvent.module$exports) {
   module$SyntheticTouchEvent = module$SyntheticTouchEvent.module$exports
 }
+;

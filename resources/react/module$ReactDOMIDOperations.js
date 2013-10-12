@@ -1,4 +1,4 @@
-;goog.provide("module$ReactDOMIDOperations");
+goog.provide("module$ReactDOMIDOperations");
 var module$ReactDOMIDOperations = {};
 goog.require("module$invariant");
 goog.require("module$getTextContentAccessor");
@@ -56,3 +56,4 @@ module$ReactDOMIDOperations.module$exports = ReactDOMIDOperations$$module$ReactD
 if(module$ReactDOMIDOperations.module$exports) {
   module$ReactDOMIDOperations = module$ReactDOMIDOperations.module$exports
 }
+;

@@ -1,4 +1,4 @@
-;goog.provide("module$getReactRootElementInContainer");
+goog.provide("module$getReactRootElementInContainer");
 var module$getReactRootElementInContainer = {};
 function getReactRootElementInContainer$$module$getReactRootElementInContainer(container) {
   return container && container.firstChild
@@ -7,3 +7,4 @@ module$getReactRootElementInContainer.module$exports = getReactRootElementInCont
 if(module$getReactRootElementInContainer.module$exports) {
   module$getReactRootElementInContainer = module$getReactRootElementInContainer.module$exports
 }
+;

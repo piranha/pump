@@ -1,4 +1,4 @@
-;goog.provide("module$ReactTextComponent");
+goog.provide("module$ReactTextComponent");
 var module$ReactTextComponent = {};
 goog.require("module$mixInto");
 goog.require("module$escapeTextForBrowser");
@@ -25,3 +25,4 @@ module$ReactTextComponent.module$exports = ReactTextComponent$$module$ReactTextC
 if(module$ReactTextComponent.module$exports) {
   module$ReactTextComponent = module$ReactTextComponent.module$exports
 }
+;

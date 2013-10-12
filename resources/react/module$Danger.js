@@ -1,4 +1,4 @@
-;goog.provide("module$Danger");
+goog.provide("module$Danger");
 var module$Danger = {};
 goog.require("module$mutateHTMLNodeWithMarkup");
 goog.require("module$invariant");
@@ -70,3 +70,4 @@ module$Danger.module$exports = Danger$$module$Danger;
 if(module$Danger.module$exports) {
   module$Danger = module$Danger.module$exports
 }
+;

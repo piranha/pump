@@ -1,4 +1,4 @@
-;goog.provide("module$accumulate");
+goog.provide("module$accumulate");
 var module$accumulate = {};
 goog.require("module$invariant");
 var invariant$$module$accumulate = module$invariant;
@@ -24,3 +24,4 @@ module$accumulate.module$exports = accumulate$$module$accumulate;
 if(module$accumulate.module$exports) {
   module$accumulate = module$accumulate.module$exports
 }
+;

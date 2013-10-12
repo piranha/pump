@@ -1,4 +1,4 @@
-;goog.provide("module$ReactDOMSelect");
+goog.provide("module$ReactDOMSelect");
 var module$ReactDOMSelect = {};
 goog.require("module$merge");
 goog.require("module$invariant");
@@ -77,3 +77,4 @@ module$ReactDOMSelect.module$exports = ReactDOMSelect$$module$ReactDOMSelect;
 if(module$ReactDOMSelect.module$exports) {
   module$ReactDOMSelect = module$ReactDOMSelect.module$exports
 }
+;

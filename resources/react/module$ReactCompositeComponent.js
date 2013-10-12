@@ -1,4 +1,4 @@
-;goog.provide("module$ReactCompositeComponent");
+goog.provide("module$ReactCompositeComponent");
 var module$ReactCompositeComponent = {};
 goog.require("module$objMap");
 goog.require("module$mixInto");
@@ -135,7 +135,7 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
   this._compositeLifeCycleState = null;
   var markup = this._renderedComponent.mountComponent(rootID, transaction, mountDepth + 1);
   if(this.componentDidMount) {
-    transaction.getReactOnDOMReady().enqueue(this, this.componentDidMount)
+    transaction.getReactMountReady().enqueue(this, this.componentDidMount)
   }
   return markup
 }), unmountComponent:function() {
@@ -216,7 +216,7 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
   this.state = nextState;
   this.updateComponent(transaction, prevProps, prevState);
   if(this.componentDidUpdate) {
-    transaction.getReactOnDOMReady().enqueue(this, this.componentDidUpdate.bind(this, prevProps, prevState))
+    transaction.getReactMountReady().enqueue(this, this.componentDidUpdate.bind(this, prevProps, prevState))
   }
 }, updateComponent:ReactPerf$$module$ReactCompositeComponent.measure("ReactCompositeComponent", "updateComponent", function(transaction, prevProps, prevState) {
   ReactComponent$$module$ReactCompositeComponent.Mixin.updateComponent.call(this, transaction, prevProps);
@@ -228,9 +228,9 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
     var thisID = this._rootNodeID;
     var currentComponentID = currentComponent._rootNodeID;
     currentComponent.unmountComponent();
+    this._renderedComponent = nextComponent;
     var nextMarkup = nextComponent.mountComponent(thisID, transaction, this._mountDepth + 1);
-    ReactComponent$$module$ReactCompositeComponent.DOMIDOperations.dangerouslyReplaceNodeWithMarkupByID(currentComponentID, nextMarkup);
-    this._renderedComponent = nextComponent
+    ReactComponent$$module$ReactCompositeComponent.DOMIDOperations.dangerouslyReplaceNodeWithMarkupByID(currentComponentID, nextMarkup)
   }
 }), forceUpdate:function(callback) {
   var compositeLifeCycleState = this._compositeLifeCycleState;
@@ -298,3 +298,4 @@ module$ReactCompositeComponent.module$exports = ReactCompositeComponent$$module$
 if(module$ReactCompositeComponent.module$exports) {
   module$ReactCompositeComponent = module$ReactCompositeComponent.module$exports
 }
+;

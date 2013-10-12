@@ -1,4 +1,4 @@
-;goog.provide("module$keyMirror");
+goog.provide("module$keyMirror");
 var module$keyMirror = {};
 goog.require("module$invariant");
 var invariant$$module$keyMirror = module$invariant;
@@ -18,3 +18,4 @@ module$keyMirror.module$exports = keyMirror$$module$keyMirror;
 if(module$keyMirror.module$exports) {
   module$keyMirror = module$keyMirror.module$exports
 }
+;

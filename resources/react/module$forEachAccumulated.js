@@ -1,4 +1,4 @@
-;goog.provide("module$forEachAccumulated");
+goog.provide("module$forEachAccumulated");
 var module$forEachAccumulated = {};
 var forEachAccumulated$$module$forEachAccumulated = function(arr, cb, scope) {
   if(Array.isArray(arr)) {
@@ -13,3 +13,4 @@ module$forEachAccumulated.module$exports = forEachAccumulated$$module$forEachAcc
 if(module$forEachAccumulated.module$exports) {
   module$forEachAccumulated = module$forEachAccumulated.module$exports
 }
+;

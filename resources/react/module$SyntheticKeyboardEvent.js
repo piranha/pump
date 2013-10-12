@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticKeyboardEvent");
+goog.provide("module$SyntheticKeyboardEvent");
 var module$SyntheticKeyboardEvent = {};
 goog.require("module$SyntheticUIEvent");
 var SyntheticUIEvent$$module$SyntheticKeyboardEvent = module$SyntheticUIEvent;
@@ -11,3 +11,4 @@ module$SyntheticKeyboardEvent.module$exports = SyntheticKeyboardEvent$$module$Sy
 if(module$SyntheticKeyboardEvent.module$exports) {
   module$SyntheticKeyboardEvent = module$SyntheticKeyboardEvent.module$exports
 }
+;

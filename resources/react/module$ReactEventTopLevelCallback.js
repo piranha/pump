@@ -1,4 +1,4 @@
-;goog.provide("module$ReactEventTopLevelCallback");
+goog.provide("module$ReactEventTopLevelCallback");
 var module$ReactEventTopLevelCallback = {};
 goog.require("module$getEventTarget");
 goog.require("module$ReactMount");
@@ -28,3 +28,4 @@ module$ReactEventTopLevelCallback.module$exports = ReactEventTopLevelCallback$$m
 if(module$ReactEventTopLevelCallback.module$exports) {
   module$ReactEventTopLevelCallback = module$ReactEventTopLevelCallback.module$exports
 }
+;

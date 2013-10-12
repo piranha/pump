@@ -1,4 +1,4 @@
-;goog.provide("module$DefaultDOMPropertyConfig");
+goog.provide("module$DefaultDOMPropertyConfig");
 var module$DefaultDOMPropertyConfig = {};
 goog.require("module$DOMProperty");
 var DOMProperty$$module$DefaultDOMPropertyConfig = module$DOMProperty;
@@ -22,3 +22,4 @@ module$DefaultDOMPropertyConfig.module$exports = DefaultDOMPropertyConfig$$modul
 if(module$DefaultDOMPropertyConfig.module$exports) {
   module$DefaultDOMPropertyConfig = module$DefaultDOMPropertyConfig.module$exports
 }
+;

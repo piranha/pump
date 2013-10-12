@@ -1,4 +1,4 @@
-;goog.provide("module$mutateHTMLNodeWithMarkup");
+goog.provide("module$mutateHTMLNodeWithMarkup");
 var module$mutateHTMLNodeWithMarkup = {};
 goog.require("module$invariant");
 goog.require("module$filterAttributes");
@@ -37,3 +37,4 @@ module$mutateHTMLNodeWithMarkup.module$exports = mutateHTMLNodeWithMarkup$$modul
 if(module$mutateHTMLNodeWithMarkup.module$exports) {
   module$mutateHTMLNodeWithMarkup = module$mutateHTMLNodeWithMarkup.module$exports
 }
+;

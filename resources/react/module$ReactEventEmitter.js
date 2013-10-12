@@ -1,4 +1,4 @@
-;goog.provide("module$ReactEventEmitter");
+goog.provide("module$ReactEventEmitter");
 var module$ReactEventEmitter = {};
 goog.require("module$merge");
 goog.require("module$isEventSupported");
@@ -64,7 +64,6 @@ var ReactEventEmitter$$module$ReactEventEmitter = merge$$module$ReactEventEmitte
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topInput, "input", mountAt);
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topChange, "change", mountAt);
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topSelectionChange, "selectionchange", mountAt);
-  trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topDOMCharacterDataModified, "DOMCharacterDataModified", mountAt);
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topCompositionEnd, "compositionend", mountAt);
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topCompositionStart, "compositionstart", mountAt);
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topCompositionUpdate, "compositionupdate", mountAt);
@@ -111,3 +110,4 @@ module$ReactEventEmitter.module$exports = ReactEventEmitter$$module$ReactEventEm
 if(module$ReactEventEmitter.module$exports) {
   module$ReactEventEmitter = module$ReactEventEmitter.module$exports
 }
+;

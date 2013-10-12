@@ -1,4 +1,4 @@
-;goog.provide("module$DOMProperty");
+goog.provide("module$DOMProperty");
 var module$DOMProperty = {};
 goog.require("module$invariant");
 var invariant$$module$DOMProperty = module$invariant;
@@ -55,3 +55,4 @@ module$DOMProperty.module$exports = DOMProperty$$module$DOMProperty;
 if(module$DOMProperty.module$exports) {
   module$DOMProperty = module$DOMProperty.module$exports
 }
+;

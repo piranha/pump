@@ -1,4 +1,4 @@
-;goog.provide("module$ReactComponent");
+goog.provide("module$ReactComponent");
 var module$ReactComponent = {};
 goog.require("module$merge");
 goog.require("module$keyMirror");
@@ -14,14 +14,13 @@ var ReactUpdates$$module$ReactComponent = module$ReactUpdates;
 var invariant$$module$ReactComponent = module$invariant;
 var keyMirror$$module$ReactComponent = module$keyMirror;
 var merge$$module$ReactComponent = module$merge;
-var IS_KEY_VALIDATED$$module$ReactComponent = "{is.key.validated}";
 var ComponentLifeCycle$$module$ReactComponent = keyMirror$$module$ReactComponent({MOUNTED:null, UNMOUNTED:null});
 var ownerHasWarned$$module$ReactComponent = {};
 function validateExplicitKey$$module$ReactComponent(component) {
-  if(component[IS_KEY_VALIDATED$$module$ReactComponent] || component.props.key != null) {
+  if(component.__keyValidated__ || component.props.key != null) {
     return
   }
-  component[IS_KEY_VALIDATED$$module$ReactComponent] = true;
+  component.__keyValidated__ = true;
   if(!ReactCurrentOwner$$module$ReactComponent.current) {
     return
   }
@@ -47,7 +46,7 @@ function validateChildKeys$$module$ReactComponent(component) {
     }
   }else {
     if(ReactComponent$$module$ReactComponent.isValidComponent(component)) {
-      component[IS_KEY_VALIDATED$$module$ReactComponent] = true
+      component.__keyValidated__ = true
     }
   }
 }
@@ -150,3 +149,4 @@ module$ReactComponent.module$exports = ReactComponent$$module$ReactComponent;
 if(module$ReactComponent.module$exports) {
   module$ReactComponent = module$ReactComponent.module$exports
 }
+;

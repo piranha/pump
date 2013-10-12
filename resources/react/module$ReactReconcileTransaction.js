@@ -1,8 +1,8 @@
-;goog.provide("module$ReactReconcileTransaction");
+goog.provide("module$ReactReconcileTransaction");
 var module$ReactReconcileTransaction = {};
 goog.require("module$mixInto");
 goog.require("module$Transaction");
-goog.require("module$ReactOnDOMReady");
+goog.require("module$ReactMountReady");
 goog.require("module$ReactInputSelection");
 goog.require("module$ReactEventEmitter");
 goog.require("module$PooledClass");
@@ -11,7 +11,7 @@ var ExecutionEnvironment$$module$ReactReconcileTransaction = module$ExecutionEnv
 var PooledClass$$module$ReactReconcileTransaction = module$PooledClass;
 var ReactEventEmitter$$module$ReactReconcileTransaction = module$ReactEventEmitter;
 var ReactInputSelection$$module$ReactReconcileTransaction = module$ReactInputSelection;
-var ReactOnDOMReady$$module$ReactReconcileTransaction = module$ReactOnDOMReady;
+var ReactMountReady$$module$ReactReconcileTransaction = module$ReactMountReady;
 var Transaction$$module$ReactReconcileTransaction = module$Transaction;
 var mixInto$$module$ReactReconcileTransaction = module$mixInto;
 var SELECTION_RESTORATION$$module$ReactReconcileTransaction = {initialize:ReactInputSelection$$module$ReactReconcileTransaction.getSelectionInformation, close:ReactInputSelection$$module$ReactReconcileTransaction.restoreSelection};
@@ -23,14 +23,14 @@ var EVENT_SUPPRESSION$$module$ReactReconcileTransaction = {initialize:function()
   ReactEventEmitter$$module$ReactReconcileTransaction.setEnabled(previouslyEnabled)
 }};
 var ON_DOM_READY_QUEUEING$$module$ReactReconcileTransaction = {initialize:function() {
-  this.reactOnDOMReady.reset()
+  this.reactMountReady.reset()
 }, close:function() {
-  this.reactOnDOMReady.notifyAll()
+  this.reactMountReady.notifyAll()
 }};
 var TRANSACTION_WRAPPERS$$module$ReactReconcileTransaction = [SELECTION_RESTORATION$$module$ReactReconcileTransaction, EVENT_SUPPRESSION$$module$ReactReconcileTransaction, ON_DOM_READY_QUEUEING$$module$ReactReconcileTransaction];
 function ReactReconcileTransaction$$module$ReactReconcileTransaction() {
   this.reinitializeTransaction();
-  this.reactOnDOMReady = ReactOnDOMReady$$module$ReactReconcileTransaction.getPooled(null)
+  this.reactMountReady = ReactMountReady$$module$ReactReconcileTransaction.getPooled(null)
 }
 var Mixin$$module$ReactReconcileTransaction = {getTransactionWrappers:function() {
   if(ExecutionEnvironment$$module$ReactReconcileTransaction.canUseDOM) {
@@ -38,11 +38,11 @@ var Mixin$$module$ReactReconcileTransaction = {getTransactionWrappers:function()
   }else {
     return[]
   }
-}, getReactOnDOMReady:function() {
-  return this.reactOnDOMReady
+}, getReactMountReady:function() {
+  return this.reactMountReady
 }, destructor:function() {
-  ReactOnDOMReady$$module$ReactReconcileTransaction.release(this.reactOnDOMReady);
-  this.reactOnDOMReady = null
+  ReactMountReady$$module$ReactReconcileTransaction.release(this.reactMountReady);
+  this.reactMountReady = null
 }};
 mixInto$$module$ReactReconcileTransaction(ReactReconcileTransaction$$module$ReactReconcileTransaction, Transaction$$module$ReactReconcileTransaction.Mixin);
 mixInto$$module$ReactReconcileTransaction(ReactReconcileTransaction$$module$ReactReconcileTransaction, Mixin$$module$ReactReconcileTransaction);
@@ -51,3 +51,4 @@ module$ReactReconcileTransaction.module$exports = ReactReconcileTransaction$$mod
 if(module$ReactReconcileTransaction.module$exports) {
   module$ReactReconcileTransaction = module$ReactReconcileTransaction.module$exports
 }
+;

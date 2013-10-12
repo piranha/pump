@@ -1,9 +1,11 @@
-;goog.provide("module$ReactMultiChild");
+goog.provide("module$ReactMultiChild");
 var module$ReactMultiChild = {};
+goog.require("module$flattenChildren");
 goog.require("module$ReactMultiChildUpdateTypes");
 goog.require("module$ReactComponent");
 var ReactComponent$$module$ReactMultiChild = module$ReactComponent;
 var ReactMultiChildUpdateTypes$$module$ReactMultiChild = module$ReactMultiChildUpdateTypes;
+var flattenChildren$$module$ReactMultiChild = module$flattenChildren;
 function shouldUpdateChild$$module$ReactMultiChild(curChild, newChild) {
   return curChild && newChild && curChild.constructor === newChild.constructor
 }
@@ -32,9 +34,11 @@ function clearQueue$$module$ReactMultiChild() {
   updateQueue$$module$ReactMultiChild.length = 0;
   markupQueue$$module$ReactMultiChild.length = 0
 }
-var ReactMultiChild$$module$ReactMultiChild = {Mixin:{mountChildren:function(children, transaction) {
+var ReactMultiChild$$module$ReactMultiChild = {Mixin:{mountChildren:function(nestedChildren, transaction) {
+  var children = flattenChildren$$module$ReactMultiChild(nestedChildren);
   var mountImages = [];
   var index = 0;
+  this._renderedChildren = children;
   for(var name in children) {
     var child = children[name];
     if(children.hasOwnProperty(name) && child) {
@@ -46,7 +50,6 @@ var ReactMultiChild$$module$ReactMultiChild = {Mixin:{mountChildren:function(chi
       index++
     }
   }
-  this._renderedChildren = children;
   return mountImages
 }, updateTextContent:function(nextContent) {
   updateDepth$$module$ReactMultiChild++;
@@ -65,10 +68,10 @@ var ReactMultiChild$$module$ReactMultiChild = {Mixin:{mountChildren:function(chi
   }
   updateDepth$$module$ReactMultiChild--;
   updateDepth$$module$ReactMultiChild || processQueue$$module$ReactMultiChild()
-}, updateChildren:function(nextChildren, transaction) {
+}, updateChildren:function(nextNestedChildren, transaction) {
   updateDepth$$module$ReactMultiChild++;
   try {
-    this._updateChildren(nextChildren, transaction)
+    this._updateChildren(nextNestedChildren, transaction)
   }catch(error) {
     updateDepth$$module$ReactMultiChild--;
     updateDepth$$module$ReactMultiChild || clearQueue$$module$ReactMultiChild();
@@ -76,7 +79,8 @@ var ReactMultiChild$$module$ReactMultiChild = {Mixin:{mountChildren:function(chi
   }
   updateDepth$$module$ReactMultiChild--;
   updateDepth$$module$ReactMultiChild || processQueue$$module$ReactMultiChild()
-}, _updateChildren:function(nextChildren, transaction) {
+}, _updateChildren:function(nextNestedChildren, transaction) {
+  var nextChildren = flattenChildren$$module$ReactMultiChild(nextNestedChildren);
   var prevChildren = this._renderedChildren;
   if(!nextChildren && !prevChildren) {
     return
@@ -153,3 +157,4 @@ module$ReactMultiChild.module$exports = ReactMultiChild$$module$ReactMultiChild;
 if(module$ReactMultiChild.module$exports) {
   module$ReactMultiChild = module$ReactMultiChild.module$exports
 }
+;

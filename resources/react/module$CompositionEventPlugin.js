@@ -1,4 +1,4 @@
-;goog.provide("module$CompositionEventPlugin");
+goog.provide("module$CompositionEventPlugin");
 var module$CompositionEventPlugin = {};
 goog.require("module$keyOf");
 goog.require("module$getTextContentAccessor");
@@ -96,3 +96,4 @@ module$CompositionEventPlugin.module$exports = CompositionEventPlugin$$module$Co
 if(module$CompositionEventPlugin.module$exports) {
   module$CompositionEventPlugin = module$CompositionEventPlugin.module$exports
 }
+;

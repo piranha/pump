@@ -1,4 +1,4 @@
-;goog.provide("module$traverseAllChildren");
+goog.provide("module$traverseAllChildren");
 var module$traverseAllChildren = {};
 goog.require("module$invariant");
 goog.require("module$ReactTextComponent");
@@ -61,3 +61,4 @@ module$traverseAllChildren.module$exports = traverseAllChildren$$module$traverse
 if(module$traverseAllChildren.module$exports) {
   module$traverseAllChildren = module$traverseAllChildren.module$exports
 }
+;

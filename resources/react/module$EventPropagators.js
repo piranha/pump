@@ -1,4 +1,4 @@
-;goog.provide("module$EventPropagators");
+goog.provide("module$EventPropagators");
 var module$EventPropagators = {};
 goog.require("module$forEachAccumulated");
 goog.require("module$accumulate");
@@ -64,3 +64,4 @@ module$EventPropagators.module$exports = EventPropagators$$module$EventPropagato
 if(module$EventPropagators.module$exports) {
   module$EventPropagators = module$EventPropagators.module$exports
 }
+;

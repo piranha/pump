@@ -1,4 +1,4 @@
-;goog.provide("module$EventListener");
+goog.provide("module$EventListener");
 var module$EventListener = {};
 var EventListener$$module$EventListener = {listen:function(el, handlerBaseName, cb) {
   if(el.addEventListener) {
@@ -19,6 +19,4 @@ module$EventListener.module$exports = EventListener$$module$EventListener;
 if(module$EventListener.module$exports) {
   module$EventListener = module$EventListener.module$exports
 }
-;/*
- Modernizr 3.0.0pre (Custom Build) | MIT
-*/
+;

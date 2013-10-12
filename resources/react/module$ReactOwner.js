@@ -1,4 +1,4 @@
-;goog.provide("module$ReactOwner");
+goog.provide("module$ReactOwner");
 var module$ReactOwner = {};
 goog.require("module$invariant");
 var invariant$$module$ReactOwner = module$invariant;
@@ -23,3 +23,4 @@ module$ReactOwner.module$exports = ReactOwner$$module$ReactOwner;
 if(module$ReactOwner.module$exports) {
   module$ReactOwner = module$ReactOwner.module$exports
 }
+;

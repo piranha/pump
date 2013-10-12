@@ -1,4 +1,4 @@
-;goog.provide("module$flattenChildren");
+goog.provide("module$flattenChildren");
 var module$flattenChildren = {};
 goog.require("module$traverseAllChildren");
 goog.require("module$invariant");
@@ -21,3 +21,4 @@ module$flattenChildren.module$exports = flattenChildren$$module$flattenChildren;
 if(module$flattenChildren.module$exports) {
   module$flattenChildren = module$flattenChildren.module$exports
 }
+;

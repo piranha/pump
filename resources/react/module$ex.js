@@ -1,4 +1,4 @@
-;goog.provide("module$ex");
+goog.provide("module$ex");
 var module$ex = {};
 var ex$$module$ex = function(errorMessage) {
   var args = Array.prototype.slice.call(arguments).map(function(arg) {
@@ -16,3 +16,4 @@ module$ex.module$exports = ex$$module$ex;
 if(module$ex.module$exports) {
   module$ex = module$ex.module$exports
 }
+;

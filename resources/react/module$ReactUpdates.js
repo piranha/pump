@@ -1,4 +1,4 @@
-;goog.provide("module$ReactUpdates");
+goog.provide("module$ReactUpdates");
 var module$ReactUpdates = {};
 goog.require("module$invariant");
 var invariant$$module$ReactUpdates = module$invariant;
@@ -70,3 +70,4 @@ module$ReactUpdates.module$exports = ReactUpdates$$module$ReactUpdates;
 if(module$ReactUpdates.module$exports) {
   module$ReactUpdates = module$ReactUpdates.module$exports
 }
+;

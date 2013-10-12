@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticCompositionEvent");
+goog.provide("module$SyntheticCompositionEvent");
 var module$SyntheticCompositionEvent = {};
 goog.require("module$SyntheticEvent");
 var SyntheticEvent$$module$SyntheticCompositionEvent = module$SyntheticEvent;
@@ -11,3 +11,4 @@ module$SyntheticCompositionEvent.module$exports = SyntheticCompositionEvent$$mod
 if(module$SyntheticCompositionEvent.module$exports) {
   module$SyntheticCompositionEvent = module$SyntheticCompositionEvent.module$exports
 }
+;

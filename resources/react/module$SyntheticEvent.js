@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticEvent");
+goog.provide("module$SyntheticEvent");
 var module$SyntheticEvent = {};
 goog.require("module$mergeInto");
 goog.require("module$merge");
@@ -72,3 +72,4 @@ module$SyntheticEvent.module$exports = SyntheticEvent$$module$SyntheticEvent;
 if(module$SyntheticEvent.module$exports) {
   module$SyntheticEvent = module$SyntheticEvent.module$exports
 }
+;

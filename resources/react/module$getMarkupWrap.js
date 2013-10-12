@@ -1,4 +1,4 @@
-;goog.provide("module$getMarkupWrap");
+goog.provide("module$getMarkupWrap");
 var module$getMarkupWrap = {};
 goog.require("module$invariant");
 goog.require("module$ExecutionEnvironment");
@@ -27,3 +27,4 @@ module$getMarkupWrap.module$exports = getMarkupWrap$$module$getMarkupWrap;
 if(module$getMarkupWrap.module$exports) {
   module$getMarkupWrap = module$getMarkupWrap.module$exports
 }
+;

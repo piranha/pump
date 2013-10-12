@@ -1,4 +1,4 @@
-;goog.provide("module$dangerousStyleValue");
+goog.provide("module$dangerousStyleValue");
 var module$dangerousStyleValue = {};
 goog.require("module$CSSProperty");
 var CSSProperty$$module$dangerousStyleValue = module$CSSProperty;
@@ -17,3 +17,4 @@ module$dangerousStyleValue.module$exports = dangerousStyleValue$$module$dangerou
 if(module$dangerousStyleValue.module$exports) {
   module$dangerousStyleValue = module$dangerousStyleValue.module$exports
 }
+;

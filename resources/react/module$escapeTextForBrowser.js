@@ -1,4 +1,4 @@
-;goog.provide("module$escapeTextForBrowser");
+goog.provide("module$escapeTextForBrowser");
 var module$escapeTextForBrowser = {};
 goog.require("module$invariant");
 var invariant$$module$escapeTextForBrowser = module$invariant;
@@ -23,3 +23,4 @@ module$escapeTextForBrowser.module$exports = escapeTextForBrowser$$module$escape
 if(module$escapeTextForBrowser.module$exports) {
   module$escapeTextForBrowser = module$escapeTextForBrowser.module$exports
 }
+;

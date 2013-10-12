@@ -1,4 +1,4 @@
-;goog.provide("module$SyntheticClipboardEvent");
+goog.provide("module$SyntheticClipboardEvent");
 var module$SyntheticClipboardEvent = {};
 goog.require("module$SyntheticEvent");
 var SyntheticEvent$$module$SyntheticClipboardEvent = module$SyntheticEvent;
@@ -11,3 +11,4 @@ module$SyntheticClipboardEvent.module$exports = SyntheticClipboardEvent$$module$
 if(module$SyntheticClipboardEvent.module$exports) {
   module$SyntheticClipboardEvent = module$SyntheticClipboardEvent.module$exports
 }
+;

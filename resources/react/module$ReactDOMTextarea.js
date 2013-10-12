@@ -1,4 +1,4 @@
-;goog.provide("module$ReactDOMTextarea");
+goog.provide("module$ReactDOMTextarea");
 var module$ReactDOMTextarea = {};
 goog.require("module$merge");
 goog.require("module$invariant");
@@ -61,3 +61,4 @@ module$ReactDOMTextarea.module$exports = ReactDOMTextarea$$module$ReactDOMTextar
 if(module$ReactDOMTextarea.module$exports) {
   module$ReactDOMTextarea = module$ReactDOMTextarea.module$exports
 }
+;

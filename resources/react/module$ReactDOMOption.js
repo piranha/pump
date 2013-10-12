@@ -1,4 +1,4 @@
-;goog.provide("module$ReactDOMOption");
+goog.provide("module$ReactDOMOption");
 var module$ReactDOMOption = {};
 goog.require("module$ReactDOM");
 goog.require("module$ReactCompositeComponent");
@@ -15,3 +15,4 @@ module$ReactDOMOption.module$exports = ReactDOMOption$$module$ReactDOMOption;
 if(module$ReactDOMOption.module$exports) {
   module$ReactDOMOption = module$ReactDOMOption.module$exports
 }
+;

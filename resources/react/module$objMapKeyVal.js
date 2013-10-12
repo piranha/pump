@@ -1,4 +1,4 @@
-;goog.provide("module$objMapKeyVal");
+goog.provide("module$objMapKeyVal");
 var module$objMapKeyVal = {};
 function objMapKeyVal$$module$objMapKeyVal(obj, func, context) {
   if(!obj) {
@@ -17,3 +17,4 @@ module$objMapKeyVal.module$exports = objMapKeyVal$$module$objMapKeyVal;
 if(module$objMapKeyVal.module$exports) {
   module$objMapKeyVal = module$objMapKeyVal.module$exports
 }
+;

@@ -1,4 +1,4 @@
-;goog.provide("module$createObjectFrom");
+goog.provide("module$createObjectFrom");
 var module$createObjectFrom = {};
 function createObjectFrom$$module$createObjectFrom(keys, values) {
   var object = {};
@@ -15,3 +15,4 @@ module$createObjectFrom.module$exports = createObjectFrom$$module$createObjectFr
 if(module$createObjectFrom.module$exports) {
   module$createObjectFrom = module$createObjectFrom.module$exports
 }
+;

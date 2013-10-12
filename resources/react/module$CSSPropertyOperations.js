@@ -1,4 +1,4 @@
-;goog.provide("module$CSSPropertyOperations");
+goog.provide("module$CSSPropertyOperations");
 var module$CSSPropertyOperations = {};
 goog.require("module$memoizeStringOnly");
 goog.require("module$hyphenate");
@@ -51,3 +51,4 @@ module$CSSPropertyOperations.module$exports = CSSPropertyOperations$$module$CSSP
 if(module$CSSPropertyOperations.module$exports) {
   module$CSSPropertyOperations = module$CSSPropertyOperations.module$exports
 }
+;

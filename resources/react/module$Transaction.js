@@ -1,4 +1,4 @@
-;goog.provide("module$Transaction");
+goog.provide("module$Transaction");
 var module$Transaction = {};
 goog.require("module$invariant");
 var invariant$$module$Transaction = module$invariant;
@@ -103,3 +103,4 @@ module$Transaction.module$exports = Transaction$$module$Transaction;
 if(module$Transaction.module$exports) {
   module$Transaction = module$Transaction.module$exports
 }
+;

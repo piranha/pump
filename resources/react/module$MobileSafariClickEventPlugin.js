@@ -1,4 +1,4 @@
-;goog.provide("module$MobileSafariClickEventPlugin");
+goog.provide("module$MobileSafariClickEventPlugin");
 var module$MobileSafariClickEventPlugin = {};
 goog.require("module$emptyFunction");
 goog.require("module$EventConstants");
@@ -17,3 +17,4 @@ module$MobileSafariClickEventPlugin.module$exports = MobileSafariClickEventPlugi
 if(module$MobileSafariClickEventPlugin.module$exports) {
   module$MobileSafariClickEventPlugin = module$MobileSafariClickEventPlugin.module$exports
 }
+;

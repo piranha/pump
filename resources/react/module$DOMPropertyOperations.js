@@ -1,4 +1,4 @@
-;goog.provide("module$DOMPropertyOperations");
+goog.provide("module$DOMPropertyOperations");
 var module$DOMPropertyOperations = {};
 goog.require("module$memoizeStringOnly");
 goog.require("module$escapeTextForBrowser");
@@ -72,3 +72,4 @@ module$DOMPropertyOperations.module$exports = DOMPropertyOperations$$module$DOMP
 if(module$DOMPropertyOperations.module$exports) {
   module$DOMPropertyOperations = module$DOMPropertyOperations.module$exports
 }
+;

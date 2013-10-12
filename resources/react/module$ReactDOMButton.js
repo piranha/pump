@@ -1,4 +1,4 @@
-;goog.provide("module$ReactDOMButton");
+goog.provide("module$ReactDOMButton");
 var module$ReactDOMButton = {};
 goog.require("module$keyMirror");
 goog.require("module$ReactDOM");
@@ -21,3 +21,4 @@ module$ReactDOMButton.module$exports = ReactDOMButton$$module$ReactDOMButton;
 if(module$ReactDOMButton.module$exports) {
   module$ReactDOMButton = module$ReactDOMButton.module$exports
 }
+;

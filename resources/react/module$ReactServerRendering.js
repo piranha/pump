@@ -1,4 +1,4 @@
-;goog.provide("module$ReactServerRendering");
+goog.provide("module$ReactServerRendering");
 var module$ReactServerRendering = {};
 goog.require("module$ReactInstanceHandles");
 goog.require("module$ReactReconcileTransaction");
@@ -24,3 +24,4 @@ module$ReactServerRendering.module$exports = {renderComponentToString:renderComp
 if(module$ReactServerRendering.module$exports) {
   module$ReactServerRendering = module$ReactServerRendering.module$exports
 }
+;

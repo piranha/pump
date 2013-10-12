@@ -1,4 +1,4 @@
-;goog.provide("module$ReactDefaultBatchingStrategy");
+goog.provide("module$ReactDefaultBatchingStrategy");
 var module$ReactDefaultBatchingStrategy = {};
 goog.require("module$mixInto");
 goog.require("module$emptyFunction");
@@ -34,3 +34,4 @@ module$ReactDefaultBatchingStrategy.module$exports = ReactDefaultBatchingStrateg
 if(module$ReactDefaultBatchingStrategy.module$exports) {
   module$ReactDefaultBatchingStrategy = module$ReactDefaultBatchingStrategy.module$exports
 }
+;

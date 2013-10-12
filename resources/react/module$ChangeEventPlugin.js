@@ -1,6 +1,7 @@
-;goog.provide("module$ChangeEventPlugin");
+goog.provide("module$ChangeEventPlugin");
 var module$ChangeEventPlugin = {};
 goog.require("module$keyOf");
+goog.require("module$isTextInputElement");
 goog.require("module$isEventSupported");
 goog.require("module$SyntheticEvent");
 goog.require("module$ExecutionEnvironment");
@@ -13,6 +14,7 @@ var EventPropagators$$module$ChangeEventPlugin = module$EventPropagators;
 var ExecutionEnvironment$$module$ChangeEventPlugin = module$ExecutionEnvironment;
 var SyntheticEvent$$module$ChangeEventPlugin = module$SyntheticEvent;
 var isEventSupported$$module$ChangeEventPlugin = module$isEventSupported;
+var isTextInputElement$$module$ChangeEventPlugin = module$isTextInputElement;
 var keyOf$$module$ChangeEventPlugin = module$keyOf;
 var topLevelTypes$$module$ChangeEventPlugin = EventConstants$$module$ChangeEventPlugin.topLevelTypes;
 var eventTypes$$module$ChangeEventPlugin = {change:{phasedRegistrationNames:{bubbled:keyOf$$module$ChangeEventPlugin({onChange:null}), captured:keyOf$$module$ChangeEventPlugin({onChangeCapture:null})}}};
@@ -64,10 +66,6 @@ function handleEventsForChangeEventIE8$$module$ChangeEventPlugin(topLevelType, t
 var isInputEventSupported$$module$ChangeEventPlugin = false;
 if(ExecutionEnvironment$$module$ChangeEventPlugin.canUseDOM) {
   isInputEventSupported$$module$ChangeEventPlugin = isEventSupported$$module$ChangeEventPlugin("input") && (!("documentMode" in document) || document.documentMode > 9)
-}
-var supportedInputTypes$$module$ChangeEventPlugin = {"color":true, "date":true, "datetime":true, "datetime-local":true, "email":true, "month":true, "number":true, "password":true, "range":true, "search":true, "tel":true, "text":true, "time":true, "url":true, "week":true};
-function shouldUseInputEvent$$module$ChangeEventPlugin(elem) {
-  return elem.nodeName === "INPUT" && supportedInputTypes$$module$ChangeEventPlugin[elem.type] || elem.nodeName === "TEXTAREA"
 }
 var newValueProp$$module$ChangeEventPlugin = {get:function() {
   return activeElementValueProp$$module$ChangeEventPlugin.get.call(this)
@@ -145,7 +143,7 @@ var ChangeEventPlugin$$module$ChangeEventPlugin = {eventTypes:eventTypes$$module
       handleEventFunc = handleEventsForChangeEventIE8$$module$ChangeEventPlugin
     }
   }else {
-    if(shouldUseInputEvent$$module$ChangeEventPlugin(topLevelTarget)) {
+    if(isTextInputElement$$module$ChangeEventPlugin(topLevelTarget)) {
       if(isInputEventSupported$$module$ChangeEventPlugin) {
         getTargetIDFunc = getTargetIDForInputEvent$$module$ChangeEventPlugin
       }else {
@@ -174,3 +172,4 @@ module$ChangeEventPlugin.module$exports = ChangeEventPlugin$$module$ChangeEventP
 if(module$ChangeEventPlugin.module$exports) {
   module$ChangeEventPlugin = module$ChangeEventPlugin.module$exports
 }
+;

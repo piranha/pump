@@ -1,4 +1,4 @@
-;goog.provide("module$merge");
+goog.provide("module$merge");
 var module$merge = {};
 goog.require("module$mergeInto");
 var mergeInto$$module$merge = module$mergeInto;
@@ -12,3 +12,4 @@ module$merge.module$exports = merge$$module$merge;
 if(module$merge.module$exports) {
   module$merge = module$merge.module$exports
 }
+;

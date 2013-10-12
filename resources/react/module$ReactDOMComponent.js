@@ -1,10 +1,9 @@
-;goog.provide("module$ReactDOMComponent");
+goog.provide("module$ReactDOMComponent");
 var module$ReactDOMComponent = {};
 goog.require("module$mixInto");
 goog.require("module$merge");
 goog.require("module$keyOf");
 goog.require("module$invariant");
-goog.require("module$flattenChildren");
 goog.require("module$escapeTextForBrowser");
 goog.require("module$ReactPerf");
 goog.require("module$ReactMount");
@@ -23,7 +22,6 @@ var ReactMultiChild$$module$ReactDOMComponent = module$ReactMultiChild;
 var ReactMount$$module$ReactDOMComponent = module$ReactMount;
 var ReactPerf$$module$ReactDOMComponent = module$ReactPerf;
 var escapeTextForBrowser$$module$ReactDOMComponent = module$escapeTextForBrowser;
-var flattenChildren$$module$ReactDOMComponent = module$flattenChildren;
 var invariant$$module$ReactDOMComponent = module$invariant;
 var keyOf$$module$ReactDOMComponent = module$keyOf;
 var merge$$module$ReactDOMComponent = module$merge;
@@ -90,7 +88,7 @@ ReactDOMComponent$$module$ReactDOMComponent.Mixin = {mountComponent:ReactPerf$$m
       return escapeTextForBrowser$$module$ReactDOMComponent(contentToUse)
     }else {
       if(childrenToUse != null) {
-        var mountImages = this.mountChildren(flattenChildren$$module$ReactDOMComponent(childrenToUse), transaction);
+        var mountImages = this.mountChildren(childrenToUse, transaction);
         return mountImages.join("")
       }
     }
@@ -197,7 +195,7 @@ ReactDOMComponent$$module$ReactDOMComponent.Mixin = {mountComponent:ReactPerf$$m
       }
     }else {
       if(nextChildren != null) {
-        this.updateChildren(flattenChildren$$module$ReactDOMComponent(nextChildren), transaction)
+        this.updateChildren(nextChildren, transaction)
       }
     }
   }
@@ -213,3 +211,4 @@ module$ReactDOMComponent.module$exports = ReactDOMComponent$$module$ReactDOMComp
 if(module$ReactDOMComponent.module$exports) {
   module$ReactDOMComponent = module$ReactDOMComponent.module$exports
 }
+;

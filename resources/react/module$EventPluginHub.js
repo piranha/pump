@@ -1,4 +1,4 @@
-;goog.provide("module$EventPluginHub");
+goog.provide("module$EventPluginHub");
 var module$EventPluginHub = {};
 goog.require("module$invariant");
 goog.require("module$forEachAccumulated");
@@ -61,3 +61,4 @@ module$EventPluginHub.module$exports = EventPluginHub$$module$EventPluginHub;
 if(module$EventPluginHub.module$exports) {
   module$EventPluginHub = module$EventPluginHub.module$exports
 }
+;
