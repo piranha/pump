@@ -1,5 +1,5 @@
 (ns pump
-  (:require [React]
+  (:require [module$React :as React]
             [pump.core :refer [wrap-functions add-atom-mixin]]))
 
 (defn prevent [e]
