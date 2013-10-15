@@ -1,6 +1,7 @@
 (ns pump.template
   (:require-macros [pump.macros :refer [dash-to-camel-str]])
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as string]
+            [module$React :as React]))
 
 (declare elem-factory)
 
@@ -33,7 +34,7 @@
     [:custom tag nil]
     (let [[tag id class] (next (re-matches re-tag (name tag)))]
       [:vanilla
-       (aget (.-DOM js/React) tag)
+       (aget React/DOM tag)
        {:id (or id nil)
         :className (if class (string/replace class #"\." " "))}])))
 
