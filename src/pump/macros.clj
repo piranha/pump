@@ -26,7 +26,16 @@
       (assoc body-map :render
              (apply list 'fn (first render-form) (rest render-form))))))
 
-(defmacro defr
+
+(defmacro component 
+  "Returns an anonymous component"
+  [& forms]
+  (let [body# (body-map forms)
+        cameled# (dash-to-camel-keys body#)
+        body# (assoc cameled# :displayName (str name))]
+    `(pump/react ~body#)))
+
+(defmacro defr 
   "Macro for defining React components
 
    In most basic forms takes a map of function names to functions, converts them
@@ -48,9 +57,6 @@
        :component-will-mount #(.log js/console \"component on duty\")
        [C P S]
        [:div.class (:text P)])
-"
+ "
   [name & forms]
-  (let [body# (body-map forms)
-        cameled# (dash-to-camel-keys body#)
-        body# (assoc cameled# :displayName (str name))]
-    `(def ~name (pump/react ~body#))))
+  `(def ~name (component ~@forms)))
