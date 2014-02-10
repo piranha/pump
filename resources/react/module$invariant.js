@@ -6,6 +6,21 @@ function invariant$$module$invariant(condition) {
   }
 }
 module$invariant.module$exports = invariant$$module$invariant;
+if(false) {
+  var invariantDev$$module$invariant = function(condition, format, a, b, c, d, e, f) {
+    if(format === undefined) {
+      throw new Error("invariant requires an error message argument");
+    }
+    if(!condition) {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      throw new Error("Invariant Violation: " + format.replace(/%s/g, function() {
+        return args[argIndex++]
+      }));
+    }
+  };
+  module$invariant.module$exports = invariantDev$$module$invariant
+}
 if(module$invariant.module$exports) {
   module$invariant = module$invariant.module$exports
 }

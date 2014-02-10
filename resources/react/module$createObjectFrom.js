@@ -1,6 +1,11 @@
 goog.provide("module$createObjectFrom");
 var module$createObjectFrom = {};
 function createObjectFrom$$module$createObjectFrom(keys, values) {
+  if(false) {
+    if(!Array.isArray(keys)) {
+      throw new TypeError("Must pass an array of keys.");
+    }
+  }
   var object = {};
   var isArray = Array.isArray(values);
   if(typeof values == "undefined") {

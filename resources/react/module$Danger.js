@@ -50,6 +50,10 @@ var Danger$$module$Danger = {dangerouslyRenderMarkup:function(markupList) {
         invariant$$module$Danger(!resultList.hasOwnProperty(resultIndex));
         resultList[resultIndex] = renderNode;
         resultListAssignmentCount += 1
+      }else {
+        if(false) {
+          console.error("Danger: Discarding unexpected node:", renderNode)
+        }
       }
     }
   }

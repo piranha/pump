@@ -52,6 +52,7 @@ var ReactEventEmitter$$module$ReactEventEmitter = merge$$module$ReactEventEmitte
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topMouseOut, "mouseout", mountAt);
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topClick, "click", mountAt);
   trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topDoubleClick, "dblclick", mountAt);
+  trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topContextMenu, "contextmenu", mountAt);
   if(touchNotMouse) {
     trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topTouchStart, "touchstart", mountAt);
     trapBubbledEvent$$module$ReactEventEmitter(topLevelTypes.topTouchEnd, "touchend", mountAt);

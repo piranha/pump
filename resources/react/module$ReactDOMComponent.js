@@ -94,11 +94,11 @@ ReactDOMComponent$$module$ReactDOMComponent.Mixin = {mountComponent:ReactPerf$$m
     }
   }
   return""
-}, receiveProps:function(nextProps, transaction) {
-  assertValidProps$$module$ReactDOMComponent(nextProps);
-  ReactComponent$$module$ReactDOMComponent.Mixin.receiveProps.call(this, nextProps, transaction)
-}, updateComponent:ReactPerf$$module$ReactDOMComponent.measure("ReactDOMComponent", "updateComponent", function(transaction, prevProps) {
-  ReactComponent$$module$ReactDOMComponent.Mixin.updateComponent.call(this, transaction, prevProps);
+}, receiveComponent:function(nextComponent, transaction) {
+  assertValidProps$$module$ReactDOMComponent(nextComponent.props);
+  ReactComponent$$module$ReactDOMComponent.Mixin.receiveComponent.call(this, nextComponent, transaction)
+}, updateComponent:ReactPerf$$module$ReactDOMComponent.measure("ReactDOMComponent", "updateComponent", function(transaction, prevProps, prevOwner) {
+  ReactComponent$$module$ReactDOMComponent.Mixin.updateComponent.call(this, transaction, prevProps, prevOwner);
   this._updateDOMProperties(prevProps);
   this._updateDOMChildren(prevProps, transaction)
 }), _updateDOMProperties:function(lastProps) {

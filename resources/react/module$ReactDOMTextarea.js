@@ -13,24 +13,25 @@ var ReactDOM$$module$ReactDOMTextarea = module$ReactDOM;
 var invariant$$module$ReactDOMTextarea = module$invariant;
 var merge$$module$ReactDOMTextarea = module$merge;
 var textarea$$module$ReactDOMTextarea = ReactDOM$$module$ReactDOMTextarea.textarea;
-var CONTENT_TYPES$$module$ReactDOMTextarea = {"string":true, "number":true};
 var ReactDOMTextarea$$module$ReactDOMTextarea = ReactCompositeComponent$$module$ReactDOMTextarea.createClass({mixins:[LinkedValueMixin$$module$ReactDOMTextarea], getInitialState:function() {
   var defaultValue = this.props.defaultValue;
   var children = this.props.children;
   if(children != null) {
+    if(false) {
+      console.warn("Use the `defaultValue` or `value` props instead of setting " + "children on <textarea>.")
+    }
     invariant$$module$ReactDOMTextarea(defaultValue == null);
     if(Array.isArray(children)) {
       invariant$$module$ReactDOMTextarea(children.length <= 1);
       children = children[0]
     }
-    invariant$$module$ReactDOMTextarea(CONTENT_TYPES$$module$ReactDOMTextarea[typeof children]);
     defaultValue = "" + children
   }
   if(defaultValue == null) {
     defaultValue = ""
   }
   var value = this.getValue();
-  return{initialValue:value != null ? value : defaultValue, value:defaultValue}
+  return{initialValue:"" + (value != null ? value : defaultValue), value:defaultValue}
 }, shouldComponentUpdate:function() {
   return!this._isChanging
 }, render:function() {
@@ -41,10 +42,11 @@ var ReactDOMTextarea$$module$ReactDOMTextarea = ReactCompositeComponent$$module$
   props.value = value != null ? value : this.state.value;
   props.onChange = this._handleChange;
   return textarea$$module$ReactDOMTextarea(props, this.state.initialValue)
-}, componentDidUpdate:function(prevProps, prevState, rootNode) {
+}, componentDidUpdate:function(prevProps, prevState, prevContext) {
   var value = this.getValue();
   if(value != null) {
-    DOMPropertyOperations$$module$ReactDOMTextarea.setValueForProperty(rootNode, "value", value !== false ? "" + value : "")
+    var rootNode = this.getDOMNode();
+    DOMPropertyOperations$$module$ReactDOMTextarea.setValueForProperty(rootNode, "value", "" + value)
   }
 }, _handleChange:function(event) {
   var returnValue;

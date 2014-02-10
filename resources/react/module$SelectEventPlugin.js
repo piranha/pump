@@ -3,9 +3,9 @@ var module$SelectEventPlugin = {};
 goog.require("module$shallowEqual");
 goog.require("module$keyOf");
 goog.require("module$isTextInputElement");
-goog.require("module$isEventSupported");
 goog.require("module$getActiveElement");
 goog.require("module$SyntheticEvent");
+goog.require("module$ReactInputSelection");
 goog.require("module$ExecutionEnvironment");
 goog.require("module$EventPropagators");
 goog.require("module$EventPluginHub");
@@ -14,19 +14,17 @@ var EventConstants$$module$SelectEventPlugin = module$EventConstants;
 var EventPluginHub$$module$SelectEventPlugin = module$EventPluginHub;
 var EventPropagators$$module$SelectEventPlugin = module$EventPropagators;
 var ExecutionEnvironment$$module$SelectEventPlugin = module$ExecutionEnvironment;
+var ReactInputSelection$$module$SelectEventPlugin = module$ReactInputSelection;
 var SyntheticEvent$$module$SelectEventPlugin = module$SyntheticEvent;
 var getActiveElement$$module$SelectEventPlugin = module$getActiveElement;
-var isEventSupported$$module$SelectEventPlugin = module$isEventSupported;
 var isTextInputElement$$module$SelectEventPlugin = module$isTextInputElement;
 var keyOf$$module$SelectEventPlugin = module$keyOf;
 var shallowEqual$$module$SelectEventPlugin = module$shallowEqual;
 var topLevelTypes$$module$SelectEventPlugin = EventConstants$$module$SelectEventPlugin.topLevelTypes;
 var eventTypes$$module$SelectEventPlugin = {select:{phasedRegistrationNames:{bubbled:keyOf$$module$SelectEventPlugin({onSelect:null}), captured:keyOf$$module$SelectEventPlugin({onSelectCapture:null})}}};
 var useSelectionChange$$module$SelectEventPlugin = false;
-var useSelect$$module$SelectEventPlugin = false;
 if(ExecutionEnvironment$$module$SelectEventPlugin.canUseDOM) {
-  useSelectionChange$$module$SelectEventPlugin = "onselectionchange" in document;
-  useSelect$$module$SelectEventPlugin = isEventSupported$$module$SelectEventPlugin("select")
+  useSelectionChange$$module$SelectEventPlugin = "onselectionchange" in document
 }
 var activeElement$$module$SelectEventPlugin = null;
 var activeElementID$$module$SelectEventPlugin = null;
@@ -34,7 +32,7 @@ var activeNativeEvent$$module$SelectEventPlugin = null;
 var lastSelection$$module$SelectEventPlugin = null;
 var mouseDown$$module$SelectEventPlugin = false;
 function getSelection$$module$SelectEventPlugin(node) {
-  if("selectionStart" in node) {
+  if("selectionStart" in node && ReactInputSelection$$module$SelectEventPlugin.hasSelectionCapabilities(node)) {
     return{start:node.selectionStart, end:node.selectionEnd}
   }else {
     if(document.selection) {
@@ -77,15 +75,13 @@ var SelectEventPlugin$$module$SelectEventPlugin = {eventTypes:eventTypes$$module
       if(isTextInputElement$$module$SelectEventPlugin(topLevelTarget) || topLevelTarget.contentEditable === "true") {
         activeElement$$module$SelectEventPlugin = topLevelTarget;
         activeElementID$$module$SelectEventPlugin = topLevelTargetID;
-        lastSelection$$module$SelectEventPlugin = null;
-        mouseDown$$module$SelectEventPlugin = false
+        lastSelection$$module$SelectEventPlugin = null
       }
       break;
     case topLevelTypes$$module$SelectEventPlugin.topBlur:
       activeElement$$module$SelectEventPlugin = null;
       activeElementID$$module$SelectEventPlugin = null;
       lastSelection$$module$SelectEventPlugin = null;
-      mouseDown$$module$SelectEventPlugin = false;
       break;
     case topLevelTypes$$module$SelectEventPlugin.topMouseDown:
       mouseDown$$module$SelectEventPlugin = true;

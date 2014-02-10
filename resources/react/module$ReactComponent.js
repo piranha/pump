@@ -31,7 +31,7 @@ function validateExplicitKey$$module$ReactComponent(component) {
   ownerHasWarned$$module$ReactComponent[currentName] = true;
   var message = 'Each child in an array should have a unique "key" prop. ' + "Check the render method of " + currentName + ".";
   if(!component.isOwnedBy(ReactCurrentOwner$$module$ReactComponent.current)) {
-    var childOwnerName = component.props.__owner__ && component.props.__owner__.constructor.displayName;
+    var childOwnerName = component._owner && component._owner.constructor.displayName;
     message += " It was passed a child from " + childOwnerName + "."
   }
   console.warn(message)
@@ -51,7 +51,7 @@ function validateChildKeys$$module$ReactComponent(component) {
   }
 }
 var ReactComponent$$module$ReactComponent = {isValidComponent:function(object) {
-  return!!(object && typeof object.mountComponentIntoNode === "function" && typeof object.receiveProps === "function")
+  return!!(object && typeof object.mountComponentIntoNode === "function" && typeof object.receiveComponent === "function")
 }, getKey:function(component, index) {
   if(component && component.props && component.props.key != null) {
     return"{" + component.props.key + "}"
@@ -63,23 +63,30 @@ var ReactComponent$$module$ReactComponent = {isValidComponent:function(object) {
 }, setProps:function(partialProps, callback) {
   this.replaceProps(merge$$module$ReactComponent(this._pendingProps || this.props, partialProps), callback)
 }, replaceProps:function(props, callback) {
-  invariant$$module$ReactComponent(!this.props.__owner__);
+  invariant$$module$ReactComponent(!this._owner);
   invariant$$module$ReactComponent(this.isMounted());
   this._pendingProps = props;
   ReactUpdates$$module$ReactComponent.enqueueUpdate(this, callback)
 }, construct:function(initialProps, children) {
   this.props = initialProps || {};
-  this.props.__owner__ = ReactCurrentOwner$$module$ReactComponent.current;
+  this._owner = ReactCurrentOwner$$module$ReactComponent.current;
   this._lifeCycleState = ComponentLifeCycle$$module$ReactComponent.UNMOUNTED;
   this._pendingProps = null;
   this._pendingCallbacks = null;
+  this._pendingOwner = this._owner;
   var childrenLength = arguments.length - 1;
   if(childrenLength === 1) {
+    if(false) {
+      validateChildKeys$$module$ReactComponent(children)
+    }
     this.props.children = children
   }else {
     if(childrenLength > 1) {
       var childArray = Array(childrenLength);
       for(var i = 0;i < childrenLength;i++) {
+        if(false) {
+          validateChildKeys$$module$ReactComponent(arguments[i + 1])
+        }
         childArray[i] = arguments[i + 1]
       }
       this.props.children = childArray
@@ -89,7 +96,7 @@ var ReactComponent$$module$ReactComponent = {isValidComponent:function(object) {
   invariant$$module$ReactComponent(!this.isMounted());
   var props = this.props;
   if(props.ref != null) {
-    ReactOwner$$module$ReactComponent.addComponentAsRefTo(this, props.ref, props.__owner__)
+    ReactOwner$$module$ReactComponent.addComponentAsRefTo(this, props.ref, this._owner)
   }
   this._rootNodeID = rootID;
   this._lifeCycleState = ComponentLifeCycle$$module$ReactComponent.MOUNTED;
@@ -98,14 +105,15 @@ var ReactComponent$$module$ReactComponent = {isValidComponent:function(object) {
   invariant$$module$ReactComponent(this.isMounted());
   var props = this.props;
   if(props.ref != null) {
-    ReactOwner$$module$ReactComponent.removeComponentAsRefFrom(this, props.ref, props.__owner__)
+    ReactOwner$$module$ReactComponent.removeComponentAsRefFrom(this, props.ref, this._owner)
   }
   ReactComponent$$module$ReactComponent.unmountIDFromEnvironment(this._rootNodeID);
   this._rootNodeID = null;
   this._lifeCycleState = ComponentLifeCycle$$module$ReactComponent.UNMOUNTED
-}, receiveProps:function(nextProps, transaction) {
+}, receiveComponent:function(nextComponent, transaction) {
   invariant$$module$ReactComponent(this.isMounted());
-  this._pendingProps = nextProps;
+  this._pendingOwner = nextComponent._owner;
+  this._pendingProps = nextComponent.props;
   this._performUpdateIfNecessary(transaction)
 }, performUpdateIfNecessary:function() {
   var transaction = ReactComponent$$module$ReactComponent.ReactReconcileTransaction.getPooled();
@@ -116,17 +124,19 @@ var ReactComponent$$module$ReactComponent = {isValidComponent:function(object) {
     return
   }
   var prevProps = this.props;
+  var prevOwner = this._owner;
   this.props = this._pendingProps;
+  this._owner = this._pendingOwner;
   this._pendingProps = null;
-  this.updateComponent(transaction, prevProps)
-}, updateComponent:function(transaction, prevProps) {
+  this.updateComponent(transaction, prevProps, prevOwner)
+}, updateComponent:function(transaction, prevProps, prevOwner) {
   var props = this.props;
-  if(props.__owner__ !== prevProps.__owner__ || props.ref !== prevProps.ref) {
+  if(this._owner !== prevOwner || props.ref !== prevProps.ref) {
     if(prevProps.ref != null) {
-      ReactOwner$$module$ReactComponent.removeComponentAsRefFrom(this, prevProps.ref, prevProps.__owner__)
+      ReactOwner$$module$ReactComponent.removeComponentAsRefFrom(this, prevProps.ref, prevOwner)
     }
     if(props.ref != null) {
-      ReactOwner$$module$ReactComponent.addComponentAsRefTo(this, props.ref, props.__owner__)
+      ReactOwner$$module$ReactComponent.addComponentAsRefTo(this, props.ref, this._owner)
     }
   }
 }, mountComponentIntoNode:function(rootID, container, shouldReuseMarkup) {
@@ -137,9 +147,9 @@ var ReactComponent$$module$ReactComponent = {isValidComponent:function(object) {
   var markup = this.mountComponent(rootID, transaction, 0);
   ReactComponent$$module$ReactComponent.mountImageIntoNode(markup, container, shouldReuseMarkup)
 }, isOwnedBy:function(owner) {
-  return this.props.__owner__ === owner
+  return this._owner === owner
 }, getSiblingByRef:function(ref) {
-  var owner = this.props.__owner__;
+  var owner = this._owner;
   if(!owner || !owner.refs) {
     return null
   }

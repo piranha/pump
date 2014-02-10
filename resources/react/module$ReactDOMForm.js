@@ -11,8 +11,8 @@ var EventConstants$$module$ReactDOMForm = module$EventConstants;
 var form$$module$ReactDOMForm = ReactDOM$$module$ReactDOMForm.form;
 var ReactDOMForm$$module$ReactDOMForm = ReactCompositeComponent$$module$ReactDOMForm.createClass({render:function() {
   return this.transferPropsTo(form$$module$ReactDOMForm(null, this.props.children))
-}, componentDidMount:function(node) {
-  ReactEventEmitter$$module$ReactDOMForm.trapBubbledEvent(EventConstants$$module$ReactDOMForm.topLevelTypes.topSubmit, "submit", node)
+}, componentDidMount:function() {
+  ReactEventEmitter$$module$ReactDOMForm.trapBubbledEvent(EventConstants$$module$ReactDOMForm.topLevelTypes.topSubmit, "submit", this.getDOMNode())
 }});
 module$ReactDOMForm.module$exports = ReactDOMForm$$module$ReactDOMForm;
 if(module$ReactDOMForm.module$exports) {

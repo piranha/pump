@@ -15,7 +15,8 @@ mixInto$$module$ReactTextComponent(ReactTextComponent$$module$ReactTextComponent
 mixInto$$module$ReactTextComponent(ReactTextComponent$$module$ReactTextComponent, {mountComponent:function(rootID, transaction, mountDepth) {
   ReactComponent$$module$ReactTextComponent.Mixin.mountComponent.call(this, rootID, transaction, mountDepth);
   return"<span " + ReactMount$$module$ReactTextComponent.ATTR_NAME + '="' + rootID + '">' + escapeTextForBrowser$$module$ReactTextComponent(this.props.text) + "</span>"
-}, receiveProps:function(nextProps, transaction) {
+}, receiveComponent:function(nextComponent, transaction) {
+  var nextProps = nextComponent.props;
   if(nextProps.text !== this.props.text) {
     this.props.text = nextProps.text;
     ReactComponent$$module$ReactTextComponent.DOMIDOperations.updateTextContentByID(this._rootNodeID, nextProps.text)

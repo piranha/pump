@@ -1,5 +1,6 @@
 goog.provide("module$ReactDefaultInjection");
 var module$ReactDefaultInjection = {};
+goog.require("module$ReactDefaultPerf");
 goog.require("module$ReactUpdates");
 goog.require("module$ReactDefaultBatchingStrategy");
 goog.require("module$SimpleEventPlugin");
@@ -53,6 +54,9 @@ function inject$$module$ReactDefaultInjection() {
   EventPluginHub$$module$ReactDefaultInjection.injection.injectEventPluginsByName({SimpleEventPlugin:SimpleEventPlugin$$module$ReactDefaultInjection, EnterLeaveEventPlugin:EnterLeaveEventPlugin$$module$ReactDefaultInjection, ChangeEventPlugin:ChangeEventPlugin$$module$ReactDefaultInjection, CompositionEventPlugin:CompositionEventPlugin$$module$ReactDefaultInjection, MobileSafariClickEventPlugin:MobileSafariClickEventPlugin$$module$ReactDefaultInjection, SelectEventPlugin:SelectEventPlugin$$module$ReactDefaultInjection});
   ReactDOM$$module$ReactDefaultInjection.injection.injectComponentClasses({button:ReactDOMButton$$module$ReactDefaultInjection, form:ReactDOMForm$$module$ReactDefaultInjection, input:ReactDOMInput$$module$ReactDefaultInjection, option:ReactDOMOption$$module$ReactDefaultInjection, select:ReactDOMSelect$$module$ReactDefaultInjection, textarea:ReactDOMTextarea$$module$ReactDefaultInjection});
   DOMProperty$$module$ReactDefaultInjection.injection.injectDOMPropertyConfig(DefaultDOMPropertyConfig$$module$ReactDefaultInjection);
+  if(false) {
+    ReactPerf$$module$ReactDefaultInjection.injection.injectMeasure(module$ReactDefaultPerf.measure)
+  }
   ReactUpdates$$module$ReactDefaultInjection.injection.injectBatchingStrategy(ReactDefaultBatchingStrategy$$module$ReactDefaultInjection)
 }
 module$ReactDefaultInjection.module$exports = {inject:inject$$module$ReactDefaultInjection};

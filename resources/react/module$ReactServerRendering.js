@@ -1,12 +1,18 @@
 goog.provide("module$ReactServerRendering");
 var module$ReactServerRendering = {};
-goog.require("module$ReactInstanceHandles");
+goog.require("module$invariant");
 goog.require("module$ReactReconcileTransaction");
 goog.require("module$ReactMarkupChecksum");
+goog.require("module$ReactInstanceHandles");
+goog.require("module$ReactComponent");
+var ReactComponent$$module$ReactServerRendering = module$ReactComponent;
+var ReactInstanceHandles$$module$ReactServerRendering = module$ReactInstanceHandles;
 var ReactMarkupChecksum$$module$ReactServerRendering = module$ReactMarkupChecksum;
 var ReactReconcileTransaction$$module$ReactServerRendering = module$ReactReconcileTransaction;
-var ReactInstanceHandles$$module$ReactServerRendering = module$ReactInstanceHandles;
+var invariant$$module$ReactServerRendering = module$invariant;
 function renderComponentToString$$module$ReactServerRendering(component, callback) {
+  invariant$$module$ReactServerRendering(ReactComponent$$module$ReactServerRendering.isValidComponent(component));
+  invariant$$module$ReactServerRendering(typeof callback === "function");
   var id = ReactInstanceHandles$$module$ReactServerRendering.createReactRootID();
   var transaction = ReactReconcileTransaction$$module$ReactServerRendering.getPooled();
   transaction.reinitializeTransaction();

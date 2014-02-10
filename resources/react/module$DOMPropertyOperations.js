@@ -9,6 +9,21 @@ var memoizeStringOnly$$module$DOMPropertyOperations = module$memoizeStringOnly;
 var processAttributeNameAndPrefix$$module$DOMPropertyOperations = memoizeStringOnly$$module$DOMPropertyOperations(function(name) {
   return escapeTextForBrowser$$module$DOMPropertyOperations(name) + '="'
 });
+if(false) {
+  var reactProps$$module$DOMPropertyOperations = {children:true, dangerouslySetInnerHTML:true, key:true, ref:true};
+  var warnedProperties$$module$DOMPropertyOperations = {};
+  var warnUnknownProperty$$module$DOMPropertyOperations = function(name) {
+    if(reactProps$$module$DOMPropertyOperations[name] || warnedProperties$$module$DOMPropertyOperations[name]) {
+      return
+    }
+    warnedProperties$$module$DOMPropertyOperations[name] = true;
+    var lowerCasedName = name.toLowerCase();
+    var standardName = DOMProperty$$module$DOMPropertyOperations.isCustomAttribute(lowerCasedName) ? lowerCasedName : DOMProperty$$module$DOMPropertyOperations.getPossibleStandardName[lowerCasedName];
+    if(standardName != null) {
+      console.warn("Unknown DOM property " + name + ". Did you mean " + standardName + "?")
+    }
+  }
+}
 var DOMPropertyOperations$$module$DOMPropertyOperations = {createMarkupForProperty:function(name, value) {
   if(DOMProperty$$module$DOMPropertyOperations.isStandardName[name]) {
     if(value == null || DOMProperty$$module$DOMPropertyOperations.hasBooleanValue[name] && !value) {
@@ -22,6 +37,10 @@ var DOMPropertyOperations$$module$DOMPropertyOperations = {createMarkupForProper
         return""
       }
       return processAttributeNameAndPrefix$$module$DOMPropertyOperations(name) + escapeTextForBrowser$$module$DOMPropertyOperations(value) + '"'
+    }else {
+      if(false) {
+        warnUnknownProperty$$module$DOMPropertyOperations(name)
+      }
     }
   }
   return null
@@ -35,7 +54,7 @@ var DOMPropertyOperations$$module$DOMPropertyOperations = {createMarkupForProper
         if(DOMProperty$$module$DOMPropertyOperations.hasBooleanValue[name] && !value) {
           node.removeAttribute(DOMProperty$$module$DOMPropertyOperations.getAttributeName[name])
         }else {
-          node.setAttribute(DOMProperty$$module$DOMPropertyOperations.getAttributeName[name], value)
+          node.setAttribute(DOMProperty$$module$DOMPropertyOperations.getAttributeName[name], "" + value)
         }
       }else {
         var propName = DOMProperty$$module$DOMPropertyOperations.getPropertyName[name];
@@ -46,7 +65,11 @@ var DOMPropertyOperations$$module$DOMPropertyOperations = {createMarkupForProper
     }
   }else {
     if(DOMProperty$$module$DOMPropertyOperations.isCustomAttribute(name)) {
-      node.setAttribute(name, value)
+      node.setAttribute(name, "" + value)
+    }else {
+      if(false) {
+        warnUnknownProperty$$module$DOMPropertyOperations(name)
+      }
     }
   }
 }, deleteValueForProperty:function(node, name) {
@@ -65,6 +88,10 @@ var DOMPropertyOperations$$module$DOMPropertyOperations = {createMarkupForProper
   }else {
     if(DOMProperty$$module$DOMPropertyOperations.isCustomAttribute(name)) {
       node.removeAttribute(name)
+    }else {
+      if(false) {
+        warnUnknownProperty$$module$DOMPropertyOperations(name)
+      }
     }
   }
 }};

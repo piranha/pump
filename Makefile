@@ -47,9 +47,9 @@ gcc-react:
 
 adv-react:
 	cd resources/static && closure-compiler \
-		--compilation_level ADVANCED_OPTIMIZATIONS \
-		--externs ../externs/react.js \
 		--js_output_file react.adv-min.js \
+		--externs ../externs/react.js \
+		--compilation_level ADVANCED_OPTIMIZATIONS \
 		--create_source_map %outname%.map \
 		--source_map_format=V3 \
 		../react/*.js
@@ -61,3 +61,13 @@ adv-dumb:
 		--compilation_level ADVANCED_OPTIMIZATIONS \
 		--js_output_file resources/static/dumb.adv.js \
 		resources/react/*.js resources/static/dumbchat.js
+
+qwe:
+	cd resources/target && closure-compiler \
+		--compilation_level ADVANCED_OPTIMIZATIONS \
+		--js_output_file pump.min.js \
+		--create_source_map %outname%.map \
+		--source_map_format=V3 \
+		pump.js
+	echo '//@ sourceMappingURL=pump.min.js.map' >> resources/target/pump.min.js
+

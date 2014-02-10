@@ -1,6 +1,8 @@
 # Pump
 
-Pump are ClojureScript bindings for [React][1].
+Note: Pump is deprecated in favor of [om](https://github.com/swannodette/om/).
+
+Pump is ClojureScript bindings for [React][1].
 
 ## Usage
 

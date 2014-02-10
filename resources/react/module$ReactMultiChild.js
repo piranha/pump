@@ -1,19 +1,18 @@
 goog.provide("module$ReactMultiChild");
 var module$ReactMultiChild = {};
+goog.require("module$shouldUpdateReactComponent");
 goog.require("module$flattenChildren");
 goog.require("module$ReactMultiChildUpdateTypes");
 goog.require("module$ReactComponent");
 var ReactComponent$$module$ReactMultiChild = module$ReactComponent;
 var ReactMultiChildUpdateTypes$$module$ReactMultiChild = module$ReactMultiChildUpdateTypes;
 var flattenChildren$$module$ReactMultiChild = module$flattenChildren;
-function shouldUpdateChild$$module$ReactMultiChild(curChild, newChild) {
-  return curChild && newChild && curChild.constructor === newChild.constructor
-}
+var shouldUpdateReactComponent$$module$ReactMultiChild = module$shouldUpdateReactComponent;
 var updateDepth$$module$ReactMultiChild = 0;
 var updateQueue$$module$ReactMultiChild = [];
 var markupQueue$$module$ReactMultiChild = [];
 function enqueueMarkup$$module$ReactMultiChild(parentID, markup, toIndex) {
-  updateQueue$$module$ReactMultiChild.push({parentID:parentID, parentNode:null, type:ReactMultiChildUpdateTypes$$module$ReactMultiChild.INSERT_MARKUP, markupIndex:markupQueue$$module$ReactMultiChild.push(markup) - 1, fromIndex:null, textContent:null, toIndex:toIndex})
+  updateQueue$$module$ReactMultiChild.push({parentID:parentID, parentNode:null, type:ReactMultiChildUpdateTypes$$module$ReactMultiChild.INSERT_MARKUP, markupIndex:markupQueue$$module$ReactMultiChild.push(markup) - 1, textContent:null, fromIndex:null, toIndex:toIndex})
 }
 function enqueueMove$$module$ReactMultiChild(parentID, fromIndex, toIndex) {
   updateQueue$$module$ReactMultiChild.push({parentID:parentID, parentNode:null, type:ReactMultiChildUpdateTypes$$module$ReactMultiChild.MOVE_EXISTING, markupIndex:null, textContent:null, fromIndex:fromIndex, toIndex:toIndex})
@@ -94,10 +93,10 @@ var ReactMultiChild$$module$ReactMultiChild = {Mixin:{mountChildren:function(nes
     }
     var prevChild = prevChildren && prevChildren[name];
     var nextChild = nextChildren[name];
-    if(shouldUpdateChild$$module$ReactMultiChild(prevChild, nextChild)) {
+    if(shouldUpdateReactComponent$$module$ReactMultiChild(prevChild, nextChild)) {
       this.moveChild(prevChild, nextIndex, lastIndex);
       lastIndex = Math.max(prevChild._mountIndex, lastIndex);
-      prevChild.receiveProps(nextChild.props, transaction);
+      prevChild.receiveComponent(nextChild, transaction);
       prevChild._mountIndex = nextIndex
     }else {
       if(prevChild) {

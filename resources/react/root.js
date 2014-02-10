@@ -1,38 +1,4 @@
-goog.provide("module$memoizeStringOnly");
-var module$memoizeStringOnly = {};
-function memoizeStringOnly$$module$memoizeStringOnly(callback) {
-  var cache = {};
-  return function(string) {
-    if(cache.hasOwnProperty(string)) {
-      return cache[string]
-    }else {
-      return cache[string] = callback.call(this, string)
-    }
-  }
-}
-module$memoizeStringOnly.module$exports = memoizeStringOnly$$module$memoizeStringOnly;
-if(module$memoizeStringOnly.module$exports) {
-  module$memoizeStringOnly = module$memoizeStringOnly.module$exports
-}
-;goog.provide("module$ExecutionEnvironment");
-var module$ExecutionEnvironment = {};
-var canUseDOM$$module$ExecutionEnvironment = typeof window !== "undefined";
-var ExecutionEnvironment$$module$ExecutionEnvironment = {canUseDOM:canUseDOM$$module$ExecutionEnvironment, canUseWorkers:typeof Worker !== "undefined", isInWorker:!canUseDOM$$module$ExecutionEnvironment};
-module$ExecutionEnvironment.module$exports = ExecutionEnvironment$$module$ExecutionEnvironment;
-if(module$ExecutionEnvironment.module$exports) {
-  module$ExecutionEnvironment = module$ExecutionEnvironment.module$exports
-}
-;goog.provide("module$ViewportMetrics");
-var module$ViewportMetrics = {};
-var ViewportMetrics$$module$ViewportMetrics = {currentScrollLeft:0, currentScrollTop:0, refreshScrollValues:function() {
-  ViewportMetrics$$module$ViewportMetrics.currentScrollLeft = document.body.scrollLeft + document.documentElement.scrollLeft;
-  ViewportMetrics$$module$ViewportMetrics.currentScrollTop = document.body.scrollTop + document.documentElement.scrollTop
-}};
-module$ViewportMetrics.module$exports = ViewportMetrics$$module$ViewportMetrics;
-if(module$ViewportMetrics.module$exports) {
-  module$ViewportMetrics = module$ViewportMetrics.module$exports
-}
-;goog.provide("module$getEventTarget");
+goog.provide("module$getEventTarget");
 var module$getEventTarget = {};
 function getEventTarget$$module$getEventTarget(nativeEvent) {
   var target = nativeEvent.target || nativeEvent.srcElement || window;
@@ -52,38 +18,18 @@ module$isTextInputElement.module$exports = isTextInputElement$$module$isTextInpu
 if(module$isTextInputElement.module$exports) {
   module$isTextInputElement = module$isTextInputElement.module$exports
 }
-;goog.provide("module$adler32");
-var module$adler32 = {};
-var MOD$$module$adler32 = 65521;
-function adler32$$module$adler32(data) {
-  var a = 1;
-  var b = 0;
-  for(var i = 0;i < data.length;i++) {
-    a = (a + data.charCodeAt(i)) % MOD$$module$adler32;
-    b = (b + a) % MOD$$module$adler32
+;goog.provide("module$getActiveElement");
+var module$getActiveElement = {};
+function getActiveElement$$module$getActiveElement() {
+  try {
+    return document.activeElement
+  }catch(e) {
+    return null
   }
-  return a | b << 16
 }
-module$adler32.module$exports = adler32$$module$adler32;
-if(module$adler32.module$exports) {
-  module$adler32 = module$adler32.module$exports
-}
-;goog.provide("module$ReactMarkupChecksum");
-var module$ReactMarkupChecksum = {};
-goog.require("module$adler32");
-var adler32$$module$ReactMarkupChecksum = module$adler32;
-var ReactMarkupChecksum$$module$ReactMarkupChecksum = {CHECKSUM_ATTR_NAME:"data-react-checksum", addChecksumToMarkup:function(markup) {
-  var checksum = adler32$$module$ReactMarkupChecksum(markup);
-  return markup.replace(">", " " + ReactMarkupChecksum$$module$ReactMarkupChecksum.CHECKSUM_ATTR_NAME + '="' + checksum + '">')
-}, canReuseMarkup:function(markup, element) {
-  var existingChecksum = element.getAttribute(ReactMarkupChecksum$$module$ReactMarkupChecksum.CHECKSUM_ATTR_NAME);
-  existingChecksum = existingChecksum && parseInt(existingChecksum, 10);
-  var markupChecksum = adler32$$module$ReactMarkupChecksum(markup);
-  return markupChecksum === existingChecksum
-}};
-module$ReactMarkupChecksum.module$exports = ReactMarkupChecksum$$module$ReactMarkupChecksum;
-if(module$ReactMarkupChecksum.module$exports) {
-  module$ReactMarkupChecksum = module$ReactMarkupChecksum.module$exports
+module$getActiveElement.module$exports = getActiveElement$$module$getActiveElement;
+if(module$getActiveElement.module$exports) {
+  module$getActiveElement = module$getActiveElement.module$exports
 }
 ;goog.provide("module$PooledClass");
 var module$PooledClass = {};
@@ -168,10 +114,120 @@ module$getTextContentAccessor.module$exports = getTextContentAccessor$$module$ge
 if(module$getTextContentAccessor.module$exports) {
   module$getTextContentAccessor = module$getTextContentAccessor.module$exports
 }
+;goog.provide("module$Transaction");
+var module$Transaction = {};
+goog.require("module$invariant");
+var invariant$$module$Transaction = module$invariant;
+var Mixin$$module$Transaction = {reinitializeTransaction:function() {
+  this.transactionWrappers = this.getTransactionWrappers();
+  if(!this.wrapperInitData) {
+    this.wrapperInitData = []
+  }else {
+    this.wrapperInitData.length = 0
+  }
+  if(!this.timingMetrics) {
+    this.timingMetrics = {}
+  }
+  this.timingMetrics.methodInvocationTime = 0;
+  if(!this.timingMetrics.wrapperInitTimes) {
+    this.timingMetrics.wrapperInitTimes = []
+  }else {
+    this.timingMetrics.wrapperInitTimes.length = 0
+  }
+  if(!this.timingMetrics.wrapperCloseTimes) {
+    this.timingMetrics.wrapperCloseTimes = []
+  }else {
+    this.timingMetrics.wrapperCloseTimes.length = 0
+  }
+  this._isInTransaction = false
+}, _isInTransaction:false, getTransactionWrappers:null, isInTransaction:function() {
+  return!!this._isInTransaction
+}, perform:function(method, scope, a, b, c, d, e, f) {
+  invariant$$module$Transaction(!this.isInTransaction());
+  var memberStart = Date.now();
+  var errorToThrow = null;
+  var ret;
+  try {
+    this.initializeAll();
+    ret = method.call(scope, a, b, c, d, e, f)
+  }catch(error) {
+    errorToThrow = error
+  }finally {
+    var memberEnd = Date.now();
+    this.methodInvocationTime += memberEnd - memberStart;
+    try {
+      this.closeAll()
+    }catch(closeError) {
+      errorToThrow = errorToThrow || closeError
+    }
+  }
+  if(errorToThrow) {
+    throw errorToThrow;
+  }
+  return ret
+}, initializeAll:function() {
+  this._isInTransaction = true;
+  var transactionWrappers = this.transactionWrappers;
+  var wrapperInitTimes = this.timingMetrics.wrapperInitTimes;
+  var errorToThrow = null;
+  for(var i = 0;i < transactionWrappers.length;i++) {
+    var initStart = Date.now();
+    var wrapper = transactionWrappers[i];
+    try {
+      this.wrapperInitData[i] = wrapper.initialize ? wrapper.initialize.call(this) : null
+    }catch(initError) {
+      errorToThrow = errorToThrow || initError;
+      this.wrapperInitData[i] = Transaction$$module$Transaction.OBSERVED_ERROR
+    }finally {
+      var curInitTime = wrapperInitTimes[i];
+      var initEnd = Date.now();
+      wrapperInitTimes[i] = (curInitTime || 0) + (initEnd - initStart)
+    }
+  }
+  if(errorToThrow) {
+    throw errorToThrow;
+  }
+}, closeAll:function() {
+  invariant$$module$Transaction(this.isInTransaction());
+  var transactionWrappers = this.transactionWrappers;
+  var wrapperCloseTimes = this.timingMetrics.wrapperCloseTimes;
+  var errorToThrow = null;
+  for(var i = 0;i < transactionWrappers.length;i++) {
+    var wrapper = transactionWrappers[i];
+    var closeStart = Date.now();
+    var initData = this.wrapperInitData[i];
+    try {
+      if(initData !== Transaction$$module$Transaction.OBSERVED_ERROR) {
+        wrapper.close && wrapper.close.call(this, initData)
+      }
+    }catch(closeError) {
+      errorToThrow = errorToThrow || closeError
+    }finally {
+      var closeEnd = Date.now();
+      var curCloseTime = wrapperCloseTimes[i];
+      wrapperCloseTimes[i] = (curCloseTime || 0) + (closeEnd - closeStart)
+    }
+  }
+  this.wrapperInitData.length = 0;
+  this._isInTransaction = false;
+  if(errorToThrow) {
+    throw errorToThrow;
+  }
+}};
+var Transaction$$module$Transaction = {Mixin:Mixin$$module$Transaction, OBSERVED_ERROR:{}};
+module$Transaction.module$exports = Transaction$$module$Transaction;
+if(module$Transaction.module$exports) {
+  module$Transaction = module$Transaction.module$exports
+}
 ;goog.provide("module$copyProperties");
 var module$copyProperties = {};
 function copyProperties$$module$copyProperties(obj, a, b, c, d, e, f) {
   obj = obj || {};
+  if(false) {
+    if(f) {
+      throw new Error("Too many arguments passed to copyProperties");
+    }
+  }
   var args = [a, b, c, d, e];
   var ii = 0, v;
   while(args[ii]) {
@@ -209,6 +265,31 @@ module$emptyFunction.module$exports = emptyFunction$$module$emptyFunction;
 if(module$emptyFunction.module$exports) {
   module$emptyFunction = module$emptyFunction.module$exports
 }
+;goog.provide("module$getUnboundedScrollPosition");
+var module$getUnboundedScrollPosition = {};
+function getUnboundedScrollPosition$$module$getUnboundedScrollPosition(scrollable) {
+  if(scrollable === window) {
+    return{x:document.documentElement.scrollLeft || document.body.scrollLeft, y:document.documentElement.scrollTop || document.body.scrollTop}
+  }
+  return{x:scrollable.scrollLeft, y:scrollable.scrollTop}
+}
+module$getUnboundedScrollPosition.module$exports = getUnboundedScrollPosition$$module$getUnboundedScrollPosition;
+if(module$getUnboundedScrollPosition.module$exports) {
+  module$getUnboundedScrollPosition = module$getUnboundedScrollPosition.module$exports
+}
+;goog.provide("module$ViewportMetrics");
+var module$ViewportMetrics = {};
+goog.require("module$getUnboundedScrollPosition");
+var getUnboundedScrollPosition$$module$ViewportMetrics = module$getUnboundedScrollPosition;
+var ViewportMetrics$$module$ViewportMetrics = {currentScrollLeft:0, currentScrollTop:0, refreshScrollValues:function() {
+  var scrollPosition = getUnboundedScrollPosition$$module$ViewportMetrics(window);
+  ViewportMetrics$$module$ViewportMetrics.currentScrollLeft = scrollPosition.x;
+  ViewportMetrics$$module$ViewportMetrics.currentScrollTop = scrollPosition.y
+}};
+module$ViewportMetrics.module$exports = ViewportMetrics$$module$ViewportMetrics;
+if(module$ViewportMetrics.module$exports) {
+  module$ViewportMetrics = module$ViewportMetrics.module$exports
+}
 ;goog.provide("module$isNode");
 var module$isNode = {};
 function isNode$$module$isNode(object) {
@@ -229,22 +310,22 @@ module$isTextNode.module$exports = isTextNode$$module$isTextNode;
 if(module$isTextNode.module$exports) {
   module$isTextNode = module$isTextNode.module$exports
 }
-;goog.provide("module$nodeContains");
-var module$nodeContains = {};
+;goog.provide("module$containsNode");
+var module$containsNode = {};
 goog.require("module$isTextNode");
-var isTextNode$$module$nodeContains = module$isTextNode;
-function nodeContains$$module$nodeContains(outerNode, innerNode) {
+var isTextNode$$module$containsNode = module$isTextNode;
+function containsNode$$module$containsNode(outerNode, innerNode) {
   if(!outerNode || !innerNode) {
     return false
   }else {
     if(outerNode === innerNode) {
       return true
     }else {
-      if(isTextNode$$module$nodeContains(outerNode)) {
+      if(isTextNode$$module$containsNode(outerNode)) {
         return false
       }else {
-        if(isTextNode$$module$nodeContains(innerNode)) {
-          return nodeContains$$module$nodeContains(outerNode, innerNode.parentNode)
+        if(isTextNode$$module$containsNode(innerNode)) {
+          return containsNode$$module$containsNode(outerNode, innerNode.parentNode)
         }else {
           if(outerNode.contains) {
             return outerNode.contains(innerNode)
@@ -260,9 +341,9 @@ function nodeContains$$module$nodeContains(outerNode, innerNode) {
     }
   }
 }
-module$nodeContains.module$exports = nodeContains$$module$nodeContains;
-if(module$nodeContains.module$exports) {
-  module$nodeContains = module$nodeContains.module$exports
+module$containsNode.module$exports = containsNode$$module$containsNode;
+if(module$containsNode.module$exports) {
+  module$containsNode = module$containsNode.module$exports
 }
 ;goog.provide("module$getNodeForCharacterOffset");
 var module$getNodeForCharacterOffset = {};
@@ -365,14 +446,24 @@ function setModernOffsets$$module$ReactDOMSelection(node, offsets) {
   var length = node[getTextContentAccessor$$module$ReactDOMSelection()].length;
   var start = Math.min(offsets.start, length);
   var end = typeof offsets.end === "undefined" ? start : Math.min(offsets.end, length);
+  if(!selection.extend && start > end) {
+    var temp = end;
+    end = start;
+    start = temp
+  }
   var startMarker = getNodeForCharacterOffset$$module$ReactDOMSelection(node, start);
   var endMarker = getNodeForCharacterOffset$$module$ReactDOMSelection(node, end);
   if(startMarker && endMarker) {
     var range = document.createRange();
     range.setStart(startMarker.node, startMarker.offset);
     selection.removeAllRanges();
-    selection.addRange(range);
-    selection.extend(endMarker.node, endMarker.offset);
+    if(start > end) {
+      selection.addRange(range);
+      selection.extend(endMarker.node, endMarker.offset)
+    }else {
+      range.setEnd(endMarker.node, endMarker.offset);
+      selection.addRange(range)
+    }
     range.detach()
   }
 }
@@ -389,18 +480,14 @@ if(module$ReactDOMSelection.module$exports) {
 }
 ;goog.provide("module$ReactInputSelection");
 var module$ReactInputSelection = {};
-goog.require("module$nodeContains");
+goog.require("module$getActiveElement");
+goog.require("module$containsNode");
 goog.require("module$ReactDOMSelection");
 var ReactDOMSelection$$module$ReactInputSelection = module$ReactDOMSelection;
-var nodeContains$$module$ReactInputSelection = module$nodeContains;
-function getActiveElement$$module$ReactInputSelection() {
-  try {
-    return document.activeElement
-  }catch(e) {
-  }
-}
+var containsNode$$module$ReactInputSelection = module$containsNode;
+var getActiveElement$$module$ReactInputSelection = module$getActiveElement;
 function isInDocument$$module$ReactInputSelection(node) {
-  return nodeContains$$module$ReactInputSelection(document.documentElement, node)
+  return containsNode$$module$ReactInputSelection(document.documentElement, node)
 }
 var ReactInputSelection$$module$ReactInputSelection = {hasSelectionCapabilities:function(elem) {
   return elem && (elem.nodeName === "INPUT" && elem.type === "text" || elem.nodeName === "TEXTAREA" || elem.contentEditable === "true")

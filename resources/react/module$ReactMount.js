@@ -1,17 +1,19 @@
 goog.provide("module$ReactMount");
 var module$ReactMount = {};
-goog.require("module$nodeContains");
+goog.require("module$shouldUpdateReactComponent");
 goog.require("module$invariant");
 goog.require("module$getReactRootElementInContainer");
+goog.require("module$containsNode");
 goog.require("module$$");
 goog.require("module$ReactInstanceHandles");
 goog.require("module$ReactEventEmitter");
 var ReactEventEmitter$$module$ReactMount = module$ReactEventEmitter;
 var ReactInstanceHandles$$module$ReactMount = module$ReactInstanceHandles;
 var $$$module$ReactMount = module$$;
+var containsNode$$module$ReactMount = module$containsNode;
 var getReactRootElementInContainer$$module$ReactMount = module$getReactRootElementInContainer;
 var invariant$$module$ReactMount = module$invariant;
-var nodeContains$$module$ReactMount = module$nodeContains;
+var shouldUpdateReactComponent$$module$ReactMount = module$shouldUpdateReactComponent;
 var SEPARATOR$$module$ReactMount = ReactInstanceHandles$$module$ReactMount.SEPARATOR;
 var ATTR_NAME$$module$ReactMount = "data-reactid";
 var nodeCache$$module$ReactMount = {};
@@ -19,6 +21,9 @@ var ELEMENT_NODE_TYPE$$module$ReactMount = 1;
 var DOC_NODE_TYPE$$module$ReactMount = 9;
 var instancesByReactRootID$$module$ReactMount = {};
 var containersByReactRootID$$module$ReactMount = {};
+if(false) {
+  var rootElementsByReactRootID$$module$ReactMount = {}
+}
 function getReactRootID$$module$ReactMount(container) {
   var rootElement = getReactRootElementInContainer$$module$ReactMount(container);
   return rootElement && ReactMount$$module$ReactMount.getID(rootElement)
@@ -59,7 +64,7 @@ function isValid$$module$ReactMount(node, id) {
   if(node) {
     invariant$$module$ReactMount(internalGetID$$module$ReactMount(node) === id);
     var container = ReactMount$$module$ReactMount.findReactContainerForID(id);
-    if(container && nodeContains$$module$ReactMount(container, node)) {
+    if(container && containsNode$$module$ReactMount(container, node)) {
       return true
     }
   }
@@ -79,6 +84,9 @@ var ReactMount$$module$ReactMount = {allowFullPageRender:false, totalInstantiati
   ReactMount$$module$ReactMount.scrollMonitor(container, function() {
     prevComponent.replaceProps(nextProps, callback)
   });
+  if(false) {
+    rootElementsByReactRootID$$module$ReactMount[getReactRootID$$module$ReactMount(container)] = getReactRootElementInContainer$$module$ReactMount(container)
+  }
   return prevComponent
 }, _registerComponent:function(nextComponent, container) {
   ReactMount$$module$ReactMount.prepareEnvironmentForDOM(container);
@@ -88,19 +96,22 @@ var ReactMount$$module$ReactMount = {allowFullPageRender:false, totalInstantiati
 }, _renderNewRootComponent:function(nextComponent, container, shouldReuseMarkup) {
   var reactRootID = ReactMount$$module$ReactMount._registerComponent(nextComponent, container);
   nextComponent.mountComponentIntoNode(reactRootID, container, shouldReuseMarkup);
+  if(false) {
+    rootElementsByReactRootID$$module$ReactMount[reactRootID] = getReactRootElementInContainer$$module$ReactMount(container)
+  }
   return nextComponent
 }, renderComponent:function(nextComponent, container, callback) {
-  var registeredComponent = instancesByReactRootID$$module$ReactMount[getReactRootID$$module$ReactMount(container)];
-  if(registeredComponent) {
-    if(registeredComponent.constructor === nextComponent.constructor) {
-      return ReactMount$$module$ReactMount._updateRootComponent(registeredComponent, nextComponent, container, callback)
+  var prevComponent = instancesByReactRootID$$module$ReactMount[getReactRootID$$module$ReactMount(container)];
+  if(prevComponent) {
+    if(shouldUpdateReactComponent$$module$ReactMount(prevComponent, nextComponent)) {
+      return ReactMount$$module$ReactMount._updateRootComponent(prevComponent, nextComponent, container, callback)
     }else {
       ReactMount$$module$ReactMount.unmountComponentAtNode(container)
     }
   }
   var reactRootElement = getReactRootElementInContainer$$module$ReactMount(container);
   var containerHasReactMarkup = reactRootElement && ReactMount$$module$ReactMount.isRenderedByReact(reactRootElement);
-  var shouldReuseMarkup = containerHasReactMarkup && !registeredComponent;
+  var shouldReuseMarkup = containerHasReactMarkup && !prevComponent;
   var component = ReactMount$$module$ReactMount._renderNewRootComponent(nextComponent, container, shouldReuseMarkup);
   callback && callback();
   return component
@@ -127,17 +138,38 @@ var ReactMount$$module$ReactMount = {allowFullPageRender:false, totalInstantiati
   ReactMount$$module$ReactMount.unmountComponentFromNode(component, container);
   delete instancesByReactRootID$$module$ReactMount[reactRootID];
   delete containersByReactRootID$$module$ReactMount[reactRootID];
+  if(false) {
+    delete rootElementsByReactRootID$$module$ReactMount[reactRootID]
+  }
   return true
 }, unmountAndReleaseReactRootNode:function() {
+  if(false) {
+    console.warn("unmountAndReleaseReactRootNode() has been renamed to " + "unmountComponentAtNode() and will be removed in the next " + "version of React.")
+  }
   return ReactMount$$module$ReactMount.unmountComponentAtNode.apply(this, arguments)
 }, unmountComponentFromNode:function(instance, container) {
   instance.unmountComponent();
+  if(container.nodeType === DOC_NODE_TYPE$$module$ReactMount) {
+    container = container.documentElement
+  }
   while(container.lastChild) {
     container.removeChild(container.lastChild)
   }
 }, findReactContainerForID:function(id) {
   var reactRootID = ReactInstanceHandles$$module$ReactMount.getReactRootIDFromNodeID(id);
   var container = containersByReactRootID$$module$ReactMount[reactRootID];
+  if(false) {
+    var rootElement = rootElementsByReactRootID$$module$ReactMount[reactRootID];
+    if(rootElement && rootElement.parentNode !== container) {
+      invariant$$module$ReactMount(internalGetID$$module$ReactMount(rootElement) === reactRootID);
+      var containerChild = container.firstChild;
+      if(containerChild && reactRootID === internalGetID$$module$ReactMount(containerChild)) {
+        rootElementsByReactRootID$$module$ReactMount[reactRootID] = containerChild
+      }else {
+        console.warn("ReactMount: Root element has been removed from its original " + "container. New container:", rootElement.parentNode)
+      }
+    }
+  }
   return container
 }, findReactNodeByID:function(id) {
   var reactRoot = ReactMount$$module$ReactMount.findReactContainerForID(id);
@@ -182,8 +214,11 @@ var ReactMount$$module$ReactMount = {allowFullPageRender:false, totalInstantiati
       child = child.nextSibling
     }
   }
+  if(false) {
+    console.error("Error while invoking `findComponentRoot` with the following " + "ancestor node:", ancestorNode)
+  }
   invariant$$module$ReactMount(false)
-}, ATTR_NAME:ATTR_NAME$$module$ReactMount, getID:getID$$module$ReactMount, setID:setID$$module$ReactMount, getNode:getNode$$module$ReactMount, purgeID:purgeID$$module$ReactMount, injection:{}};
+}, ATTR_NAME:ATTR_NAME$$module$ReactMount, getReactRootID:getReactRootID$$module$ReactMount, getID:getID$$module$ReactMount, setID:setID$$module$ReactMount, getNode:getNode$$module$ReactMount, purgeID:purgeID$$module$ReactMount, injection:{}};
 module$ReactMount.module$exports = ReactMount$$module$ReactMount;
 if(module$ReactMount.module$exports) {
   module$ReactMount = module$ReactMount.module$exports

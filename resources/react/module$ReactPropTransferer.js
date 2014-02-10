@@ -19,7 +19,7 @@ function createTransferStrategy$$module$ReactPropTransferer(mergeStrategy) {
 }
 var TransferStrategies$$module$ReactPropTransferer = {children:emptyFunction$$module$ReactPropTransferer, className:createTransferStrategy$$module$ReactPropTransferer(joinClasses$$module$ReactPropTransferer), ref:emptyFunction$$module$ReactPropTransferer, style:createTransferStrategy$$module$ReactPropTransferer(merge$$module$ReactPropTransferer)};
 var ReactPropTransferer$$module$ReactPropTransferer = {TransferStrategies:TransferStrategies$$module$ReactPropTransferer, Mixin:{transferPropsTo:function(component) {
-  invariant$$module$ReactPropTransferer(component.props.__owner__ === this);
+  invariant$$module$ReactPropTransferer(component._owner === this);
   var props = {};
   for(var thatKey in component.props) {
     if(component.props.hasOwnProperty(thatKey)) {

@@ -18,7 +18,7 @@ var input$$module$ReactDOMInput = ReactDOM$$module$ReactDOMInput.input;
 var instancesByReactID$$module$ReactDOMInput = {};
 var ReactDOMInput$$module$ReactDOMInput = ReactCompositeComponent$$module$ReactDOMInput.createClass({mixins:[LinkedValueMixin$$module$ReactDOMInput], getInitialState:function() {
   var defaultValue = this.props.defaultValue;
-  return{checked:this.props.defaultChecked || false, value:defaultValue != null && defaultValue !== false ? defaultValue : ""}
+  return{checked:this.props.defaultChecked || false, value:defaultValue != null ? defaultValue : null}
 }, shouldComponentUpdate:function() {
   return!this._isChanging
 }, render:function() {
@@ -27,23 +27,24 @@ var ReactDOMInput$$module$ReactDOMInput = ReactCompositeComponent$$module$ReactD
   props.defaultValue = null;
   props.checked = this.props.checked != null ? this.props.checked : this.state.checked;
   var value = this.getValue();
-  props.value = value != null && value !== false ? "" + value : this.state.value;
+  props.value = value != null ? value : this.state.value;
   props.onChange = this._handleChange;
   return input$$module$ReactDOMInput(props, this.props.children)
-}, componentDidMount:function(rootNode) {
-  var id = ReactMount$$module$ReactDOMInput.getID(rootNode);
+}, componentDidMount:function() {
+  var id = ReactMount$$module$ReactDOMInput.getID(this.getDOMNode());
   instancesByReactID$$module$ReactDOMInput[id] = this
 }, componentWillUnmount:function() {
   var rootNode = this.getDOMNode();
   var id = ReactMount$$module$ReactDOMInput.getID(rootNode);
   delete instancesByReactID$$module$ReactDOMInput[id]
-}, componentDidUpdate:function(prevProps, prevState, rootNode) {
+}, componentDidUpdate:function(prevProps, prevState, prevContext) {
+  var rootNode = this.getDOMNode();
   if(this.props.checked != null) {
     DOMPropertyOperations$$module$ReactDOMInput.setValueForProperty(rootNode, "checked", this.props.checked || false)
   }
   var value = this.getValue();
   if(value != null) {
-    DOMPropertyOperations$$module$ReactDOMInput.setValueForProperty(rootNode, "value", value !== false ? "" + value : "")
+    DOMPropertyOperations$$module$ReactDOMInput.setValueForProperty(rootNode, "value", "" + value)
   }
 }, _handleChange:function(event) {
   var returnValue;

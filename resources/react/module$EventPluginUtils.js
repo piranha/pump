@@ -15,9 +15,23 @@ function isStartish$$module$EventPluginUtils(topLevelType) {
   return topLevelType === topLevelTypes$$module$EventPluginUtils.topMouseDown || topLevelType === topLevelTypes$$module$EventPluginUtils.topTouchStart
 }
 var validateEventDispatches$$module$EventPluginUtils;
+if(false) {
+  validateEventDispatches$$module$EventPluginUtils = function(event) {
+    var dispatchListeners = event._dispatchListeners;
+    var dispatchIDs = event._dispatchIDs;
+    var listenersIsArr = Array.isArray(dispatchListeners);
+    var idsIsArr = Array.isArray(dispatchIDs);
+    var IDsLen = idsIsArr ? dispatchIDs.length : dispatchIDs ? 1 : 0;
+    var listenersLen = listenersIsArr ? dispatchListeners.length : dispatchListeners ? 1 : 0;
+    invariant$$module$EventPluginUtils(idsIsArr === listenersIsArr && IDsLen === listenersLen)
+  }
+}
 function forEachEventDispatch$$module$EventPluginUtils(event, cb) {
   var dispatchListeners = event._dispatchListeners;
   var dispatchIDs = event._dispatchIDs;
+  if(false) {
+    validateEventDispatches$$module$EventPluginUtils(event)
+  }
   if(Array.isArray(dispatchListeners)) {
     for(var i = 0;i < dispatchListeners.length;i++) {
       if(event.isPropagationStopped()) {
@@ -42,6 +56,9 @@ function executeDispatchesInOrder$$module$EventPluginUtils(event, executeDispatc
 function executeDispatchesInOrderStopAtTrue$$module$EventPluginUtils(event) {
   var dispatchListeners = event._dispatchListeners;
   var dispatchIDs = event._dispatchIDs;
+  if(false) {
+    validateEventDispatches$$module$EventPluginUtils(event)
+  }
   if(Array.isArray(dispatchListeners)) {
     for(var i = 0;i < dispatchListeners.length;i++) {
       if(event.isPropagationStopped()) {
@@ -61,6 +78,9 @@ function executeDispatchesInOrderStopAtTrue$$module$EventPluginUtils(event) {
   return null
 }
 function executeDirectDispatch$$module$EventPluginUtils(event) {
+  if(false) {
+    validateEventDispatches$$module$EventPluginUtils(event)
+  }
   var dispatchListener = event._dispatchListeners;
   var dispatchID = event._dispatchIDs;
   invariant$$module$EventPluginUtils(!Array.isArray(dispatchListener));

@@ -11,7 +11,10 @@ var forEachAccumulated$$module$EventPropagators = module$forEachAccumulated;
 var getListener$$module$EventPropagators = CallbackRegistry$$module$EventPropagators.getListener;
 var PropagationPhases$$module$EventPropagators = EventConstants$$module$EventPropagators.PropagationPhases;
 var injection$$module$EventPropagators = {InstanceHandle:null, injectInstanceHandle:function(InjectedInstanceHandle) {
-  injection$$module$EventPropagators.InstanceHandle = InjectedInstanceHandle
+  injection$$module$EventPropagators.InstanceHandle = InjectedInstanceHandle;
+  if(false) {
+    injection$$module$EventPropagators.validate()
+  }
 }, validate:function() {
   var invalid = !injection$$module$EventPropagators.InstanceHandle || !injection$$module$EventPropagators.InstanceHandle.traverseTwoPhase || !injection$$module$EventPropagators.InstanceHandle.traverseEnterLeave;
   if(invalid) {
@@ -23,6 +26,12 @@ function listenerAtPhase$$module$EventPropagators(id, event, propagationPhase) {
   return getListener$$module$EventPropagators(id, registrationName)
 }
 function accumulateDirectionalDispatches$$module$EventPropagators(domID, upwards, event) {
+  if(false) {
+    if(!domID) {
+      throw new Error("Dispatching id must not be null");
+    }
+    injection$$module$EventPropagators.validate()
+  }
   var phase = upwards ? PropagationPhases$$module$EventPropagators.bubbled : PropagationPhases$$module$EventPropagators.captured;
   var listener = listenerAtPhase$$module$EventPropagators(domID, event, phase);
   if(listener) {
@@ -51,12 +60,21 @@ function accumulateDirectDispatchesSingle$$module$EventPropagators(event) {
   }
 }
 function accumulateTwoPhaseDispatches$$module$EventPropagators(events) {
+  if(false) {
+    injection$$module$EventPropagators.validate()
+  }
   forEachAccumulated$$module$EventPropagators(events, accumulateTwoPhaseDispatchesSingle$$module$EventPropagators)
 }
 function accumulateEnterLeaveDispatches$$module$EventPropagators(leave, enter, fromID, toID) {
+  if(false) {
+    injection$$module$EventPropagators.validate()
+  }
   injection$$module$EventPropagators.InstanceHandle.traverseEnterLeave(fromID, toID, accumulateDispatches$$module$EventPropagators, leave, enter)
 }
 function accumulateDirectDispatches$$module$EventPropagators(events) {
+  if(false) {
+    injection$$module$EventPropagators.validate()
+  }
   forEachAccumulated$$module$EventPropagators(events, accumulateDirectDispatchesSingle$$module$EventPropagators)
 }
 var EventPropagators$$module$EventPropagators = {accumulateTwoPhaseDispatches:accumulateTwoPhaseDispatches$$module$EventPropagators, accumulateDirectDispatches:accumulateDirectDispatches$$module$EventPropagators, accumulateEnterLeaveDispatches:accumulateEnterLeaveDispatches$$module$EventPropagators, injection:injection$$module$EventPropagators};

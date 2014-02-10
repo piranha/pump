@@ -1,30 +1,39 @@
 goog.provide("module$ReactCompositeComponent");
 var module$ReactCompositeComponent = {};
+goog.require("module$shouldUpdateReactComponent");
 goog.require("module$objMap");
 goog.require("module$mixInto");
 goog.require("module$merge");
 goog.require("module$keyMirror");
 goog.require("module$invariant");
 goog.require("module$ReactUpdates");
+goog.require("module$ReactPropTypeLocations");
 goog.require("module$ReactPropTransferer");
 goog.require("module$ReactPerf");
 goog.require("module$ReactOwner");
+goog.require("module$ReactErrorUtils");
 goog.require("module$ReactCurrentOwner");
+goog.require("module$ReactContext");
 goog.require("module$ReactComponent");
 var ReactComponent$$module$ReactCompositeComponent = module$ReactComponent;
+var ReactContext$$module$ReactCompositeComponent = module$ReactContext;
 var ReactCurrentOwner$$module$ReactCompositeComponent = module$ReactCurrentOwner;
+var ReactErrorUtils$$module$ReactCompositeComponent = module$ReactErrorUtils;
 var ReactOwner$$module$ReactCompositeComponent = module$ReactOwner;
 var ReactPerf$$module$ReactCompositeComponent = module$ReactPerf;
 var ReactPropTransferer$$module$ReactCompositeComponent = module$ReactPropTransferer;
+var ReactPropTypeLocations$$module$ReactCompositeComponent = module$ReactPropTypeLocations;
 var ReactUpdates$$module$ReactCompositeComponent = module$ReactUpdates;
 var invariant$$module$ReactCompositeComponent = module$invariant;
 var keyMirror$$module$ReactCompositeComponent = module$keyMirror;
 var merge$$module$ReactCompositeComponent = module$merge;
 var mixInto$$module$ReactCompositeComponent = module$mixInto;
 var objMap$$module$ReactCompositeComponent = module$objMap;
+var shouldUpdateReactComponent$$module$ReactCompositeComponent = module$shouldUpdateReactComponent;
 var SpecPolicy$$module$ReactCompositeComponent = keyMirror$$module$ReactCompositeComponent({DEFINE_ONCE:null, DEFINE_MANY:null, OVERRIDE_BASE:null, DEFINE_MANY_MERGED:null});
-var ReactCompositeComponentInterface$$module$ReactCompositeComponent = {mixins:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, propTypes:SpecPolicy$$module$ReactCompositeComponent.DEFINE_ONCE, getDefaultProps:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, getInitialState:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, render:SpecPolicy$$module$ReactCompositeComponent.DEFINE_ONCE, componentWillMount:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, componentDidMount:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, 
-componentWillReceiveProps:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, shouldComponentUpdate:SpecPolicy$$module$ReactCompositeComponent.DEFINE_ONCE, componentWillUpdate:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, componentDidUpdate:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, componentWillUnmount:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, updateComponent:SpecPolicy$$module$ReactCompositeComponent.OVERRIDE_BASE};
+var ReactCompositeComponentInterface$$module$ReactCompositeComponent = {mixins:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, propTypes:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, contextTypes:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, childContextTypes:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, getDefaultProps:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, getInitialState:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, 
+getChildContext:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY_MERGED, render:SpecPolicy$$module$ReactCompositeComponent.DEFINE_ONCE, componentWillMount:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, componentDidMount:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, componentWillReceiveProps:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, shouldComponentUpdate:SpecPolicy$$module$ReactCompositeComponent.DEFINE_ONCE, componentWillUpdate:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, 
+componentDidUpdate:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, componentWillUnmount:SpecPolicy$$module$ReactCompositeComponent.DEFINE_MANY, updateComponent:SpecPolicy$$module$ReactCompositeComponent.OVERRIDE_BASE};
 var RESERVED_SPEC_KEYS$$module$ReactCompositeComponent = {displayName:function(Constructor, displayName) {
   Constructor.displayName = displayName
 }, mixins:function(Constructor, mixins) {
@@ -33,6 +42,10 @@ var RESERVED_SPEC_KEYS$$module$ReactCompositeComponent = {displayName:function(C
       mixSpecIntoComponent$$module$ReactCompositeComponent(Constructor, mixins[i])
     }
   }
+}, childContextTypes:function(Constructor, childContextTypes) {
+  Constructor.childContextTypes = childContextTypes
+}, contextTypes:function(Constructor, contextTypes) {
+  Constructor.contextTypes = contextTypes
 }, propTypes:function(Constructor, propTypes) {
   Constructor.propTypes = propTypes
 }};
@@ -110,6 +123,9 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
   ReactComponent$$module$ReactCompositeComponent.Mixin.construct.apply(this, arguments);
   this.state = null;
   this._pendingState = null;
+  this.context = this._processContext(ReactContext$$module$ReactCompositeComponent.current);
+  this._currentContext = ReactContext$$module$ReactCompositeComponent.current;
+  this._pendingContext = null;
   this._compositeLifeCycleState = null
 }, isMounted:function() {
   return ReactComponent$$module$ReactCompositeComponent.Mixin.isMounted.call(this) && this._compositeLifeCycleState !== CompositeLifeCycle$$module$ReactCompositeComponent.MOUNTING
@@ -157,22 +173,46 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
   validateLifeCycleOnReplaceState$$module$ReactCompositeComponent(this);
   this._pendingState = completeState;
   ReactUpdates$$module$ReactCompositeComponent.enqueueUpdate(this, callback)
+}, _processContext:function(context) {
+  var maskedContext = null;
+  var contextTypes = this.constructor.contextTypes;
+  if(contextTypes) {
+    maskedContext = {};
+    for(var contextName in contextTypes) {
+      maskedContext[contextName] = context[contextName]
+    }
+    this._checkPropTypes(contextTypes, maskedContext, ReactPropTypeLocations$$module$ReactCompositeComponent.context)
+  }
+  return maskedContext
+}, _processChildContext:function(currentContext) {
+  var childContext = this.getChildContext && this.getChildContext();
+  var displayName = this.constructor.displayName || "ReactCompositeComponent";
+  if(childContext) {
+    invariant$$module$ReactCompositeComponent(typeof this.constructor.childContextTypes === "object");
+    this._checkPropTypes(this.constructor.childContextTypes, childContext, ReactPropTypeLocations$$module$ReactCompositeComponent.childContext);
+    for(var name in childContext) {
+      invariant$$module$ReactCompositeComponent(name in this.constructor.childContextTypes)
+    }
+    return merge$$module$ReactCompositeComponent(currentContext, childContext)
+  }
+  return currentContext
 }, _processProps:function(props) {
-  var propName;
   var defaultProps = this._defaultProps;
-  for(propName in defaultProps) {
-    if(!(propName in props)) {
+  for(var propName in defaultProps) {
+    if(typeof props[propName] === "undefined") {
       props[propName] = defaultProps[propName]
     }
   }
   var propTypes = this.constructor.propTypes;
   if(propTypes) {
-    var componentName = this.constructor.displayName;
-    for(propName in propTypes) {
-      var checkProp = propTypes[propName];
-      if(checkProp) {
-        checkProp(props, propName, componentName)
-      }
+    this._checkPropTypes(propTypes, props, ReactPropTypeLocations$$module$ReactCompositeComponent.prop)
+  }
+}, _checkPropTypes:function(propTypes, props, location) {
+  var componentName = this.constructor.displayName;
+  for(var propName in propTypes) {
+    var checkProp = propTypes[propName];
+    if(checkProp) {
+      checkProp(props, propName, componentName, location)
     }
   }
 }, performUpdateIfNecessary:function() {
@@ -182,9 +222,12 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
   }
   ReactComponent$$module$ReactCompositeComponent.Mixin.performUpdateIfNecessary.call(this)
 }, _performUpdateIfNecessary:function(transaction) {
-  if(this._pendingProps == null && this._pendingState == null && !this._pendingForceUpdate) {
+  if(this._pendingProps == null && this._pendingState == null && this._pendingContext == null && !this._pendingForceUpdate) {
     return
   }
+  var nextFullContext = this._pendingContext || this._currentContext;
+  var nextContext = this._processContext(nextFullContext);
+  this._pendingContext = null;
   var nextProps = this.props;
   if(this._pendingProps != null) {
     nextProps = this._pendingProps;
@@ -192,45 +235,57 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
     this._pendingProps = null;
     this._compositeLifeCycleState = CompositeLifeCycle$$module$ReactCompositeComponent.RECEIVING_PROPS;
     if(this.componentWillReceiveProps) {
-      this.componentWillReceiveProps(nextProps, transaction)
+      this.componentWillReceiveProps(nextProps, nextContext)
     }
   }
   this._compositeLifeCycleState = CompositeLifeCycle$$module$ReactCompositeComponent.RECEIVING_STATE;
+  var nextOwner = this._pendingOwner;
   var nextState = this._pendingState || this.state;
   this._pendingState = null;
-  if(this._pendingForceUpdate || !this.shouldComponentUpdate || this.shouldComponentUpdate(nextProps, nextState)) {
+  if(this._pendingForceUpdate || !this.shouldComponentUpdate || this.shouldComponentUpdate(nextProps, nextState, nextContext)) {
     this._pendingForceUpdate = false;
-    this._performComponentUpdate(nextProps, nextState, transaction)
+    this._performComponentUpdate(nextProps, nextOwner, nextState, nextFullContext, nextContext, transaction)
   }else {
     this.props = nextProps;
-    this.state = nextState
+    this._owner = nextOwner;
+    this.state = nextState;
+    this._currentContext = nextFullContext;
+    this.context = nextContext
   }
   this._compositeLifeCycleState = null
-}, _performComponentUpdate:function(nextProps, nextState, transaction) {
+}, _performComponentUpdate:function(nextProps, nextOwner, nextState, nextFullContext, nextContext, transaction) {
   var prevProps = this.props;
+  var prevOwner = this._owner;
   var prevState = this.state;
+  var prevContext = this.context;
   if(this.componentWillUpdate) {
-    this.componentWillUpdate(nextProps, nextState, transaction)
+    this.componentWillUpdate(nextProps, nextState, nextContext)
   }
   this.props = nextProps;
+  this._owner = nextOwner;
   this.state = nextState;
-  this.updateComponent(transaction, prevProps, prevState);
+  this._currentContext = nextFullContext;
+  this.context = nextContext;
+  this.updateComponent(transaction, prevProps, prevOwner, prevState, prevContext);
   if(this.componentDidUpdate) {
-    transaction.getReactMountReady().enqueue(this, this.componentDidUpdate.bind(this, prevProps, prevState))
+    transaction.getReactMountReady().enqueue(this, this.componentDidUpdate.bind(this, prevProps, prevState, prevContext))
   }
-}, updateComponent:ReactPerf$$module$ReactCompositeComponent.measure("ReactCompositeComponent", "updateComponent", function(transaction, prevProps, prevState) {
-  ReactComponent$$module$ReactCompositeComponent.Mixin.updateComponent.call(this, transaction, prevProps);
-  var currentComponent = this._renderedComponent;
+}, receiveComponent:function(nextComponent, transaction) {
+  this._pendingContext = nextComponent._currentContext;
+  ReactComponent$$module$ReactCompositeComponent.Mixin.receiveComponent.call(this, nextComponent, transaction)
+}, updateComponent:ReactPerf$$module$ReactCompositeComponent.measure("ReactCompositeComponent", "updateComponent", function(transaction, prevProps, prevOwner, prevState, prevContext) {
+  ReactComponent$$module$ReactCompositeComponent.Mixin.updateComponent.call(this, transaction, prevProps, prevOwner);
+  var prevComponent = this._renderedComponent;
   var nextComponent = this._renderValidatedComponent();
-  if(currentComponent.constructor === nextComponent.constructor) {
-    currentComponent.receiveProps(nextComponent.props, transaction)
+  if(shouldUpdateReactComponent$$module$ReactCompositeComponent(prevComponent, nextComponent)) {
+    prevComponent.receiveComponent(nextComponent, transaction)
   }else {
     var thisID = this._rootNodeID;
-    var currentComponentID = currentComponent._rootNodeID;
-    currentComponent.unmountComponent();
+    var prevComponentID = prevComponent._rootNodeID;
+    prevComponent.unmountComponent();
     this._renderedComponent = nextComponent;
     var nextMarkup = nextComponent.mountComponent(thisID, transaction, this._mountDepth + 1);
-    ReactComponent$$module$ReactCompositeComponent.DOMIDOperations.dangerouslyReplaceNodeWithMarkupByID(currentComponentID, nextMarkup)
+    ReactComponent$$module$ReactCompositeComponent.DOMIDOperations.dangerouslyReplaceNodeWithMarkupByID(prevComponentID, nextMarkup)
   }
 }), forceUpdate:function(callback) {
   var compositeLifeCycleState = this._compositeLifeCycleState;
@@ -240,12 +295,15 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
   ReactUpdates$$module$ReactCompositeComponent.enqueueUpdate(this, callback)
 }, _renderValidatedComponent:function() {
   var renderedComponent;
+  var previousContext = ReactContext$$module$ReactCompositeComponent.current;
+  ReactContext$$module$ReactCompositeComponent.current = this._processChildContext(this._currentContext);
   ReactCurrentOwner$$module$ReactCompositeComponent.current = this;
   try {
     renderedComponent = this.render()
   }catch(error) {
     throw error;
   }finally {
+    ReactContext$$module$ReactCompositeComponent.current = previousContext;
     ReactCurrentOwner$$module$ReactCompositeComponent.current = null
   }
   invariant$$module$ReactCompositeComponent(ReactComponent$$module$ReactCompositeComponent.isValidComponent(renderedComponent));
@@ -256,13 +314,35 @@ var ReactCompositeComponentMixin$$module$ReactCompositeComponent = {construct:fu
       continue
     }
     var method = this.__reactAutoBindMap[autoBindKey];
-    this[autoBindKey] = this._bindAutoBindMethod(method)
+    this[autoBindKey] = this._bindAutoBindMethod(ReactErrorUtils$$module$ReactCompositeComponent.guard(method, this.constructor.displayName + "." + autoBindKey))
   }
 }, _bindAutoBindMethod:function(method) {
   var component = this;
   var boundMethod = function() {
     return method.apply(component, arguments)
   };
+  if(false) {
+    boundMethod.__reactBoundContext = component;
+    boundMethod.__reactBoundMethod = method;
+    boundMethod.__reactBoundArguments = null;
+    var componentName = component.constructor.displayName;
+    var _bind = boundMethod.bind;
+    boundMethod.bind = function(newThis) {
+      if(newThis !== component && newThis !== null) {
+        console.warn("bind(): React component methods may only be bound to the " + "component instance. See " + componentName)
+      }else {
+        if(arguments.length === 1) {
+          console.warn("bind(): You are binding a component method to the component. " + "React does this for you automatically in a high-performance " + "way, so you can safely remove this call. See " + componentName);
+          return boundMethod
+        }
+      }
+      var reboundMethod = _bind.apply(boundMethod, arguments);
+      reboundMethod.__reactBoundContext = component;
+      reboundMethod.__reactBoundMethod = method;
+      reboundMethod.__reactBoundArguments = Array.prototype.slice.call(arguments, 1);
+      return reboundMethod
+    }
+  }
   return boundMethod
 }};
 var ReactCompositeComponentBase$$module$ReactCompositeComponent = function() {
@@ -278,6 +358,11 @@ var ReactCompositeComponent$$module$ReactCompositeComponent = {LifeCycle:Composi
   Constructor.prototype.constructor = Constructor;
   mixSpecIntoComponent$$module$ReactCompositeComponent(Constructor, spec);
   invariant$$module$ReactCompositeComponent(Constructor.prototype.render);
+  if(false) {
+    if(Constructor.prototype.componentShouldUpdate) {
+      console.warn((spec.displayName || "A component") + " has a method called " + "componentShouldUpdate(). Did you mean shouldComponentUpdate()? " + "The name is phrased as a question because the function is " + "expected to return a value.")
+    }
+  }
   for(var methodName in ReactCompositeComponentInterface$$module$ReactCompositeComponent) {
     if(!Constructor.prototype[methodName]) {
       Constructor.prototype[methodName] = null

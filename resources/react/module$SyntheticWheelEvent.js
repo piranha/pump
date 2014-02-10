@@ -5,7 +5,7 @@ var SyntheticMouseEvent$$module$SyntheticWheelEvent = module$SyntheticMouseEvent
 var WheelEventInterface$$module$SyntheticWheelEvent = {deltaX:function(event) {
   return"deltaX" in event ? event.deltaX : "wheelDeltaX" in event ? -event.wheelDeltaX : 0
 }, deltaY:function(event) {
-  return"deltaY" in event ? -event.deltaY : "wheelDeltaY" in event ? event.wheelDeltaY : "wheelDelta" in event ? event.wheelData : 0
+  return"deltaY" in event ? -event.deltaY : "wheelDeltaY" in event ? event.wheelDeltaY : "wheelDelta" in event ? event.wheelDelta : 0
 }, deltaZ:null, deltaMode:null};
 function SyntheticWheelEvent$$module$SyntheticWheelEvent(dispatchConfig, dispatchMarker, nativeEvent) {
   SyntheticMouseEvent$$module$SyntheticWheelEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent)

@@ -20,8 +20,6 @@
                                    :optimizations :advanced}}
                        {:id "map"
                         :source-paths ["src"]
-                        ;; map brings full paths so it's necessary to build it in place
-                        ;; plus it requires to be served from http://, not from file://
                         :compiler {:output-to "pump.min.js"
                                    :source-map "pump.min.js.map"
 ;;                                   :externs ["resources/externs/react.js"]
